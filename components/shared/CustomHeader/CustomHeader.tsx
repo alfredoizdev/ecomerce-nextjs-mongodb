@@ -1,3 +1,4 @@
+import { MENU } from "@/constants/menu";
 import Link from "next/link";
 
 type Props = {
@@ -17,24 +18,11 @@ const CustomHeader = ({ title, subtext = "" }: Props) => {
 
         {/* Menu */}
         <nav className="space-x-8 text-sm hidden md:flex">
-          <Link href="/" className="hover:text-gray-400 transition-colors">
-            Home
-          </Link>
-          <Link
-            href="/products"
-            className="hover:text-gray-400 transition-colors"
-          >
-            Products
-          </Link>
-          <Link
-            href="/collection"
-            className="hover:text-gray-400 transition-colors"
-          >
-            Collection
-          </Link>
-          <Link href="/cart" className="hover:text-gray-400 transition-colors">
-            Cart
-          </Link>
+          {MENU.map((item) => (
+            <Link href={item.link} key={item.id}>
+              {item.name}
+            </Link>
+          ))}
         </nav>
 
         {/* Mobile Menu Button */}

@@ -23,7 +23,7 @@ const DropMenuFilter = ({ gender }: Props) => {
     const params = new URLSearchParams(searchParams);
     params.set("gender", gender);
     setValue(gender);
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString().toLocaleLowerCase()}`);
   };
 
   return (
@@ -36,26 +36,26 @@ const DropMenuFilter = ({ gender }: Props) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
           <DropdownMenuItem
-            onClick={() => handleGenderSelect("All")}
-            className={value === "" ? "bg-gray-200 font-bold" : ""}
+            onClick={() => handleGenderSelect("all")}
+            className={value === "all" ? "bg-gray-200 font-bold" : ""}
           >
             All Genders
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => handleGenderSelect("Men")}
-            className={value === "Men" ? "bg-gray-200 font-bold" : ""}
+            onClick={() => handleGenderSelect("man")}
+            className={value === "man" ? "bg-gray-200 font-bold" : ""}
           >
-            Men
+            Man
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => handleGenderSelect("Women")}
-            className={value === "Women" ? "bg-gray-200 font-bold" : ""}
+            onClick={() => handleGenderSelect("woman")}
+            className={value === "women" ? "bg-gray-200 font-bold" : ""}
           >
             Women
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => handleGenderSelect("Unisex")}
-            className={value === "Unisex" ? "bg-gray-200 font-bold" : ""}
+            onClick={() => handleGenderSelect("unisex")}
+            className={value === "unisex" ? "bg-gray-200 font-bold" : ""}
           >
             Unisex
           </DropdownMenuItem>

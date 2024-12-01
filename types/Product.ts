@@ -7,6 +7,7 @@ export type Product = {
   alt: string;
   gender: string;
   category: string;
+  discountPercentage: number;
   details: {
     material: string;
     sole: string;

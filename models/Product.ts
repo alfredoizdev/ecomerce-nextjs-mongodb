@@ -9,6 +9,13 @@ const ProductSchema = new Schema<TProduct>(
     price: { type: Number, required: true, min: 0 },
     image: { type: String, required: true },
     alt: { type: String, required: true },
+    discountPercentage: {
+      type: Number,
+      required: false,
+      min: 0,
+      max: 100,
+      default: 0,
+    },
     category: {
       type: String,
       required: true,
@@ -17,7 +24,7 @@ const ProductSchema = new Schema<TProduct>(
     gender: {
       type: String,
       required: true,
-      enum: ["Men", "Women", "Unisex"],
+      enum: ["man", "women", "unisex"],
     },
     details: {
       material: { type: String, required: true },

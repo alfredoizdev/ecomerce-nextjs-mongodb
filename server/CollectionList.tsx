@@ -4,10 +4,11 @@ import NotFoundText from "@/components/ui/NotFoundText";
 
 type Props = {
   limit?: number;
+  slug?: string;
 };
 
-const CollectionList = async ({ limit }: Props) => {
-  const products = await getProductsAction();
+const CollectionList = async ({ limit, slug }: Props) => {
+  const products = await getProductsAction(slug);
 
   if (!products.length) return <NotFoundText text="Collection Not found" />;
 

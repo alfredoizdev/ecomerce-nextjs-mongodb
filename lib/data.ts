@@ -8,7 +8,8 @@ export const PRODUCTS: Product[] = [
     image: "/images/shoes/product/r1.webp",
     alt: "Red Running Shoes",
     category: "Running",
-    gender: "Unisex",
+    gender: "unisex",
+    discountPercentage: 10, // 10% de descuento
     details: {
       material: "Breathable mesh",
       sole: "Rubber sole with high traction",
@@ -24,7 +25,8 @@ export const PRODUCTS: Product[] = [
     image: "/images/shoes/product/b1.webp",
     alt: "Blue Sports Shoes",
     category: "Sportswear",
-    gender: "Men",
+    gender: "man",
+    discountPercentage: 0, // Sin descuento
     details: {
       material: "Synthetic upper with cushioning",
       sole: "Shock-absorbing midsole",
@@ -40,7 +42,8 @@ export const PRODUCTS: Product[] = [
     image: "/images/shoes/product/bs1.webp",
     alt: "Black Casual Shoes",
     category: "Casual",
-    gender: "Unisex",
+    gender: "unisex",
+    discountPercentage: 15, // 15% de descuento
     details: {
       material: "Premium leather",
       sole: "Soft padded insole for comfort",
@@ -56,7 +59,8 @@ export const PRODUCTS: Product[] = [
     image: "/images/shoes/product/g1.webp",
     alt: "Green Hiking Boots",
     category: "Hiking",
-    gender: "Men",
+    gender: "man",
+    discountPercentage: 0, // Sin descuento
     details: {
       material: "Waterproof fabric with reinforced stitching",
       sole: "Anti-slip rugged outsole",
@@ -72,7 +76,8 @@ export const PRODUCTS: Product[] = [
     image: "/images/shoes/product/white-sneakers.webp",
     alt: "White Sneakers",
     category: "Casual",
-    gender: "Unisex",
+    gender: "unisex",
+    discountPercentage: 20, // 20% de descuento
     details: {
       material: "Breathable canvas",
       sole: "Cushioned foam sole",
@@ -89,7 +94,8 @@ export const PRODUCTS: Product[] = [
     image: "/images/shoes/product/yellow-running-shoes.webp",
     alt: "Yellow Running Shoes",
     category: "Running",
-    gender: "Women",
+    gender: "women",
+    discountPercentage: 0, // Sin descuento
     details: {
       material: "Knitted fabric with breathable technology",
       sole: "Durable EVA foam sole",
@@ -105,7 +111,8 @@ export const PRODUCTS: Product[] = [
     image: "/images/shoes/product/brown-leather-boots.webp",
     alt: "Brown Leather Boots",
     category: "Boots",
-    gender: "Men",
+    gender: "man",
+    discountPercentage: 0, // Sin descuento
     details: {
       material: "Premium genuine leather",
       sole: "Non-slip rubber sole",
@@ -121,7 +128,8 @@ export const PRODUCTS: Product[] = [
     image: "/images/shoes/product/pink-sports-shoes.webp",
     alt: "Pink Sports Shoes",
     category: "Sportswear",
-    gender: "Women",
+    gender: "women",
+    discountPercentage: 0, // Sin descuento
     details: {
       material: "Synthetic upper with breathable mesh",
       sole: "Cushioned sole for impact absorption",
