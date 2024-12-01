@@ -1,5 +1,7 @@
+"use client";
 import { MENU } from "@/constants/menu";
 import Link from "next/link";
+import MobileButtonMenu from "../MobileButtonMenu";
 
 const Navbar = () => {
   return (
@@ -19,23 +21,7 @@ const Navbar = () => {
         </nav>
         {/* Mobile Menu */}
         <div className="md:hidden">
-          <button className="text-white focus:outline-none">
-            {/* Icon for mobile menu */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          </button>
+          <MobileButtonMenu />
         </div>
       </div>
     </header>

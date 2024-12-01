@@ -48,7 +48,7 @@ const DropMenuFilter = ({ gender }: Props) => {
             Man
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => handleGenderSelect("woman")}
+            onClick={() => handleGenderSelect("women")}
             className={value === "women" ? "bg-gray-200 font-bold" : ""}
           >
             Women

@@ -1,5 +1,6 @@
 import { MENU } from "@/constants/menu";
 import Link from "next/link";
+import MobileButtonMenu from "../MobileButtonMenu";
 
 type Props = {
   title: string;
@@ -27,23 +28,7 @@ const CustomHeader = ({ title, subtext = "" }: Props) => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button className="text-white focus:outline-none">
-            {/* Mobile Menu Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          </button>
+          <MobileButtonMenu />
         </div>
       </div>
     </header>
