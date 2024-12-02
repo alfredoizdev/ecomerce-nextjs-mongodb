@@ -5,10 +5,9 @@ import CartMenu from "./CartMenu";
 
 type Props = {
   title: string;
-  subtext?: string;
 };
 
-const CustomHeader = ({ title, subtext = "" }: Props) => {
+const CustomHeader = ({ title }: Props) => {
   return (
     <header className="bg-black text-white py-6">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between">
