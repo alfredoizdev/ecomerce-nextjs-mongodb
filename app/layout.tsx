@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "@/styles/sass/globals.scss";
-import Footer from "@/components/shared/Footer/Footer";
+import Footer from "@/components/shared/Footer";
 import MobileMenu from "@/components/shared/MobileMenu";
 
 const poppins = Poppins({
