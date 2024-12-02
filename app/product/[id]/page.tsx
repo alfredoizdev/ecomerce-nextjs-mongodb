@@ -5,7 +5,9 @@ import { Suspense } from "react";
 import ShowProductSkeleton from "@/components/ShowProductSkeleton/ShowProductSkeleton";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
 
-const ProductPage = async ({ params }: { params: { id: string } }) => {
+type TParams = Promise<{ id: string }>;
+
+const ProductPage = async ({ params }: { params: TParams }) => {
   const { id } = await params;
   return (
     <>

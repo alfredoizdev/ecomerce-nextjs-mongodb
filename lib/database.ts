@@ -2,9 +2,7 @@ import mongoose from "mongoose";
 
 const connectToMongoDB = async () => {
   const uriConnection =
-    process.env.NODE_ENV === "production"
-      ? process.env.MONGO_URI_ATLAS
-      : process.env.MONGO_URI_LOCAL;
+    process.env.MONGO_URI_ATLAS || process.env.MONGO_URI_LOCAL;
 
   // Check if we have a connection to the database or if it's currently connected
   if (mongoose.connections[0].readyState) {

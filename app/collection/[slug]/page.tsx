@@ -5,13 +5,9 @@ import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCa
 import CollectionList from "@/server/CollectionList";
 import SubTitle from "@/components/shared/SubTitle";
 
-const CollectionPage = async ({
-  params,
-}: {
-  params: {
-    slug: string;
-  };
-}) => {
+type TParams = Promise<{ slug: string }>;
+
+const CollectionPage = async ({ params }: { params: TParams }) => {
   const { slug } = await params;
 
   return (
