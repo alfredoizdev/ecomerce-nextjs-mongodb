@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "@/styles/sass/globals.scss";
 import Footer from "@/components/shared/Footer";
 import MobileMenu from "@/components/shared/MobileMenu";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -28,6 +29,7 @@ export default function RootLayout({
           <main className="flex-grow bg-gray-100">
             <MobileMenu />
             {children}
+            <SpeedInsights />
             <Footer />
           </main>
         </div>
