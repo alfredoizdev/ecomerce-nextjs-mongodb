@@ -1,36 +1,31 @@
 "use client";
 import { useState } from "react";
-import { Button } from "../ui/button";
+import { useCartStore } from "@/store/useCartStore";
 import { Product } from "@/types/Product";
 
 type Props = {
   product: Product;
 };
 
-const ProductActions = ({ product }: Props) => {
+const ProductDetail = ({ product }: Props) => {
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCartStore((state) => state);
 
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
+  const handleIncrement = () => setQuantity((prev) => prev + 1);
+  const handleDecrement = () =>
+    setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
 
   const handleAddToCart = () => {
-    console.log(`Added ${quantity} items ${product.name} to the cart`);
-  };
-
-  const handleBuyNow = () => {
-    console.log(`Bought ${quantity} items ${product.name}`);
+    const newProduct = { ...product, quantity };
+    addToCart(newProduct);
   };
 
   return (
-    <>
-      {/* Quantity Controls */}
+    <div>
+      <h2>{product.name}</h2>
+      <p>{product.description}</p>
+      <p>${product.price.toFixed(2)}</p>
+
       <div className="mt-6 flex items-center space-x-4">
         <div className="flex items-center space-x-2">
           <button
@@ -51,25 +46,14 @@ const ProductActions = ({ product }: Props) => {
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="mt-6 flex space-x-4">
-        <Button
-          variant={"default"}
-          className="px-6 py-3"
-          onClick={handleAddToCart}
-        >
-          Add to Cart
-        </Button>
-        <Button
-          variant="destructive"
-          className="px-6 py-3"
-          onClick={handleBuyNow}
-        >
-          Buy Now
-        </Button>
-      </div>
-    </>
+      <button
+        onClick={handleAddToCart}
+        className="bg-black text-white px-4 py-2 rounded mt-4"
+      >
+        Add to Cart
+      </button>
+    </div>
   );
 };
 
-export default ProductActions;
+export default ProductDetail;

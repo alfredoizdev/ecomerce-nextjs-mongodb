@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "./Navbar";
 
 const Hero = () => {
   return (

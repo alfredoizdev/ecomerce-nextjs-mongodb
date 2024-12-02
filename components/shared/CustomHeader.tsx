@@ -1,6 +1,7 @@
 import { MENU } from "@/constants/menu";
 import Link from "next/link";
-import MobileButtonMenu from "../MobileButtonMenu";
+import MobileButtonMenu from "./MobileButtonMenu";
+import CartMenu from "./CartMenu";
 
 type Props = {
   title: string;
@@ -14,7 +15,6 @@ const CustomHeader = ({ title, subtext = "" }: Props) => {
         {/* Title and Subtext */}
         <div>
           <h1 className="text-2xl font-bold uppercase">{title}</h1>
-          {subtext && <p className="text-sm text-gray-400">{subtext}</p>}
         </div>
 
         {/* Menu */}
@@ -24,10 +24,12 @@ const CustomHeader = ({ title, subtext = "" }: Props) => {
               {item.name}
             </Link>
           ))}
+          <CartMenu />
         </nav>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-4">
+          <CartMenu />
           <MobileButtonMenu />
         </div>
       </div>

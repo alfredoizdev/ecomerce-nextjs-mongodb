@@ -1,7 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import useUiStore from "@/store/useUiStore";
 import { MENU } from "@/constants/menu";
 import useMobileMenu from "@/hooks/useMobileMenu";
 
@@ -10,7 +8,6 @@ const MobileMenu = () => {
 
   if (!isMobileMenuOpen && !isVisible) return null;
 
-  // Mantener el menú en el DOM para la animación de apertura
   return (
     <div
       className={`fixed w-full h-full bg-black z-20 p-5 md:hidden transition-opacity duration-300 ${

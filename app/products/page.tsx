@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import CustomHeader from "@/components/shared/CustomHeader/CustomHeader";
+import CustomHeader from "@/components/shared/CustomHeader";
 import ProductList from "@/server/ProductList";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
 import DropMenuFilter from "@/components/DropMenuFilter/DropMenuFilter";

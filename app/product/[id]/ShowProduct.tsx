@@ -1,8 +1,8 @@
+import Image from "next/image";
 import { getProductByIdAction } from "@/actions/products";
 import ProductActions from "@/components/ProductActions/ProductActions";
 import NotFoundText from "@/components/ui/NotFoundText";
 import { calculateDiscountedPrice } from "@/utils/pricing";
-import Image from "next/image";
 
 type Props = {
   id: string;

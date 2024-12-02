@@ -1,7 +1,8 @@
 "use client";
 import { MENU } from "@/constants/menu";
 import Link from "next/link";
-import MobileButtonMenu from "../MobileButtonMenu";
+import MobileButtonMenu from "./MobileButtonMenu";
+import CartMenu from "./CartMenu";
 
 const Navbar = () => {
   return (
@@ -18,9 +19,11 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
+          <CartMenu />
         </nav>
         {/* Mobile Menu */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-4">
+          <CartMenu />
           <MobileButtonMenu />
         </div>
       </div>

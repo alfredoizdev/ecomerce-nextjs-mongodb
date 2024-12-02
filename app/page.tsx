@@ -1,5 +1,5 @@
 import Camp from "@/components/Camp/Camp";
-import Hero from "@/components/shared/Hero/Hero";
+import Hero from "@/components/shared/Hero";
 import Subcribe from "@/components/Subcribe/Subcribe";
 
 import ProductList from "@/server/ProductList";

@@ -1,4 +1,4 @@
-import CustomHeader from "@/components/shared/CustomHeader/CustomHeader";
+import CustomHeader from "@/components/shared/CustomHeader";
 import CollageProduct from "@/components/CollageProduct/CollageProduct";
 import ShowProduct from "./ShowProduct";
 import { Suspense } from "react";

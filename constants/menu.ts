@@ -24,9 +24,4 @@ export const MENU = [
     name: "Products",
     link: "/products",
   },
-  {
-    id: 6,
-    name: "Cart",
-    link: "/cart",
-  },
 ];

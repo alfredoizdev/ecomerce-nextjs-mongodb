@@ -1,51 +1,20 @@
 "use client";
-import CustomHeader from "@/components/shared/CustomHeader/CustomHeader";
+import CustomHeader from "@/components/shared/CustomHeader";
+import SubTitle from "@/components/shared/SubTitle";
+import { useCartStore } from "@/store/useCartStore";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-
-const initialCart = [
-  {
-    id: 1,
-    name: "Red Running Shoes",
-    price: 79.99,
-    quantity: 1,
-    image: "/images/shoes/product/r1.webp",
-    alt: "Red Running Shoes",
-  },
-  {
-    id: 2,
-    name: "Blue Sports Shoes",
-    price: 89.99,
-    quantity: 2,
-    image: "/images/shoes/product/b1.webp",
-    alt: "Blue Sports Shoes",
-  },
-  {
-    id: 3,
-    name: "Black Casual Shoes",
-    price: 69.99,
-    quantity: 1,
-    image: "/images/shoes/product/bs1.webp",
-    alt: "Black Casual Shoes",
-  },
-];
 
 export default function CartPage() {
-  const [cart, setCart] = useState(initialCart);
+  // const [cart, setCart] = useState(initialCart);
+  const { cart, udateQuantity, removeFromCart } = useCartStore(
+    (state) => state
+  );
 
-  const handleQuantityChange = (id: number, delta: number) => {
-    const updatedCart = cart.map((item) =>
-      item.id === id && item.quantity + delta > 0
-        ? { ...item, quantity: item.quantity + delta }
-        : item
-    );
-    setCart(updatedCart);
-  };
+  const handleQuantityChange = (id: string, delta: number) => {
+    console.log("id", delta);
 
-  const handleRemoveItem = (id: number) => {
-    const updatedCart = cart.filter((item) => item.id !== id);
-    setCart(updatedCart);
+    udateQuantity(id, delta);
   };
 
   const calculateTotal = () =>
@@ -54,13 +23,13 @@ export default function CartPage() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header */}
-      <CustomHeader
-        title="Cart"
-        subtext="Review your selected products and proceed to checkout."
-      />
+      <CustomHeader title="Cart" />
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 lg:px-16 py-10">
+        <div className="pb-3">
+          <SubTitle text="Review your selected products and proceed to checkout." />
+        </div>
         {cart.length > 0 ? (
           <>
             {/* Cart Items */}
@@ -85,17 +54,17 @@ export default function CartPage() {
                         ${item.price.toFixed(2)} each
                       </p>
                       <button
-                        onClick={() => handleRemoveItem(item.id)}
+                        onClick={() => removeFromCart(item.id || "")}
                         className="text-red-500 text-sm mt-2 hover:underline"
                       >
                         Remove
                       </button>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-4">
+                  <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
                     <div className="flex items-center space-x-2">
                       <button
-                        onClick={() => handleQuantityChange(item.id, -1)}
+                        onClick={() => handleQuantityChange(item.id || "", -1)}
                         className="bg-gray-300 hover:bg-gray-400 text-black px-2 py-1 rounded-lg"
                       >
                         -
@@ -104,7 +73,7 @@ export default function CartPage() {
                         {item.quantity}
                       </span>
                       <button
-                        onClick={() => handleQuantityChange(item.id, 1)}
+                        onClick={() => handleQuantityChange(item.id || "", 1)}
                         className="bg-gray-300 hover:bg-gray-400 text-black px-2 py-1 rounded-lg"
                       >
                         +
