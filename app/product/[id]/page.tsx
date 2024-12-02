@@ -4,15 +4,22 @@ import ShowProduct from "./ShowProduct";
 import { Suspense } from "react";
 import ShowProductSkeleton from "@/components/ShowProductSkeleton/ShowProductSkeleton";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
+import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
+import { cookies } from "next/headers";
 
 type TParams = Promise<{ id: string }>;
 
 const ProductPage = async ({ params }: { params: TParams }) => {
   const { id } = await params;
+
+  const kookieStore = await cookies();
+  const cookie = kookieStore.get("session")?.value;
+  const isLogin = cookie !== undefined;
+
   return (
-    <>
+    <LayoutRegularPage>
       {/* Header */}
-      <CustomHeader title="Product Details" />
+      <CustomHeader title="Product Details" isLogin={isLogin} />
       <Suspense fallback={<ShowProductSkeleton />}>
         <ShowProduct id={id} />
       </Suspense>
@@ -25,7 +32,7 @@ const ProductPage = async ({ params }: { params: TParams }) => {
           <CollageProduct id={id} />
         </Suspense>
       </section>
-    </>
+    </LayoutRegularPage>
   );
 };
 

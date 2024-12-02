@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "@/styles/sass/globals.scss";
-import Footer from "@/components/shared/Footer";
-import MobileMenu from "@/components/shared/MobileMenu";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -27,10 +26,9 @@ export default function RootLayout({
         <div className="flex flex-col min-h-screen">
           {/* Main Content */}
           <main className="flex-grow bg-gray-100">
-            <MobileMenu />
             {children}
             <SpeedInsights />
-            <Footer />
+            <Toaster richColors position="top-right" />
           </main>
         </div>
       </body>

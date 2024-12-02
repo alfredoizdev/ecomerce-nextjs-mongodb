@@ -1,8 +1,47 @@
-import { Product as TProduct } from "@/types/Product";
-import { Schema, model, models } from "mongoose";
+import { Model, Schema, model, models } from "mongoose";
+
+export interface IProduct {
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  alt: string;
+  discountPercentage: number;
+  category: string;
+  details: {
+    material: string;
+    sole: string;
+    weight: string;
+    colors: string[];
+    sizes: string;
+  };
+}
+
+interface IProductModel extends Model<IProduct> {
+  build(attrs: IProduct): IProduct;
+}
+
+interface IProductDoc extends Document, IProduct {
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  alt: string;
+  discountPercentage: number;
+  category: string;
+  details: {
+    material: string;
+    sole: string;
+    weight: string;
+    colors: string[];
+    sizes: string;
+  };
+  createdAt?: string;
+  updatedAt?: string;
+}
 
 // Esquema de Producto
-const ProductSchema = new Schema<TProduct>(
+const ProductSchema = new Schema(
   {
     name: { type: String, required: true, trim: true, maxlength: 100 },
     description: { type: String, required: true, maxlength: 1000 },
@@ -49,6 +88,7 @@ ProductSchema.set("toJSON", {
 });
 
 // Exporta el modelo o reutiliza el existente
-const Product = models.Product || model<TProduct>("Product", ProductSchema);
+const Product =
+  models.Product || model<IProductDoc, IProductModel>("Product", ProductSchema);
 
 export default Product;

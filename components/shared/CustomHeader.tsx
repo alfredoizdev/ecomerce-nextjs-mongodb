@@ -2,12 +2,14 @@ import { MENU } from "@/constants/menu";
 import Link from "next/link";
 import MobileButtonMenu from "./MobileButtonMenu";
 import CartMenu from "./CartMenu";
+import { signOutAction } from "@/actions/auth";
 
 type Props = {
   title: string;
+  isLogin?: boolean;
 };
 
-const CustomHeader = ({ title }: Props) => {
+const CustomHeader = ({ title, isLogin }: Props) => {
   return (
     <header className="bg-black text-white py-6">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between">
@@ -23,6 +25,13 @@ const CustomHeader = ({ title }: Props) => {
               {item.name}
             </Link>
           ))}
+          {isLogin ? (
+            <button className="m-0 p-0" onClick={signOutAction}>
+              Logout
+            </button>
+          ) : (
+            <Link href="/auth/signin">Login</Link>
+          )}
           <CartMenu />
         </nav>
 

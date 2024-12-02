@@ -2,15 +2,22 @@
 import Link from "next/link";
 import { MENU } from "@/constants/menu";
 import useMobileMenu from "@/hooks/useMobileMenu";
+import { signOutAction } from "@/actions/auth";
 
-const MobileMenu = () => {
+type Props = {
+  isLogin?: boolean;
+};
+
+const MobileMenu = ({ isLogin }: Props) => {
   const { isMobileMenuOpen, toggleMobileMenu, isVisible } = useMobileMenu();
 
   if (!isMobileMenuOpen && !isVisible) return null;
 
+  console.log("MobileMenu -> isVisible", isVisible);
+
   return (
     <div
-      className={`fixed w-full h-full bg-black z-20 p-5 md:hidden transition-opacity duration-300 ${
+      className={`fixed w-full h-full bg-black z-20 top-0 p-5 md:hidden transition-opacity duration-300 ${
         isMobileMenuOpen && isVisible
           ? "opacity-100"
           : "opacity-0 pointer-events-none"
@@ -48,6 +55,22 @@ const MobileMenu = () => {
             </Link>
           </li>
         ))}
+        {isLogin ? (
+          <li onClick={toggleMobileMenu}>
+            <button
+              className="m-0 p-0 text-white text-2xl"
+              onClick={signOutAction}
+            >
+              Logout
+            </button>
+          </li>
+        ) : (
+          <li onClick={toggleMobileMenu}>
+            <Link href="/auth/signin" className="text-white text-2xl">
+              Login
+            </Link>
+          </li>
+        )}
       </ul>
     </div>
   );

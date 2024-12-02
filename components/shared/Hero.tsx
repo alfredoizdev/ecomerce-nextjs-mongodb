@@ -5,7 +5,11 @@ import Image from "next/image";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 
-const Hero = () => {
+type Props = {
+  isLogin?: boolean;
+};
+
+const Hero = ({ isLogin }: Props) => {
   const [offsetY, setOffsetY] = useState(0);
 
   const handleScroll = () => {
@@ -21,7 +25,7 @@ const Hero = () => {
 
   return (
     <section className="relative w-full h-[32rem] overflow-hidden">
-      <Navbar />
+      <Navbar isLogin={isLogin} />
       <Image
         src="/images/shoes/red/red-banner.webp"
         alt="Great Shoes"
