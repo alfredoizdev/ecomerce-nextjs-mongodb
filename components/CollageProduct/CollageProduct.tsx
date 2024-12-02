@@ -1,6 +1,3 @@
-import { Product } from "@/types/Product";
-import Image from "next/image";
-import Link from "next/link";
 import CustomCard from "../CustomCard/CustomCard";
 import { getAllProductsExceptCurrentAction } from "@/actions/products";
 

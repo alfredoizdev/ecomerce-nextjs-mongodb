@@ -12,12 +12,12 @@ const connectToMongoDB = async () => {
     return;
   }
 
-  if (!process.env.MONGO_URI_ATLAS) {
+  if (!uriConnection) {
     throw new Error("Please add your Mongo URI to .env.local");
   }
 
   try {
-    await mongoose.connect(process.env.MONGO_URI_ATLAS);
+    await mongoose.connect(uriConnection);
   } catch (err) {
     if (err) {
       console.error(err);
