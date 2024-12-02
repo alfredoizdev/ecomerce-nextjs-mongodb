@@ -17,7 +17,7 @@ const CollectionPage = async ({ params }: { params: TParams }) => {
   const isLogin = cookie !== undefined;
 
   return (
-    <LayoutRegularPage>
+    <LayoutRegularPage isLogin={isLogin}>
       <div className="bg-gray-100 min-h-screen">
         <CustomHeader title={`Collection: ${slug}`} isLogin={isLogin} />
         <main className="max-w-7xl mx-auto px-6 lg:px-16 py-10">

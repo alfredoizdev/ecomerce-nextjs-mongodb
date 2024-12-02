@@ -1,16 +1,12 @@
-import { cookies } from "next/headers";
 import Footer from "../shared/Footer";
 import MobileMenu from "../shared/MobileMenu";
 
 type Props = {
   children: React.ReactNode;
+  isLogin?: boolean;
 };
 
-const LayoutRegularPage = async ({ children }: Props) => {
-  const kookieStore = await cookies();
-  const cookie = kookieStore.get("session")?.value;
-  const isLogin = cookie !== undefined;
-
+const LayoutRegularPage = async ({ children, isLogin }: Props) => {
   return (
     <>
       {children}

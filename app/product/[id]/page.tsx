@@ -17,7 +17,7 @@ const ProductPage = async ({ params }: { params: TParams }) => {
   const isLogin = cookie !== undefined;
 
   return (
-    <LayoutRegularPage>
+    <LayoutRegularPage isLogin={isLogin}>
       {/* Header */}
       <CustomHeader title="Product Details" isLogin={isLogin} />
       <Suspense fallback={<ShowProductSkeleton />}>

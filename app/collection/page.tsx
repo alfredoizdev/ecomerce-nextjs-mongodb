@@ -12,7 +12,7 @@ const CollectionPage = async () => {
   const isLogin = cookie !== undefined;
 
   return (
-    <LayoutRegularPage>
+    <LayoutRegularPage isLogin={isLogin}>
       <div className="bg-gray-100 min-h-screen">
         <CustomHeader title="Collection" isLogin={isLogin} />
 

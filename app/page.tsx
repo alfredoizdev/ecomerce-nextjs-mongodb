@@ -14,7 +14,7 @@ export default async function Home() {
   const isLogin = cookie !== undefined;
 
   return (
-    <LayoutRegularPage>
+    <LayoutRegularPage isLogin={isLogin}>
       <Hero isLogin={isLogin} />
       <div className="max-w-7xl mx-auto">
         <section className="grid grid-cols-1 gap-6 px-5 md:px-8 lg:px-16 pt-6">
