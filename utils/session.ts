@@ -87,6 +87,21 @@ export async function verifySession() {
   };
 }
 
+export async function getSession() {
+  const getCookies = await cookies();
+  const cookie = getCookies.get("session")?.value;
+
+  const session = await decrypt(cookie);
+
+  return {
+    isAuth: session?.userId ? true : false,
+    userId: session?.userId || "",
+    role: session?.role || "",
+    name: session?.name || "",
+    expiresAt: session?.expiresAt || "",
+  };
+}
+
 export async function deleteSession() {
   const getCookies = await cookies();
 

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 const MemberDashboardPage = async () => {
   const session = await verifySession();
 
-  if (!session) {
+  if (!session.userId) {
     redirect("/");
   }
 

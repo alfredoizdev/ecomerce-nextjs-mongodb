@@ -4,7 +4,7 @@ import ProductList from "@/server/ProductList";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
 import DropMenuFilter from "@/components/DropMenuFilter/DropMenuFilter";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
-import { verifySession } from "@/utils/session";
+import { getSession } from "@/utils/session";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -12,7 +12,7 @@ const ProductsPage = async (props: { searchParams: SearchParams }) => {
   const { gender } = await props.searchParams;
   const setGender = typeof gender === "string" ? gender : "all";
 
-  const session = await verifySession();
+  const session = await getSession();
 
   return (
     <LayoutRegularPage session={session}>

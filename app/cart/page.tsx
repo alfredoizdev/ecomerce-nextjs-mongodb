@@ -1,9 +1,9 @@
 import Cart from "@/components/Cart";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
-import { verifySession } from "@/utils/session";
+import { getSession } from "@/utils/session";
 
 export default async function CartPage() {
-  const session = await verifySession();
+  const session = await getSession();
 
   return (
     <LayoutRegularPage session={session}>

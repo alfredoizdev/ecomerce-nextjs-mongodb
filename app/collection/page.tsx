@@ -4,10 +4,10 @@ import CollectionList from "../../server/CollectionList";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
 import SubTitle from "@/components/shared/SubTitle";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
-import { verifySession } from "@/utils/session";
+import { getSession } from "@/utils/session";
 
 const CollectionPage = async () => {
-  const session = await verifySession();
+  const session = await getSession();
 
   return (
     <LayoutRegularPage session={session}>

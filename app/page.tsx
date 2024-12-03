@@ -6,10 +6,10 @@ import ProductList from "@/server/ProductList";
 import { Suspense } from "react";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
-import { verifySession } from "@/utils/session";
+import { getSession } from "@/utils/session";
 
 export default async function Home() {
-  const session = await verifySession();
+  const session = await getSession();
 
   return (
     <LayoutRegularPage session={session}>

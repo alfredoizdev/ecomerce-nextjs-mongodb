@@ -30,14 +30,14 @@ const SidebarDashboard = ({ isSidebarOpen, toggleSidebar }: Props) => {
       </div>
       <nav className="mt-4 space-y-2">
         <Link
-          href="/dashboard"
+          href="/admin/dashboard"
           className="flex items-center px-4 py-2 hover:bg-gray-700"
         >
           <FiHome className="w-5 h-5" />
           {isSidebarOpen && <span className="ml-4">Overview</span>}
         </Link>
         <Link
-          href="/dashboard/products"
+          href="/admin/products"
           className="flex items-center px-4 py-2 hover:bg-gray-700"
         >
           <FiBox className="w-5 h-5" />

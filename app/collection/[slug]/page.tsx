@@ -5,14 +5,14 @@ import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCa
 import CollectionList from "@/server/CollectionList";
 import SubTitle from "@/components/shared/SubTitle";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
-import { verifySession } from "@/utils/session";
+import { getSession } from "@/utils/session";
 
 type TParams = Promise<{ slug: string }>;
 
 const CollectionPage = async ({ params }: { params: TParams }) => {
   const { slug } = await params;
 
-  const session = await verifySession();
+  const session = await getSession();
 
   return (
     <LayoutRegularPage session={session}>

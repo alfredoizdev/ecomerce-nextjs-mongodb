@@ -138,4 +138,72 @@ export const PRODUCTS: Product[] = [
       sizes: ["6", "7", "8", "9"],
     },
   },
+  {
+    name: "Orange Trail Running Shoes",
+    description: "Perfect for off-road adventures and trails.",
+    price: 94.99,
+    image: "/images/shoes/product/orange-trail-shoes.webp",
+    alt: "Orange Trail Running Shoes",
+    category: "Running",
+    gender: "unisex",
+    discountPercentage: 10, // 10% de descuento
+    details: {
+      material: "Durable mesh with water-resistant coating",
+      sole: "High-traction rubber outsole",
+      weight: "Medium weight, 270g per shoe",
+      colors: ["Orange", "Black"],
+      sizes: ["6", "7", "8", "9", "10", "11"],
+    },
+  },
+  {
+    name: "Purple Fashion Sneakers",
+    description: "Bold and trendy sneakers for urban looks.",
+    price: 89.99,
+    image: "/images/shoes/product/purple-fashion-sneakers.webp",
+    alt: "Purple Fashion Sneakers",
+    category: "Casual",
+    gender: "women",
+    discountPercentage: 5, // 5% de descuento
+    details: {
+      material: "Synthetic leather with padded collar",
+      sole: "Lightweight EVA sole",
+      weight: "Lightweight, 220g per shoe",
+      colors: ["Purple", "White"],
+      sizes: ["5", "6", "7", "8", "9"],
+    },
+  },
+  {
+    name: "Gray Athletic Shoes",
+    description: "Engineered for superior performance and comfort.",
+    price: 119.99,
+    image: "/images/shoes/product/gray-athletic-shoes.webp",
+    alt: "Gray Athletic Shoes",
+    category: "Sportswear",
+    gender: "man",
+    discountPercentage: 15, // 15% de descuento
+    details: {
+      material: "Engineered mesh for breathability",
+      sole: "Responsive foam midsole",
+      weight: "Ultra-lightweight, 190g per shoe",
+      colors: ["Gray", "Blue"],
+      sizes: ["7", "8", "9", "10", "11", "12"],
+    },
+  },
+  {
+    name: "Silver High-Top Sneakers",
+    description: "High-top sneakers designed for both comfort and style.",
+    price: 149.99,
+    image: "/images/shoes/product/silver-high-top-sneakers.webp",
+    alt: "Silver High-Top Sneakers",
+    category: "Casual",
+    gender: "unisex",
+    discountPercentage: 20, // 20% de descuento
+    details: {
+      material: "Premium synthetic with metallic finish",
+      sole: "Non-slip rubber outsole",
+      weight: "Medium weight, 320g per shoe",
+      colors: ["Silver", "Black"],
+      sizes: ["6", "7", "8", "9", "10", "11", "12"],
+    },
+  },
 ];

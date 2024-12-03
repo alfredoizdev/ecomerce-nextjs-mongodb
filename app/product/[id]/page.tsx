@@ -5,14 +5,14 @@ import { Suspense } from "react";
 import ShowProductSkeleton from "@/components/ShowProductSkeleton/ShowProductSkeleton";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
-import { verifySession } from "@/utils/session";
+import { getSession } from "@/utils/session";
 
 type TParams = Promise<{ id: string }>;
 
 const ProductPage = async ({ params }: { params: TParams }) => {
   const { id } = await params;
 
-  const session = await verifySession();
+  const session = await getSession();
 
   return (
     <LayoutRegularPage session={session}>
