@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
+import { Session } from "@/types/Session";
 
 type Props = {
-  isLogin?: boolean;
+  session?: Session;
 };
 
-const Hero = ({ isLogin }: Props) => {
+const Hero = ({ session }: Props) => {
   const [offsetY, setOffsetY] = useState(0);
 
   const handleScroll = () => {
@@ -25,7 +26,7 @@ const Hero = ({ isLogin }: Props) => {
 
   return (
     <section className="relative w-full h-[32rem] overflow-hidden">
-      <Navbar isLogin={isLogin} />
+      <Navbar session={session} />
       <Image
         src="/images/shoes/red/red-banner.webp"
         alt="Great Shoes"

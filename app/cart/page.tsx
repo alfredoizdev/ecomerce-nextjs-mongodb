@@ -1,14 +1,12 @@
 import Cart from "@/components/Cart";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
-import { cookies } from "next/headers";
+import { verifySession } from "@/utils/session";
 
 export default async function CartPage() {
-  const kookieStore = await cookies();
-  const cookie = kookieStore.get("session")?.value;
-  const isLogin = cookie !== undefined;
+  const session = await verifySession();
 
   return (
-    <LayoutRegularPage isLogin={isLogin}>
+    <LayoutRegularPage session={session}>
       <Cart />
     </LayoutRegularPage>
   );

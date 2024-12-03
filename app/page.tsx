@@ -5,17 +5,15 @@ import Subcribe from "@/components/Subcribe/Subcribe";
 import ProductList from "@/server/ProductList";
 import { Suspense } from "react";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
-import { cookies } from "next/headers";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
+import { verifySession } from "@/utils/session";
 
 export default async function Home() {
-  const kookieStore = await cookies();
-  const cookie = kookieStore.get("session")?.value;
-  const isLogin = cookie !== undefined;
+  const session = await verifySession();
 
   return (
-    <LayoutRegularPage isLogin={isLogin}>
-      <Hero isLogin={isLogin} />
+    <LayoutRegularPage session={session}>
+      <Hero session={session} />
       <div className="max-w-7xl mx-auto">
         <section className="grid grid-cols-1 gap-6 px-5 md:px-8 lg:px-16 pt-6">
           <h2 className="text-3xl font-semibold uppercase">

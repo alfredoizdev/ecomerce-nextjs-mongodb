@@ -49,7 +49,9 @@ export const signInAction = async (
   }
 
   const userId = findUser.id.toString();
-  await createSession(userId);
+  const role = findUser.role?.toString();
+  const name = findUser.name?.toString();
+  await createSession(userId, role, name);
 };
 
 export const signUpAction = async (
@@ -82,16 +84,38 @@ export const signUpAction = async (
     };
   }
 
-  const user = User.build({ email, password, name });
+  const hasUsers = await User.find().exec();
+
+  if (hasUsers.length === 0) {
+    const user = User.build({ email, password, name, role: "admin" });
+    await user.save();
+    const userId = user.id.toString();
+    const role = user.role?.toString();
+    const username = user.name?.toString();
+
+    await createSession(userId, role, username);
+
+    if (!user) {
+      return {
+        message: "An error occurred while creating your account.",
+      };
+    }
+    return;
+  }
+
+  const user = User.build({ email, password, name, role: "user" });
   await user.save();
+  const userId = user.id.toString();
+  const role = user.role?.toString();
+  const username = user.name?.toString();
+
+  await createSession(userId, role, username);
 
   if (!user) {
     return {
       message: "An error occurred while creating your account.",
     };
   }
-
-  console.log(user);
 };
 
 export const signOutAction = async () => {

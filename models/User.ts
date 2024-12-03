@@ -4,7 +4,8 @@ import { Password } from "../utils/password";
 export interface IUser {
   email: string;
   password: string;
-  name?: string;
+  role: string;
+  name: string;
 }
 
 interface IUserModel extends Model<IUserDoc> {
@@ -29,6 +30,13 @@ export const userSchema = new Schema<IUserDoc, IUserModel>(
     },
     name: {
       type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      required: true,
+      default: "user",
+      enum: ["user", "admin"],
     },
   },
   {

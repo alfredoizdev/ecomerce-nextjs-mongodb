@@ -4,7 +4,7 @@ import ProductList from "@/server/ProductList";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
 import DropMenuFilter from "@/components/DropMenuFilter/DropMenuFilter";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
-import { cookies } from "next/headers";
+import { verifySession } from "@/utils/session";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -12,14 +12,12 @@ const ProductsPage = async (props: { searchParams: SearchParams }) => {
   const { gender } = await props.searchParams;
   const setGender = typeof gender === "string" ? gender : "all";
 
-  const kookieStore = await cookies();
-  const cookie = kookieStore.get("session")?.value;
-  const isLogin = cookie !== undefined;
+  const session = await verifySession();
 
   return (
-    <LayoutRegularPage isLogin={isLogin}>
+    <LayoutRegularPage session={session}>
       <div className="bg-gray-100 min-h-screen">
-        <CustomHeader title="Products" isLogin={isLogin} />
+        <CustomHeader title="Products" session={session} />
 
         <main className="max-w-7xl mx-auto px-6 lg:px-16 py-10">
           <DropMenuFilter gender={setGender} />

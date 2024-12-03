@@ -3,13 +3,15 @@ import Link from "next/link";
 import { MENU } from "@/constants/menu";
 import useMobileMenu from "@/hooks/useMobileMenu";
 import { signOutAction } from "@/actions/auth";
+import { Session } from "@/types/Session";
 
 type Props = {
-  isLogin?: boolean;
+  session?: Session;
 };
 
-const MobileMenu = ({ isLogin }: Props) => {
+const MobileMenu = ({ session }: Props) => {
   const { isMobileMenuOpen, toggleMobileMenu, isVisible } = useMobileMenu();
+  const isLogin = session?.userId ? true : false;
 
   if (!isMobileMenuOpen && !isVisible) return null;
 

@@ -1,8 +1,18 @@
-const DashboardPage = () => {
+import LayoutDashboard from "@/components/ui/LayoutDashboard/LayoutDashboard";
+import { verifySession } from "@/utils/session";
+import { redirect } from "next/navigation";
+
+const DashboardPage = async () => {
+  const session = await verifySession();
+
+  if (session && session.role !== "admin") {
+    redirect("/members/dashboard");
+  }
+
   return (
-    <div>
+    <LayoutDashboard>
       <h2>dashboard here</h2>
-    </div>
+    </LayoutDashboard>
   );
 };
 

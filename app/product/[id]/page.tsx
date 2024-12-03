@@ -5,21 +5,19 @@ import { Suspense } from "react";
 import ShowProductSkeleton from "@/components/ShowProductSkeleton/ShowProductSkeleton";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
-import { cookies } from "next/headers";
+import { verifySession } from "@/utils/session";
 
 type TParams = Promise<{ id: string }>;
 
 const ProductPage = async ({ params }: { params: TParams }) => {
   const { id } = await params;
 
-  const kookieStore = await cookies();
-  const cookie = kookieStore.get("session")?.value;
-  const isLogin = cookie !== undefined;
+  const session = await verifySession();
 
   return (
-    <LayoutRegularPage isLogin={isLogin}>
+    <LayoutRegularPage session={session}>
       {/* Header */}
-      <CustomHeader title="Product Details" isLogin={isLogin} />
+      <CustomHeader title="Product Details" session={session} />
       <Suspense fallback={<ShowProductSkeleton />}>
         <ShowProduct id={id} />
       </Suspense>

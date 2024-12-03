@@ -4,17 +4,15 @@ import CollectionList from "../../server/CollectionList";
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
 import SubTitle from "@/components/shared/SubTitle";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
-import { cookies } from "next/headers";
+import { verifySession } from "@/utils/session";
 
 const CollectionPage = async () => {
-  const kookieStore = await cookies();
-  const cookie = kookieStore.get("session")?.value;
-  const isLogin = cookie !== undefined;
+  const session = await verifySession();
 
   return (
-    <LayoutRegularPage isLogin={isLogin}>
+    <LayoutRegularPage session={session}>
       <div className="bg-gray-100 min-h-screen">
-        <CustomHeader title="Collection" isLogin={isLogin} />
+        <CustomHeader title="Collection" session={session} />
 
         <main className="max-w-7xl mx-auto px-6 lg:px-16 py-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

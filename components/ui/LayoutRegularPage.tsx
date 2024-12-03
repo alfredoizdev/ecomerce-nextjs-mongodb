@@ -1,16 +1,17 @@
 import Footer from "../shared/Footer";
 import MobileMenu from "../shared/MobileMenu";
+import { Session } from "@/types/Session";
 
 type Props = {
   children: React.ReactNode;
-  isLogin?: boolean;
+  session?: Session;
 };
 
-const LayoutRegularPage = async ({ children, isLogin }: Props) => {
+const LayoutRegularPage = async ({ children, session }: Props) => {
   return (
     <>
       {children}
-      <MobileMenu isLogin={isLogin} />
+      <MobileMenu session={session} />
       <Footer />
     </>
   );
