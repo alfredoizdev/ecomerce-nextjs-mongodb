@@ -13,6 +13,7 @@ const StatisticsProduct = async () => {
 
   const totalPrice = products.reduce((sum, product) => sum + product.price, 0);
   const averagePrice = totalProducts > 0 ? totalPrice / totalProducts : 0;
+  const fixedTotalNumber = parseFloat(totalPrice.toFixed(2));
 
   return (
     <>
@@ -37,7 +38,7 @@ const StatisticsProduct = async () => {
         />
         <DashboardCard
           title="Total in Products"
-          value={totalPrice}
+          value={fixedTotalNumber}
           icon={<DollarSign size={32} />}
           bgColor="bg-red-100"
         />
