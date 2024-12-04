@@ -3,6 +3,7 @@
 import { Product } from "@/types/Product";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
+import { ArrowUpDown } from "lucide-react";
 
 import { MoreHorizontal } from "lucide-react";
 
@@ -15,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { deleteProductAction } from "@/actions/products";
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -36,7 +38,17 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: "name",
-    header: "Name",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "description",
@@ -58,7 +70,7 @@ export const columns: ColumnDef<Product>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original;
+      const product = row.original;
 
       return (
         <DropdownMenu>
@@ -71,12 +83,18 @@ export const columns: ColumnDef<Product>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment?.id || "")}
+              onClick={() => navigator.clipboard.writeText(product?.id || "")}
             >
               Edit Product
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete this product</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() =>
+                deleteProductAction(product?.id || "", product?.image || "")
+              }
+            >
+              Delete this product
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

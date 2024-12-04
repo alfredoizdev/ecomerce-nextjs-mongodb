@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
     includePaths: [path.join(__dirname, "styles")],
     silenceDeprecations: ["legacy-js-api"],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
+  },
 
   /* config options here */
 };

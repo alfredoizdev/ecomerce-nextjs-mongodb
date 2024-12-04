@@ -11,7 +11,7 @@ const DashboardPage = async () => {
 
   return (
     <LayoutDashboard>
-      <h2>dashboard here</h2>
+      <h2>Dashboard</h2>
     </LayoutDashboard>
   );
 };

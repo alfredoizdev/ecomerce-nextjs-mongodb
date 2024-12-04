@@ -1,6 +1,6 @@
 import { getProductsAction } from "@/actions/products";
-import { columns } from "@/components/dataTable/Products/Columns";
-import { DataTable } from "@/components/dataTable/Products/DataTable";
+import { columns } from "@/components/Dashboard/Columns";
+import { DataTable } from "@/components/Dashboard/DataTable";
 import LayoutDashboard from "@/components/ui/LayoutDashboard/LayoutDashboard";
 
 const ProductAdminPage = async () => {
@@ -9,7 +9,7 @@ const ProductAdminPage = async () => {
   return (
     <LayoutDashboard>
       <h2>Products</h2>
-      <div className="container w-full mx-auto py-10">
+      <div className="w-full mx-auto py-10">
         <DataTable columns={columns} data={products} />
       </div>
     </LayoutDashboard>

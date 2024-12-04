@@ -1,4 +1,4 @@
-import { Model, Schema, model, models } from "mongoose";
+import { Model, Schema, model, models, Document } from "mongoose";
 
 export interface IProduct {
   name: string;
@@ -8,40 +8,26 @@ export interface IProduct {
   alt: string;
   discountPercentage: number;
   category: string;
+  gender: string;
   details: {
     material: string;
     sole: string;
     weight: string;
     colors: string[];
-    sizes: string;
+    sizes: string[];
   };
 }
 
-interface IProductModel extends Model<IProduct> {
-  build(attrs: IProduct): IProduct;
+interface IProductModel extends Model<IProductDoc> {
+  build(attrs: IProduct): IProductDoc;
 }
 
 interface IProductDoc extends Document, IProduct {
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  alt: string;
-  discountPercentage: number;
-  category: string;
-  details: {
-    material: string;
-    sole: string;
-    weight: string;
-    colors: string[];
-    sizes: string;
-  };
   createdAt?: string;
   updatedAt?: string;
 }
 
-// Esquema de Producto
-const ProductSchema = new Schema(
+const productSchema = new Schema<IProductDoc, IProductModel>(
   {
     name: { type: String, required: true, trim: true, maxlength: 100 },
     description: { type: String, required: true, maxlength: 1000 },
@@ -78,17 +64,19 @@ const ProductSchema = new Schema(
   }
 );
 
-ProductSchema.set("toJSON", {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  transform: (doc: any, ret: any) => {
+productSchema.statics.build = (attrs: IProduct) => {
+  return new Product(attrs);
+};
+
+productSchema.set("toJSON", {
+  transform: (doc, ret) => {
     ret.id = ret._id;
     delete ret._id;
     delete ret.__v;
   },
 });
 
-// Exporta el modelo o reutiliza el existente
-const Product =
-  models.Product || model<IProductDoc, IProductModel>("Product", ProductSchema);
+const Product = (models.Product ||
+  model<IProductDoc, IProductModel>("Product", productSchema)) as IProductModel;
 
 export default Product;

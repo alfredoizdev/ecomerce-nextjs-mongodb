@@ -1,16 +1,15 @@
 "use client";
 
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { signUpAction } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import { useShowErrorOfState } from "@/hooks/useShowError";
+import { Loader2 } from "lucide-react";
 
 const SignUpForm = () => {
-  const [state, action] = useActionState(signUpAction, undefined);
-  const { pending } = useFormStatus();
+  const [state, action, isPending] = useActionState(signUpAction, undefined);
   const { push } = useRouter();
 
   useShowErrorOfState(state);
@@ -73,7 +72,7 @@ const SignUpForm = () => {
 
         {/* Botón de Registro */}
         <Button
-          disabled={pending}
+          disabled={isPending}
           variant={"default"}
           type="submit"
           size={"lg"}
@@ -81,7 +80,14 @@ const SignUpForm = () => {
             width: "100%",
           }}
         >
-          {pending ? "Loading..." : "Sign In"}
+          {isPending ? (
+            <>
+              <Loader2 className="animate-spin" />
+              <span>Please wait...</span>
+            </>
+          ) : (
+            <span>Sign In</span>
+          )}
         </Button>
         <Button
           variant={"destructive"}
