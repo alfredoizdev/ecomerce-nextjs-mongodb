@@ -15,6 +15,9 @@ export const seedDatabase = async () => {
     await Product.insertMany(PRODUCTS);
     console.log("Products seeded");
   } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
     console.log("Database seeding completed");
   }
 };

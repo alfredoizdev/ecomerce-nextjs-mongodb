@@ -44,14 +44,14 @@ const SidebarDashboard = ({ isSidebarOpen, toggleSidebar }: Props) => {
           {isSidebarOpen && <span className="ml-4">Products</span>}
         </Link>
         <Link
-          href="/dashboard/orders"
+          href="/admin/orders"
           className="flex items-center px-4 py-2 hover:bg-gray-700"
         >
           <FiShoppingCart className="w-5 h-5" />
           {isSidebarOpen && <span className="ml-4">Orders</span>}
         </Link>
         <Link
-          href="/dashboard/settings"
+          href="/admin/settings"
           className="flex items-center px-4 py-2 hover:bg-gray-700"
         >
           <FiSettings className="w-5 h-5" />

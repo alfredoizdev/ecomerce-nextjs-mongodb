@@ -11,8 +11,6 @@ const Cart = () => {
   );
 
   const handleQuantityChange = (id: string, delta: number) => {
-    console.log("id", delta);
-
     udateQuantity(id, delta);
   };
 

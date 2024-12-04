@@ -75,8 +75,6 @@ export const createProductAction = async (
     image: formData.get("image"),
   });
 
-  console.log("IMAGE", formData.get("image"));
-
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -137,6 +135,7 @@ export const createProductAction = async (
   });
 
   await newProduct.save();
+  revalidatePath("/admin/products");
 
   return {
     success: true,

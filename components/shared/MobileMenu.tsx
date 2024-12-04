@@ -15,8 +15,6 @@ const MobileMenu = ({ session }: Props) => {
 
   if (!isMobileMenuOpen && !isVisible) return null;
 
-  console.log("MobileMenu -> isVisible", isVisible);
-
   return (
     <div
       className={`fixed w-full h-full bg-black z-20 top-0 p-5 md:hidden transition-opacity duration-300 ${
