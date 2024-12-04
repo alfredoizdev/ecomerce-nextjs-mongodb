@@ -16,8 +16,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { deleteProductAction } from "@/actions/products";
 import DeleteProduct from "./DeleteProduct";
+import { calculateDiscountedPrice } from "@/utils/pricing";
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -52,20 +52,59 @@ export const columns: ColumnDef<Product>[] = [
     },
   },
   {
+    accessorKey: "gender",
+    header: "Gender",
+  },
+  {
+    accessorKey: "category",
+    header: "Category",
+  },
+  {
     accessorKey: "description",
     header: "Description",
+  },
+  {
+    accessorKey: "discountPercentage",
+    header: () => <div className="text-center">Discount</div>,
+    cell: ({ row }) => {
+      const discountedPrice = calculateDiscountedPrice(
+        row.getValue("price"),
+        row.getValue("discountPercentage")
+      );
+
+      const amount = parseFloat(discountedPrice?.toString() || "0");
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(amount);
+
+      return (
+        <div className="text-center text-red-700">
+          {formatted || 0} - {`${row.getValue("discountPercentage")}%`}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "price",
     header: () => <div className="text-center">Price</div>,
     cell: ({ row }) => {
+      const discountedPrice = row.getValue("discountPercentage") !== 0;
       const amount = parseFloat(row.getValue("price"));
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
       }).format(amount);
 
-      return <div className="text-center font-medium">{formatted}</div>;
+      return (
+        <div className="text-center font-medium">
+          {discountedPrice ? (
+            <p className="text-sm text-gray-500 line-through">{formatted}</p>
+          ) : (
+            formatted
+          )}
+        </div>
+      );
     },
   },
   {

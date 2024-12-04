@@ -4,10 +4,10 @@ import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState } from "react";
 import { createProductAction } from "@/actions/products";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 import {
@@ -18,104 +18,94 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import UploadImage from "./UploadImage";
+import useCreateProductForm from "@/hooks/useCreateProductForm";
 
-interface ProductFormData {
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  gender: string;
-  discountPercentage: number;
-  material: string;
-  sole: string;
-  weight: string;
-  colors: string;
-  sizes: string;
-  image?: string;
-}
+const initialState = {
+  name: "Blue Snickers",
+  description: "Comfortable and stylish blue snickers perfect for casual wear.",
+  price: 79.99,
+  category: "Running",
+  gender: "women",
+  discountPercentage: 10,
+  material: "Leather",
+  sole: "Rubber",
+  weight: "500g",
+  colors: "Blue, White",
+  sizes: "7, 8, 9, 10, 11",
+};
 
 const CrateProduct = () => {
   const { push } = useRouter();
-  const [imageUrl, setUrlImage] = useState("");
+  // const [imageUrl, setUrlImage] = useState("");
   const [state, action, isPending] = useActionState(
     createProductAction,
     undefined
   );
 
-  useEffect(() => {
-    if (imageUrl) {
-      setFormFields((prevFields) => ({
-        ...prevFields,
-        image: imageUrl,
-      }));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imageUrl]);
+  const { formFields, handleOnChange, handleSelectOnChange, setImageUrl } =
+    useCreateProductForm(initialState, state);
 
-  useEffect(() => {
-    if (state?.success) {
-      setFormFields({
-        name: "",
-        description: "",
-        price: 0,
-        category: "",
-        colors: "",
-        discountPercentage: 0,
-        sizes: "",
-        material: "",
-        sole: "",
-        weight: "",
-        gender: "",
-      });
+  // useEffect(() => {
+  //   if (imageUrl) {
+  //     setFormFields((prevFields) => ({
+  //       ...prevFields,
+  //       image: imageUrl,
+  //     }));
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [imageUrl]);
 
-      toast.success(state.message);
-      push("/admin/products");
-    } else {
-      if (state?.message) {
-        toast.error(state.message);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state?.message, state?.success]);
+  // useEffect(() => {
+  //   if (state?.success) {
+  //     resetForm();
+  //     toast.success(state.message);
+  //     push("/admin/products");
+  //   } else {
+  //     if (state?.message) {
+  //       toast.error(state.message);
+  //     }
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [state?.message, state?.success]);
 
-  const [formFields, setFormFields] = useState<ProductFormData>(
-    state?.data || {
-      name: "Orange Running Shoes",
-      description: "This is a test product description.",
-      price: 99.99,
-      category: "Running",
-      colors: "Red, Black, Blue",
-      discountPercentage: 10,
-      sizes: "7, 8, 9, 10",
-      material: "Synthetic",
-      sole: "Rubber",
-      weight: "very light 200g",
-      gender: "man",
-    }
-  );
+  // const [formFields, setFormFields] = useState<ProductFormData>(
+  //   state?.data || {
+  //     name: "Orange Running Shoes",
+  //     description: "This is a test product description.",
+  //     price: 99.99,
+  //     category: "Running",
+  //     colors: "Red, Black, Blue",
+  //     discountPercentage: 10,
+  //     sizes: "7, 8, 9, 10",
+  //     material: "Synthetic",
+  //     sole: "Rubber",
+  //     weight: "very light 200g",
+  //     gender: "man",
+  //   }
+  // );
 
-  const handleOnChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormFields((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  // const handleOnChange = (
+  //   e: React.ChangeEvent<
+  //     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  //   >
+  // ) => {
+  //   const { name, value } = e.target;
+  //   setFormFields((prev) => ({
+  //     ...prev,
+  //     [name]: value,
+  //   }));
+  // };
 
-  const handleSelectOnChange = (value: string, key: string) => {
-    setFormFields((prevFields) => ({
-      ...prevFields,
-      [key]: value,
-    }));
-  };
+  // const handleSelectOnChange = (value: string, key: string) => {
+  //   setFormFields((prevFields) => ({
+  //     ...prevFields,
+  //     [key]: value,
+  //   }));
+  // };
 
   return (
     <div className="w-full">
-      <UploadImage setImageUrl={setUrlImage} />
+      <UploadImage setImageUrl={setImageUrl} />
       <form action={action} className="space-y-6">
         {/* Contenedor del formulario con diseño de grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -348,8 +338,8 @@ const CrateProduct = () => {
           >
             Description
           </Label>
-          <Input
-            hidden
+          <input
+            hidden={true}
             name="image"
             value={formFields?.image || ""}
             onChange={handleOnChange}

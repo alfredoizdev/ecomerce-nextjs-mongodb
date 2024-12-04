@@ -13,7 +13,7 @@ type Props = {
 export default function UploadImage({ setImageUrl }: Props) {
   return (
     <CldUploadWidget
-      uploadPreset="myshop-next"
+      signatureEndpoint="/api/sign-cloudinary-params"
       onSuccess={(value: CloudinaryUploadWidgetResults) => {
         if (
           value.info &&
