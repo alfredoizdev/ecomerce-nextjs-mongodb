@@ -33,27 +33,45 @@ export const getProductsAction = async (
 export const deleteProductAction = async (
   id: string,
   image: string
-): Promise<void> => {
-  if (!id) {
-    return;
+): Promise<{ success: boolean; message: string }> => {
+  try {
+    if (!id) {
+      return {
+        success: false,
+        message: "Product not found.",
+      };
+    }
+
+    const imageId = extractIdFromUrl(image);
+
+    if (imageId) {
+      await cloudinary.api.delete_resources([imageId], {
+        type: "upload",
+        resource_type: "image",
+      });
+    }
+
+    await connectToMongoDB();
+
+    await Product.findByIdAndDelete(id).exec();
+    revalidatePath("/admin/products");
+
+    return {
+      success: true,
+      message: "Product deleted successfully.",
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+    return {
+      success: false,
+      message: "An error occurred while deleting the product.",
+    };
   }
-
-  const imageId = extractIdFromUrl(image);
-
-  if (!imageId) {
-    return;
-  }
-
-  await cloudinary.api.delete_resources([imageId], {
-    type: "upload",
-    resource_type: "image",
-  });
-
-  await connectToMongoDB();
-
-  await Product.findByIdAndDelete(id).exec();
-
-  revalidatePath("/admin/products");
 };
 
 export const createProductAction = async (

@@ -17,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { deleteProductAction } from "@/actions/products";
+import DeleteProduct from "./DeleteProduct";
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -88,13 +89,7 @@ export const columns: ColumnDef<Product>[] = [
               Edit Product
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() =>
-                deleteProductAction(product?.id || "", product?.image || "")
-              }
-            >
-              Delete this product
-            </DropdownMenuItem>
+            <DeleteProduct product={product} />
           </DropdownMenuContent>
         </DropdownMenu>
       );

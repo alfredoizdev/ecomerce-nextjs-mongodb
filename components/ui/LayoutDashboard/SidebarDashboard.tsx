@@ -6,6 +6,8 @@ import {
   FiSettings,
   FiMenu,
 } from "react-icons/fi";
+import { LuStore } from "react-icons/lu";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
 
 type Props = {
   isSidebarOpen: boolean;
@@ -30,6 +32,13 @@ const SidebarDashboard = ({ isSidebarOpen, toggleSidebar }: Props) => {
       </div>
       <nav className="mt-4 space-y-2">
         <Link
+          href="/"
+          className="flex items-center px-4 py-2 hover:bg-gray-700"
+        >
+          <LuStore size={24} className="w-5 h-5" />
+          {isSidebarOpen && <span className="ml-4">Visit Store</span>}
+        </Link>
+        <Link
           href="/admin/dashboard"
           className="flex items-center px-4 py-2 hover:bg-gray-700"
         >
@@ -49,6 +58,13 @@ const SidebarDashboard = ({ isSidebarOpen, toggleSidebar }: Props) => {
         >
           <FiShoppingCart className="w-5 h-5" />
           {isSidebarOpen && <span className="ml-4">Orders</span>}
+        </Link>
+        <Link
+          href="/admin/custom"
+          className="flex items-center px-4 py-2 hover:bg-gray-700"
+        >
+          <MdOutlineDashboardCustomize className="w-5 h-5" />
+          {isSidebarOpen && <span className="ml-4">Custom Theme</span>}
         </Link>
         <Link
           href="/admin/settings"
