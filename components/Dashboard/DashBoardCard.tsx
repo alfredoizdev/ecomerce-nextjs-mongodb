@@ -14,7 +14,7 @@ const DashboardCard = ({ title, value, icon, bgColor = "bg-white" }: Props) => {
     >
       <div>
         <h3 className="text-sm font-medium text-gray-500">{title}</h3>
-        <p className="text-5xl font-bold text-gray-900">{value}</p>
+        <p className="text-3xl font-bold text-gray-900">{value}</p>
       </div>
       {icon && <div className="text-gray-500">{icon}</div>}
     </div>
