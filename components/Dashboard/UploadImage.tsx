@@ -19,6 +19,11 @@ export default function UploadImage({ setImageUrl, imageUrl = null }: Props) {
   return (
     <CldUploadWidget
       signatureEndpoint="/api/sign-cloudinary-params"
+      options={{
+        sources: ["local"],
+        multiple: false,
+        maxFiles: 1,
+      }}
       onSuccess={(value: CloudinaryUploadWidgetResults) => {
         if (
           value.info &&

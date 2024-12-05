@@ -7,7 +7,7 @@ export default async function CartPage() {
 
   return (
     <LayoutRegularPage session={session}>
-      <Cart />
+      <Cart session={session} />
     </LayoutRegularPage>
   );
 }

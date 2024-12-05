@@ -6,6 +6,7 @@ export interface IUser {
   password: string;
   role: string;
   name: string;
+  avatar?: string;
 }
 
 interface IUserModel extends Model<IUserDoc> {
@@ -37,6 +38,10 @@ export const userSchema = new Schema<IUserDoc, IUserModel>(
       required: true,
       default: "user",
       enum: ["user", "admin"],
+    },
+    avatar: {
+      type: String,
+      default: "/images/not-profile-image.webp",
     },
   },
   {

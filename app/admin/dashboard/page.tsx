@@ -10,7 +10,7 @@ const DashboardPage = async () => {
   const session = await verifySession();
 
   if (session && session.role !== "admin") {
-    redirect("/members/dashboard");
+    redirect("/");
   }
 
   return (

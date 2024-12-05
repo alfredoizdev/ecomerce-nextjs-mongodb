@@ -3,4 +3,5 @@ export type TUser = {
   password: string;
   name?: string;
   role?: string;
+  avatar?: string;
 };

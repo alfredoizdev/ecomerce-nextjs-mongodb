@@ -51,7 +51,8 @@ export const signInAction = async (
   const userId = findUser.id.toString();
   const role = findUser.role?.toString();
   const name = findUser.name?.toString();
-  await createSession(userId, role, name);
+
+  await createSession(userId, role, name, email);
 };
 
 export const signUpAction = async (
@@ -93,7 +94,7 @@ export const signUpAction = async (
     const role = user.role?.toString();
     const username = user.name?.toString();
 
-    await createSession(userId, role, username);
+    await createSession(userId, role, username, email);
 
     if (!user) {
       return {
@@ -109,7 +110,7 @@ export const signUpAction = async (
   const role = user.role?.toString();
   const username = user.name?.toString();
 
-  await createSession(userId, role, username);
+  await createSession(userId, role, username, email);
 
   if (!user) {
     return {

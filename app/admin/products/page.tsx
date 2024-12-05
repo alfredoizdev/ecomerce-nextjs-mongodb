@@ -3,9 +3,17 @@ import { columns } from "@/components/Dashboard/Columns";
 import { DataTable } from "@/components/Dashboard/DataTable";
 import ProductTableSkeleton from "@/components/Dashboard/ProductTableSkeleton";
 import LayoutDashboard from "@/components/ui/LayoutDashboard/LayoutDashboard";
+import { verifySession } from "@/utils/session";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 const ProductAdminPage = async () => {
+  const session = await verifySession();
+
+  if (session && session.role !== "admin") {
+    redirect("/");
+  }
+
   const products = await getProductsAction();
 
   return (

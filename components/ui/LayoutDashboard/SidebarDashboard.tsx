@@ -8,6 +8,7 @@ import {
 } from "react-icons/fi";
 import { LuStore } from "react-icons/lu";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
+import { PiUsersBold } from "react-icons/pi";
 
 type Props = {
   isSidebarOpen: boolean;
@@ -58,6 +59,13 @@ const SidebarDashboard = ({ isSidebarOpen, toggleSidebar }: Props) => {
         >
           <FiShoppingCart className="w-5 h-5" />
           {isSidebarOpen && <span className="ml-4">Orders</span>}
+        </Link>
+        <Link
+          href="/admin/users"
+          className="flex items-center px-4 py-2 hover:bg-gray-700"
+        >
+          <PiUsersBold className="w-5 h-5" />
+          {isSidebarOpen && <span className="ml-4">Users</span>}
         </Link>
         <Link
           href="/admin/custom"

@@ -6,8 +6,13 @@ import useCarCalculations from "@/hooks/useCartCalculations";
 import Link from "next/link";
 import CartItem from "./CartItem";
 import OrderSummary from "./OrderSummary";
+import { Session } from "@/types/Session";
 
-const Cart = () => {
+type Props = {
+  session?: Session;
+};
+
+const Cart = ({ session }: Props) => {
   const {
     cart,
     calculateDiscountedPrice,
@@ -19,7 +24,7 @@ const Cart = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      <CustomHeader title="Cart" />
+      <CustomHeader title="Cart" session={session} />
       <main className="max-w-7xl mx-auto px-6 lg:px-16 py-10">
         <div className="pb-3">
           <SubTitle text="Review your selected products and proceed to checkout." />

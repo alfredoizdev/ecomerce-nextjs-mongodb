@@ -58,6 +58,7 @@ export type SessionPayload = {
   expiresAt: Date;
   role: string;
   name: string;
+  email: string;
 };
 
 export type FormStateProduct =

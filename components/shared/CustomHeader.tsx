@@ -35,7 +35,9 @@ const CustomHeader = ({ title, session }: Props) => {
               Logout
             </button>
           ) : (
-            <Link href="/auth/signin">Login</Link>
+            <Link className="text-lg" href="/auth/signin">
+              Login
+            </Link>
           )}
           {isLogin && session?.role === "admin" && (
             <Link className="text-lg" href="/admin/dashboard">
@@ -43,7 +45,7 @@ const CustomHeader = ({ title, session }: Props) => {
             </Link>
           )}
           {isLogin && session?.role === "user" && (
-            <Link href="/member/profile">
+            <Link className="text-lg" href="/member/profile">
               <FaUserLarge size={22} />
             </Link>
           )}

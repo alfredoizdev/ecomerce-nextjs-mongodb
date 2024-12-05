@@ -31,10 +31,11 @@ export async function decrypt(session: string | undefined = "") {
 export async function createSession(
   userId: string,
   role: string,
-  name: string
+  name: string,
+  email: string
 ) {
   const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
-  const session = await encrypt({ userId, expiresAt, role, name });
+  const session = await encrypt({ userId, expiresAt, role, name, email });
 
   const getCookies = await cookies();
 
@@ -99,6 +100,7 @@ export async function getSession() {
     role: session?.role || "",
     name: session?.name || "",
     expiresAt: session?.expiresAt || "",
+    email: session?.email || "",
   };
 }
 
