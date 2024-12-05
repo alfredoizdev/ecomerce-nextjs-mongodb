@@ -6,6 +6,7 @@ const CartItem = ({
   handleQuantityChange,
   removeFromCart,
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item: any;
   calculateDiscountedPrice: (
     price: number,

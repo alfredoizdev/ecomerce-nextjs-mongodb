@@ -3,7 +3,7 @@
 import { Product } from "@/types/Product";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
-import { ArrowUpDown, Edit } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 
 import { MoreHorizontal } from "lucide-react";
 
