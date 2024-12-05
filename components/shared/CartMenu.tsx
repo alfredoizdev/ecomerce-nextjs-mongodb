@@ -8,7 +8,7 @@ const CartMenu = () => {
 
   return (
     <div className="relative">
-      <Link href="/cart">
+      <Link className="text-lg" href="/cart">
         <Image src="/icons/cart.svg" alt="Cart" width={24} height={24} />
       </Link>
       {cart.length !== 0 && (

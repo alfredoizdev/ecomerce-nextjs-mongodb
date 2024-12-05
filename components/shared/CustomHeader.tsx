@@ -26,19 +26,19 @@ const CustomHeader = ({ title, session }: Props) => {
         {/* Menu */}
         <nav className="space-x-8 text-sm hidden md:flex">
           {MENU.map((item) => (
-            <Link href={item.link} key={item.id}>
+            <Link className="text-lg" href={item.link} key={item.id}>
               {item.name}
             </Link>
           ))}
           {isLogin ? (
-            <button className="m-0 p-0" onClick={signOutAction}>
+            <button className="m-0 p-0 text-lg" onClick={signOutAction}>
               Logout
             </button>
           ) : (
             <Link href="/auth/signin">Login</Link>
           )}
           {isLogin && session?.role === "admin" && (
-            <Link href="/admin/dashboard">
+            <Link className="text-lg" href="/admin/dashboard">
               <TbLayoutDashboardFilled size={24} />
             </Link>
           )}
@@ -53,12 +53,12 @@ const CustomHeader = ({ title, session }: Props) => {
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-4">
           {isLogin && session?.role === "admin" && (
-            <Link href="/admin/dashboard">
+            <Link className="text-lg" href="/admin/dashboard">
               <TbLayoutDashboardFilled size={24} />
             </Link>
           )}
           {isLogin && session?.role === "user" && (
-            <Link href="/member/profile">
+            <Link className="text-lg" href="/member/profile">
               <FaUserLarge size={20} />
             </Link>
           )}

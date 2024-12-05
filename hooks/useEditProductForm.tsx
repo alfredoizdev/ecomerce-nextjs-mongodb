@@ -19,7 +19,22 @@ const useEditProductForm = (
     >
   ) => {
     const { name, value } = e.target;
-    setFormFields((prev) => ({ ...prev, [name]: value }));
+
+    setFormFields((prev) => {
+      // Verifica si el campo pertenece a "details"
+      if (prev.details && name in prev.details) {
+        return {
+          ...prev,
+          details: {
+            ...prev.details,
+            [name]: value, // Actualiza el campo en "details"
+          },
+        };
+      }
+
+      // Actualiza campos normales
+      return { ...prev, [name]: value };
+    });
   };
 
   const handleSelectOnChange = (value: string, key: string) => {

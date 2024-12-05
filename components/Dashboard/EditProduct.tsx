@@ -36,19 +36,19 @@ const EditProduct = ({ product }: Props) => {
 
   return (
     <div className="w-full">
+      <div>
+        <UploadImage setImageUrl={setImageUrl} />
+      </div>
       <form action={action} className="space-y-6">
         {/* Contenedor del formulario con diseño de grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <UploadImage setImageUrl={setImageUrl} />
-          </div>
-          <div>
-            <label
+            <Label
               htmlFor="inStock"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="block text-sm font-medium text-gray-700 mb-2"
             >
               In Stock
-            </label>
+            </Label>
             <Select
               name="inStock"
               value={formFields.inStock}

@@ -90,7 +90,6 @@ export const updateProductAction = async (
     sizes: formData.get("sizes"),
     gender: formData.get("gender"),
     weight: formData.get("weight"),
-    image: formData.get("image"),
     inStock: formData.get("inStock"),
     id: formData.get("id"),
   });
@@ -171,7 +170,6 @@ export const createProductAction = async (
     sizes: formData.get("sizes"),
     gender: formData.get("gender"),
     weight: formData.get("weight"),
-    image: formData.get("image"),
     inStock: formData.get("inStock"),
   });
 
