@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { createProductAction } from "@/actions/products";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
@@ -18,46 +18,34 @@ import {
 } from "@/components/ui/select";
 import UploadImage from "./UploadImage";
 import useCreateProductForm from "@/hooks/useCreateProductForm";
+import { Product } from "@/types/Product";
 
-// const initialState = {
-//   name: "Blue Snickers",
-//   description: "Comfortable and stylish blue snickers perfect for casual wear.",
-//   price: 79.99,
-//   category: "Running",
-//   gender: "women",
-//   discountPercentage: 10,
-//   material: "Leather",
-//   sole: "Rubber",
-//   weight: "500g",
-//   colors: "Blue, White",
-//   sizes: "7, 8, 9, 10, 11",
-//   inStock: true,
-// };
-
-const initialState = {
-  name: "",
-  description: "",
-  price: 0,
-  category: "",
-  gender: "",
-  discountPercentage: 0,
-  material: "",
-  sole: "",
-  weight: "",
-  colors: "",
-  sizes: "",
-  inStock: "in",
+type Props = {
+  product: Product;
 };
 
-const CrateProduct = () => {
+const EditProduct = ({ product }: Props) => {
+  const [formFields, setFormFields] = useState<Product>(product);
+  const [imageUrl, setImageUrl] = useState("");
+
   const { push } = useRouter();
   const [state, action, isPending] = useActionState(
     createProductAction,
     undefined
   );
 
-  const { formFields, handleOnChange, handleSelectOnChange, setImageUrl } =
-    useCreateProductForm(initialState, state);
+  const handleSelectOnChange = (value: string, key: string) => {
+    setFormFields((prevFields) => ({ ...prevFields, [key]: value }));
+  };
+
+  const handleOnChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormFields((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
     <div className="w-full">
@@ -198,7 +186,7 @@ const CrateProduct = () => {
               id="material"
               name="material"
               placeholder="Enter material type"
-              value={formFields?.material || ""}
+              value={formFields.details?.material || ""}
               onChange={handleOnChange}
             />
             {state?.errors?.material && (
@@ -220,7 +208,7 @@ const CrateProduct = () => {
               id="sole"
               name="sole"
               placeholder="Enter sole material"
-              value={formFields?.sole || ""}
+              value={formFields.details?.sole || ""}
               onChange={handleOnChange}
             />
             {state?.errors?.sole && (
@@ -241,7 +229,7 @@ const CrateProduct = () => {
               name="discountPercentage"
               type="number"
               placeholder="Enter discount percentage"
-              value={formFields?.discountPercentage || ""}
+              value={formFields.discountPercentage}
               onChange={handleOnChange}
             />
             {state?.errors?.discountPercentage && (
@@ -263,7 +251,7 @@ const CrateProduct = () => {
               id="colors"
               name="colors"
               placeholder="e.g., Red, Black, Blue"
-              value={formFields?.colors || ""}
+              value={formFields.details.colors}
               onChange={handleOnChange}
             />
             {state?.errors?.colors && (
@@ -283,7 +271,7 @@ const CrateProduct = () => {
               id="sizes"
               name="sizes"
               placeholder="e.g., 7, 8, 9, 10"
-              value={formFields?.sizes || ""}
+              value={formFields.details.sizes}
               onChange={handleOnChange}
             />
             {state?.errors?.sizes && (
@@ -301,7 +289,7 @@ const CrateProduct = () => {
               id="weight"
               name="weight"
               placeholder=" weights e.g., 200g, 300g, 400g"
-              value={formFields?.weight || ""}
+              value={formFields.details.weight}
               onChange={handleOnChange}
             />
             {state?.errors?.weight && (
@@ -368,4 +356,4 @@ const CrateProduct = () => {
   );
 };
 
-export default CrateProduct;
+export default EditProduct;

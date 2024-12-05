@@ -8,6 +8,7 @@ export type Product = {
   gender: string;
   category: string;
   discountPercentage: number;
+  inStock: string;
   details: {
     material: string;
     sole: string;

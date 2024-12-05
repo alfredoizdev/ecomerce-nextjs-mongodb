@@ -15,6 +15,7 @@ interface ProductFormData {
   colors: string;
   sizes: string;
   image?: string;
+  inStock: string;
 }
 
 const useCreateProductForm = (

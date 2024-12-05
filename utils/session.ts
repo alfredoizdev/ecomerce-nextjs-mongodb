@@ -24,9 +24,6 @@ export async function decrypt(session: string | undefined = "") {
     });
     return payload;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
     return null;
   }
 }

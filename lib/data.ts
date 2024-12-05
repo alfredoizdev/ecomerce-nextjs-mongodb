@@ -10,6 +10,7 @@ export const PRODUCTS: Product[] = [
     category: "Running",
     gender: "unisex",
     discountPercentage: 10, // 10% de descuento
+    inStock: "in",
     details: {
       material: "Breathable mesh",
       sole: "Rubber sole with high traction",
@@ -27,6 +28,7 @@ export const PRODUCTS: Product[] = [
     category: "Sportswear",
     gender: "man",
     discountPercentage: 0, // Sin descuento
+    inStock: "in",
     details: {
       material: "Synthetic upper with cushioning",
       sole: "Shock-absorbing midsole",
@@ -44,6 +46,7 @@ export const PRODUCTS: Product[] = [
     category: "Casual",
     gender: "unisex",
     discountPercentage: 15, // 15% de descuento
+    inStock: "in",
     details: {
       material: "Premium leather",
       sole: "Soft padded insole for comfort",
@@ -61,6 +64,7 @@ export const PRODUCTS: Product[] = [
     category: "Hiking",
     gender: "man",
     discountPercentage: 0, // Sin descuento
+    inStock: "out",
     details: {
       material: "Waterproof fabric with reinforced stitching",
       sole: "Anti-slip rugged outsole",
@@ -78,6 +82,7 @@ export const PRODUCTS: Product[] = [
     category: "Casual",
     gender: "unisex",
     discountPercentage: 20, // 20% de descuento
+    inStock: "in",
     details: {
       material: "Breathable canvas",
       sole: "Cushioned foam sole",
@@ -96,6 +101,7 @@ export const PRODUCTS: Product[] = [
     category: "Running",
     gender: "women",
     discountPercentage: 0, // Sin descuento
+    inStock: "out",
     details: {
       material: "Knitted fabric with breathable technology",
       sole: "Durable EVA foam sole",
@@ -113,6 +119,7 @@ export const PRODUCTS: Product[] = [
     category: "Boots",
     gender: "man",
     discountPercentage: 0, // Sin descuento
+    inStock: "in",
     details: {
       material: "Premium genuine leather",
       sole: "Non-slip rubber sole",
@@ -130,6 +137,7 @@ export const PRODUCTS: Product[] = [
     category: "Sportswear",
     gender: "women",
     discountPercentage: 0, // Sin descuento
+    inStock: "out",
     details: {
       material: "Synthetic upper with breathable mesh",
       sole: "Cushioned sole for impact absorption",
@@ -147,6 +155,7 @@ export const PRODUCTS: Product[] = [
     category: "Running",
     gender: "unisex",
     discountPercentage: 10, // 10% de descuento
+    inStock: "in",
     details: {
       material: "Durable mesh with water-resistant coating",
       sole: "High-traction rubber outsole",
@@ -164,6 +173,7 @@ export const PRODUCTS: Product[] = [
     category: "Casual",
     gender: "women",
     discountPercentage: 5, // 5% de descuento
+    inStock: "out",
     details: {
       material: "Synthetic leather with padded collar",
       sole: "Lightweight EVA sole",
@@ -181,6 +191,7 @@ export const PRODUCTS: Product[] = [
     category: "Sportswear",
     gender: "man",
     discountPercentage: 15, // 15% de descuento
+    inStock: "in",
     details: {
       material: "Engineered mesh for breathability",
       sole: "Responsive foam midsole",
@@ -198,6 +209,7 @@ export const PRODUCTS: Product[] = [
     category: "Casual",
     gender: "unisex",
     discountPercentage: 20, // 20% de descuento
+    inStock: "out",
     details: {
       material: "Premium synthetic with metallic finish",
       sole: "Non-slip rubber outsole",

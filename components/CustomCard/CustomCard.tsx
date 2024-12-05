@@ -15,11 +15,14 @@ const CustomCard = ({
   name,
   price,
   discountPercentage = 0,
+  inStock,
 }: Product) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/product/${id}`);
+    if (inStock === "in") {
+      router.push(`/product/${id}`);
+    }
   };
 
   const discountedPrice = calculateDiscountedPrice(price, discountPercentage);
@@ -33,16 +36,25 @@ const CustomCard = ({
         </div>
       )}
 
+      {/* Badge de fuera de stock */}
+      {inStock === "out" && (
+        <div className="absolute top-2 left-2 bg-gray-500 text-white text-xs font-bold py-1 px-2 rounded">
+          Out of Stock
+        </div>
+      )}
+
       {/* Imagen del producto con efecto de hover */}
       <div className="mt-5 group">
-        <Link href={`/product/${id}`}>
+        <Link href={inStock === "in" ? `/product/${id}` : "#"}>
           <div className="relative overflow-hidden rounded-md">
             <Image
               src={image}
               alt={alt}
               width={300}
               height={200}
-              className="mx-auto rounded-md transform transition-transform duration-300 group-hover:scale-105"
+              className={`mx-auto rounded-md transform transition-transform duration-300 ${
+                inStock === "in" ? "group-hover:scale-105" : "opacity-50"
+              }`}
             />
           </div>
         </Link>
@@ -67,8 +79,13 @@ const CustomCard = ({
       </div>
 
       {/* Botón */}
-      <Button variant={"default"} className="mt-4" onClick={handleClick}>
-        Buy Now
+      <Button
+        variant={"default"}
+        className="mt-4"
+        onClick={handleClick}
+        disabled={inStock === "out"} // Desactivar si está fuera de stock
+      >
+        {inStock === "out" ? "Unavailable" : "Buy Now"}
       </Button>
     </div>
   );

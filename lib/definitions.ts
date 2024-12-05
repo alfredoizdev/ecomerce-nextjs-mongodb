@@ -38,6 +38,7 @@ export const ProductFormSchema = z.object({
   weight: z.string().min(1, { message: "Please enter a weight" }),
   colors: z.string().min(1, { message: "Please select a color" }),
   sizes: z.string().min(1, { message: "Please select a size" }),
+  inStock: z.string().default("in").optional(),
 });
 
 export type FormState =
@@ -73,6 +74,7 @@ export type FormStateProduct =
         gender?: string[];
         weight?: string[];
         image?: string[];
+        inStock?: string[];
       };
       message?: string;
       success?: boolean;
@@ -89,6 +91,7 @@ export type FormStateProduct =
         weight: string;
         gender: string;
         image?: string;
+        inStock: string;
       };
     }
   | undefined;

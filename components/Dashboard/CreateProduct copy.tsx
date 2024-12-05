@@ -19,21 +19,6 @@ import {
 import UploadImage from "./UploadImage";
 import useCreateProductForm from "@/hooks/useCreateProductForm";
 
-// const initialState = {
-//   name: "Blue Snickers",
-//   description: "Comfortable and stylish blue snickers perfect for casual wear.",
-//   price: 79.99,
-//   category: "Running",
-//   gender: "women",
-//   discountPercentage: 10,
-//   material: "Leather",
-//   sole: "Rubber",
-//   weight: "500g",
-//   colors: "Blue, White",
-//   sizes: "7, 8, 9, 10, 11",
-//   inStock: true,
-// };
-
 const initialState = {
   name: "",
   description: "",

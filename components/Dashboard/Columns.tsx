@@ -3,7 +3,7 @@
 import { Product } from "@/types/Product";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
-import { ArrowUpDown } from "lucide-react";
+import { ArrowUpDown, Edit } from "lucide-react";
 
 import { MoreHorizontal } from "lucide-react";
 
@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import DeleteProduct from "./DeleteProduct";
 import { calculateDiscountedPrice } from "@/utils/pricing";
+import EditProductButton from "./EditProductButton";
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -122,10 +123,8 @@ export const columns: ColumnDef<Product>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(product?.id || "")}
-            >
-              Edit Product
+            <DropdownMenuItem>
+              <EditProductButton id={product.id} />
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DeleteProduct product={product} />

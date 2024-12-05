@@ -91,6 +91,7 @@ export const createProductAction = async (
     gender: formData.get("gender"),
     weight: formData.get("weight"),
     image: formData.get("image"),
+    inStock: formData.get("inStock"),
   });
 
   if (!validatedFields.success) {
@@ -109,6 +110,7 @@ export const createProductAction = async (
         sizes: formData.get("sizes") as string,
         weight: formData.get("weight") as string,
         gender: formData.get("gender") as string,
+        inStock: formData.get("inStock") as string,
       },
     };
   }
@@ -125,6 +127,7 @@ export const createProductAction = async (
     weight,
     sizes,
     gender,
+    inStock,
   } = validatedFields.data;
 
   const setColor = colors.split(",").map((color: string) => color.trim());
@@ -143,6 +146,7 @@ export const createProductAction = async (
       "/images/shoes/product/not-image.webp",
     discountPercentage,
     gender,
+    inStock: inStock || "in",
     details: {
       material,
       sole,
@@ -161,20 +165,48 @@ export const createProductAction = async (
   };
 };
 
-export const getProductByIdAction = async (id: string): Promise<TProduct> => {
+export const findProductByIdAction = async (
+  id: string
+): Promise<{
+  success: boolean;
+  message: string;
+  data: TProduct | null;
+}> => {
   await connectToMongoDB();
 
-  try {
-    const product = await Product.findById(id).exec();
-    const results = JSON.parse(JSON.stringify(product));
-    return results as TProduct;
-  } catch (error) {
-    if (error instanceof Error) {
-      return {} as TProduct;
-    }
-    return {} as TProduct;
+  const product = await Product.findById(id).exec();
+
+  if (!product) {
+    return {
+      success: false,
+      message: "Product not found.",
+      data: null,
+    };
   }
+
+  // Update product logic here (e.g., product.name = "New Name"; await product.save();)
+
+  return {
+    success: true,
+    message: "Product updated successfully.",
+    data: JSON.parse(JSON.stringify(product)),
+  };
 };
+
+// export const getProductByIdAction = async (id: string): Promise<TProduct> => {
+//   await connectToMongoDB();
+
+//   try {
+//     const product = await Product.findById(id).exec();
+//     const results = JSON.parse(JSON.stringify(product));
+//     return results as TProduct;
+//   } catch (error) {
+//     if (error instanceof Error) {
+//       return {} as TProduct;
+//     }
+//     return {} as TProduct;
+//   }
+// };
 
 export const getAllProductsExceptCurrentAction = async (
   id: string
