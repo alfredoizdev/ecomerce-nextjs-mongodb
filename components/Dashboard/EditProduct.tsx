@@ -37,7 +37,7 @@ const EditProduct = ({ product }: Props) => {
   return (
     <div className="w-full">
       <div>
-        <UploadImage setImageUrl={setImageUrl} />
+        <UploadImage setImageUrl={setImageUrl} imageUrl={product.image} />
       </div>
       <form action={action} className="space-y-6">
         {/* Contenedor del formulario con diseño de grid */}

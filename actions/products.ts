@@ -9,6 +9,17 @@ import { Product as TProduct } from "@/types/Product";
 import cloudinary from "@/lib/cloudinary";
 import { extractIdFromUrl } from "@/utils/image";
 
+export const deleteImageAction = async (image: string) => {
+  const imageId = extractIdFromUrl(image);
+
+  if (imageId) {
+    await cloudinary.api.delete_resources([imageId], {
+      type: "upload",
+      resource_type: "image",
+    });
+  }
+};
+
 export const getProductsAction = async (
   gender?: string
 ): Promise<TProduct[]> => {
@@ -42,13 +53,8 @@ export const deleteProductAction = async (
       };
     }
 
-    const imageId = extractIdFromUrl(image);
-
-    if (imageId) {
-      await cloudinary.api.delete_resources([imageId], {
-        type: "upload",
-        resource_type: "image",
-      });
+    if (image) {
+      await deleteImageAction(image);
     }
 
     await connectToMongoDB();

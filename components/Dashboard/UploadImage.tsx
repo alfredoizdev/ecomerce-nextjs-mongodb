@@ -3,14 +3,19 @@ import {
   CldUploadWidget,
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
-import { Button } from "../ui/button";
-import { MdCloudUpload } from "react-icons/md";
+import { MdCloudUpload, MdEdit } from "react-icons/md";
+import Image from "next/image";
+import { deleteImageAction } from "@/actions/products";
+import { useState } from "react";
 
 type Props = {
   setImageUrl: (url: string) => void;
+  imageUrl?: string | null;
 };
 
-export default function UploadImage({ setImageUrl }: Props) {
+export default function UploadImage({ setImageUrl, imageUrl = null }: Props) {
+  const [tempImage, setTempImage] = useState("");
+
   return (
     <CldUploadWidget
       signatureEndpoint="/api/sign-cloudinary-params"
@@ -22,19 +27,70 @@ export default function UploadImage({ setImageUrl }: Props) {
         ) {
           const imageUrl = value.info.secure_url;
           setImageUrl(imageUrl);
+          setTempImage(imageUrl);
+        }
+      }}
+      onQueuesEndAction={async () => {
+        console.log("Queue ended");
+
+        if (imageUrl) {
+          await deleteImageAction(imageUrl);
         }
       }}
     >
       {({ open }) => {
         return (
-          <Button
-            className="mb-4"
-            variant={"destructive"}
-            onClick={() => open()}
-          >
-            <MdCloudUpload size={25} />
-            Upload an Image
-          </Button>
+          <>
+            {imageUrl ? (
+              <div
+                className="relative mb-4 w-[200px] h-[200px] border border-gray-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer group"
+                onClick={() => open()}
+                role="button"
+              >
+                {/* Imagen */}
+                <Image
+                  src={tempImage || imageUrl}
+                  fill
+                  sizes="200px"
+                  priority
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  alt="Uploaded image"
+                />
+
+                {/* Ícono de Edición y Texto */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <MdEdit size={40} className="text-white mb-2" />
+                  <span className="text-sm font-semibold text-white">
+                    Edit Image
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div
+                className="relative mb-4 w-[200px] h-[200px] border border-gray-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer group"
+                onClick={() => open()}
+                role="button"
+              >
+                {/* Imagen */}
+                <Image
+                  src={tempImage || "/images/shoes/product/not-image.webp"}
+                  fill
+                  sizes="200px"
+                  priority
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  alt="Uploaded image"
+                />
+
+                {/* Ícono de Edición y Texto */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <MdCloudUpload size={40} className="text-white mb-2" />
+                  <span className="text-sm font-semibold text-white">
+                    Upload Image
+                  </span>
+                </div>
+              </div>
+            )}
+          </>
         );
       }}
     </CldUploadWidget>
