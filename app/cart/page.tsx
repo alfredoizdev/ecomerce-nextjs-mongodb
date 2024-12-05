@@ -1,4 +1,4 @@
-import Cart from "@/components/Cart";
+import Cart from "@/components/Cart/Cart";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
 import { getSession } from "@/utils/session";
 

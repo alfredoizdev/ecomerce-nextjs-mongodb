@@ -39,6 +39,7 @@ export const ProductFormSchema = z.object({
   colors: z.string().min(1, { message: "Please select a color" }),
   sizes: z.string().min(1, { message: "Please select a size" }),
   inStock: z.string().default("in").optional(),
+  id: z.string().optional(),
 });
 
 export type FormState =
@@ -62,6 +63,7 @@ export type SessionPayload = {
 export type FormStateProduct =
   | {
       errors?: {
+        id?: string[];
         name?: string[];
         description?: string[];
         price?: string[];
@@ -79,6 +81,7 @@ export type FormStateProduct =
       message?: string;
       success?: boolean;
       data?: {
+        id?: string;
         name: string;
         description: string;
         price: number;

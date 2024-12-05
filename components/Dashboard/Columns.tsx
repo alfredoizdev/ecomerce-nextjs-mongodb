@@ -65,6 +65,27 @@ export const columns: ColumnDef<Product>[] = [
     header: "Description",
   },
   {
+    accessorKey: "inStock",
+    header: () => <div className="text-center">Stock</div>,
+    cell: ({ row }) => {
+      const inStock = row.getValue("inStock") as string;
+
+      return (
+        <div className="text-center">
+          <span
+            className={`px-2 py-1 text-xs font-semibold rounded-full ${
+              inStock === "in"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+            }`}
+          >
+            {inStock}
+          </span>
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: "discountPercentage",
     header: () => <div className="text-center">Discount</div>,
     cell: ({ row }) => {

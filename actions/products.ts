@@ -74,6 +74,87 @@ export const deleteProductAction = async (
   }
 };
 
+export const updateProductAction = async (
+  state: FormStateProduct,
+  formData: FormData
+): Promise<FormStateProduct> => {
+  const validatedFields = ProductFormSchema.safeParse({
+    name: formData.get("name"),
+    description: formData.get("description"),
+    price: Number(formData.get("price")),
+    category: formData.get("category"),
+    discountPercentage: Number(formData.get("discountPercentage")),
+    material: formData.get("material"),
+    sole: formData.get("sole"),
+    colors: formData.get("colors"),
+    sizes: formData.get("sizes"),
+    gender: formData.get("gender"),
+    weight: formData.get("weight"),
+    image: formData.get("image"),
+    inStock: formData.get("inStock"),
+    id: formData.get("id"),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  const {
+    name,
+    description,
+    category,
+    price,
+    discountPercentage,
+    sole,
+    material,
+    colors,
+    weight,
+    sizes,
+    gender,
+    inStock,
+    id,
+  } = validatedFields.data;
+
+  const setColor = colors.split(",").map((color: string) => color.trim());
+  const setSizes = sizes.split(",").map((size: string) => size.trim());
+
+  await connectToMongoDB();
+
+  const product = await Product.findById(id).exec();
+
+  if (!product) {
+    return {
+      success: false,
+      message: "Product not found.",
+    };
+  }
+
+  product.name = name;
+  product.description = description;
+  product.price = price;
+  product.category = category;
+  product.discountPercentage = discountPercentage;
+  product.details.material = material;
+  product.details.sole = sole;
+  product.details.colors = setColor;
+  product.details.sizes = setSizes;
+  product.gender = gender;
+  product.details.weight = weight;
+  product.image = (formData.get("image") as string) || product.image;
+  product.inStock = inStock || product.inStock;
+
+  await product.save();
+  revalidatePath(`/admin/products/edit/${id}`, "page");
+
+  return {
+    success: true,
+    message: "Product updated successfully.",
+  };
+};
+
 export const createProductAction = async (
   state: FormStateProduct,
   formData: FormData
@@ -192,21 +273,6 @@ export const findProductByIdAction = async (
     data: JSON.parse(JSON.stringify(product)),
   };
 };
-
-// export const getProductByIdAction = async (id: string): Promise<TProduct> => {
-//   await connectToMongoDB();
-
-//   try {
-//     const product = await Product.findById(id).exec();
-//     const results = JSON.parse(JSON.stringify(product));
-//     return results as TProduct;
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       return {} as TProduct;
-//     }
-//     return {} as TProduct;
-//   }
-// };
 
 export const getAllProductsExceptCurrentAction = async (
   id: string

@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useActionState, useState } from "react";
-import { createProductAction } from "@/actions/products";
+import { useActionState } from "react";
+import { updateProductAction } from "@/actions/products";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
 
@@ -17,35 +17,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import UploadImage from "./UploadImage";
-import useCreateProductForm from "@/hooks/useCreateProductForm";
 import { Product } from "@/types/Product";
+import useEditProductForm from "@/hooks/useEditProductForm";
 
 type Props = {
   product: Product;
 };
 
 const EditProduct = ({ product }: Props) => {
-  const [formFields, setFormFields] = useState<Product>(product);
-  const [imageUrl, setImageUrl] = useState("");
-
   const { push } = useRouter();
   const [state, action, isPending] = useActionState(
-    createProductAction,
+    updateProductAction,
     undefined
   );
 
-  const handleSelectOnChange = (value: string, key: string) => {
-    setFormFields((prevFields) => ({ ...prevFields, [key]: value }));
-  };
-
-  const handleOnChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormFields((prev) => ({ ...prev, [name]: value }));
-  };
+  const { formFields, handleOnChange, handleSelectOnChange, setImageUrl } =
+    useEditProductForm(product, state);
 
   return (
     <div className="w-full">
@@ -309,6 +296,12 @@ const EditProduct = ({ product }: Props) => {
             hidden={true}
             name="image"
             value={formFields?.image || ""}
+            onChange={handleOnChange}
+          />
+          <input
+            hidden={true}
+            name="id"
+            value={formFields?.id || ""}
             onChange={handleOnChange}
           />
           <Textarea
