@@ -19,7 +19,7 @@ type InitialState = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useHandleUser = (state: any, initialState: InitialState) => {
+const useHandleUser = (state: any, initialState?: InitialState) => {
   const { push } = useRouter();
   const [formState, setFormState] = useState<InputForm>(
     initialState || {
