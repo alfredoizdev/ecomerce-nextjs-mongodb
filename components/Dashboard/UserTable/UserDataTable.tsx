@@ -1,6 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -33,6 +34,7 @@ export function UserDataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const { push } = useRouter();
 
   const table = useReactTable({
     data,
@@ -54,7 +56,7 @@ export function UserDataTable<TData, TValue>({
 
   return (
     <Card className="rounded-md border w-auto">
-      <CardHeader className="flex-row items-start space-y-0 py-4">
+      <CardHeader className="flex-row justify-between align-middle space-y-0 py-4">
         <Input
           placeholder="Filter name..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
@@ -63,6 +65,13 @@ export function UserDataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
+        <Button
+          className="ml-3"
+          variant={"default"}
+          onClick={() => push("/admin/users/add")}
+        >
+          Add user
+        </Button>
       </CardHeader>
       <CardContent className="p-0 flex flex-1 justify-center pb-0">
         <Table>

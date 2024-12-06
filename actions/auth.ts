@@ -63,6 +63,7 @@ export const signUpAction = async (
     email: formData.get("email"),
     password: formData.get("password"),
     name: formData.get("name"),
+    avatar: formData.get("image"),
   });
 
   // If any form fields are invalid, return early
@@ -73,7 +74,7 @@ export const signUpAction = async (
   }
 
   // 2. Prepare data for insertion into database
-  const { email, password, name } = validatedFields.data;
+  const { email, password, name, avatar } = validatedFields.data;
 
   await connectToMongoDB();
 
@@ -104,7 +105,13 @@ export const signUpAction = async (
     return;
   }
 
-  const user = User.build({ email, password, name, role: "user" });
+  const user = User.build({
+    email,
+    password,
+    name,
+    role: "user",
+    avatar: avatar?.toString() || "",
+  });
   await user.save();
   const userId = user.id.toString();
   const role = user.role?.toString();

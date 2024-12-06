@@ -15,6 +15,8 @@ export const SignupFormSchema = z.object({
       message: "Contain at least one special character.",
     })
     .trim(),
+  role: z.string().optional(),
+  avatar: z.string().optional(),
 });
 
 export const LoginFormSchema = z.object({
@@ -48,8 +50,11 @@ export type FormState =
         name?: string[];
         email?: string[];
         password?: string[];
+        role?: string[];
+        avatar?: string[];
       };
       message?: string;
+      success?: boolean;
     }
   | undefined;
 

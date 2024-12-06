@@ -11,10 +11,20 @@ import { useState } from "react";
 type Props = {
   setImageUrl: (url: string) => void;
   imageUrl?: string | null;
+  prevImage?: "user" | "product";
 };
 
-export default function UploadImage({ setImageUrl, imageUrl = null }: Props) {
+export default function UploadImage({
+  setImageUrl,
+  imageUrl = null,
+  prevImage = "product",
+}: Props) {
   const [tempImage, setTempImage] = useState("");
+
+  const prevImageSrc =
+    prevImage === "user"
+      ? "/images/not-profile-image.webp"
+      : "/images/shoes/product/not-image.webp";
 
   return (
     <CldUploadWidget
@@ -78,7 +88,7 @@ export default function UploadImage({ setImageUrl, imageUrl = null }: Props) {
               >
                 {/* Imagen */}
                 <Image
-                  src={tempImage || "/images/shoes/product/not-image.webp"}
+                  src={tempImage || prevImageSrc}
                   fill
                   sizes="200px"
                   priority
