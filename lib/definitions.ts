@@ -17,6 +17,17 @@ export const SignupFormSchema = z.object({
     .trim(),
   role: z.string().optional(),
   avatar: z.string().optional(),
+  id: z.string().optional(),
+});
+
+export const UpdateUserFormSchema = z.object({
+  name: z
+    .string()
+    .min(2, { message: "Name must be at least 2 characters long." })
+    .trim(),
+  email: z.string().email({ message: "Please enter a valid email." }).trim(),
+  avatar: z.string().optional(),
+  id: z.string().optional(),
 });
 
 export const LoginFormSchema = z.object({
