@@ -1,8 +1,6 @@
 import { resetHomePageThemeAction } from "@/actions/custom";
 import { type NextRequest } from "next/server";
 
-import { extractIdFromUrl } from "@/utils/image";
-
 export async function GET(req: NextRequest) {
   // const id = req.query as string;
   const searchParams = req.nextUrl.searchParams;

@@ -3,8 +3,6 @@ import { create } from "zustand";
 type InitialState = {
   isMobileMenuOpen: boolean;
   homeTheme: {
-    primary: string;
-    secondary: string;
     background: string;
     text: string;
     backgroundBtn: string;
@@ -12,6 +10,7 @@ type InitialState = {
     heroTitle: string;
     heroSubtitle: string;
     heroBannerImage: string;
+    cardColor: string;
   };
   toggleMobileMenu: () => void;
   setHomeTheme: (theme: InitialState["homeTheme"]) => void;
@@ -29,6 +28,7 @@ const useUiStore = create<InitialState>((set) => ({
     heroTitle: "",
     heroSubtitle: "",
     heroBannerImage: "",
+    cardColor: "",
   },
   setHomeTheme: (theme) => set(() => ({ homeTheme: theme })),
   toggleMobileMenu: () =>
