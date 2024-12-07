@@ -7,6 +7,7 @@ type InputForm = {
   email: string;
   password: string;
   avatar: string;
+  publicImageId?: string;
   id: string;
 };
 
@@ -15,6 +16,7 @@ type InitialState = {
   email: string;
   password: string;
   avatar: string;
+  publicImageId?: string;
   id: string;
 };
 
@@ -31,6 +33,7 @@ const useHandleUser = (state: any, initialState?: InitialState) => {
     }
   );
   const [imageUrl, setImageUrl] = useState("");
+  const [publicImageId, setPublicImageId] = useState("");
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -41,13 +44,27 @@ const useHandleUser = (state: any, initialState?: InitialState) => {
     if (state?.success) {
       toast.success(state?.message);
       push("/admin/users");
-    } else {
+    }
+    if (state?.success === false) {
       toast.error(state?.message);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
-  return { formState, handleOnChange, imageUrl, setImageUrl, push };
+  useEffect(() => {
+    if (publicImageId) {
+      setFormState((prev) => ({ ...prev, publicImageId }));
+    }
+  }, [publicImageId]);
+
+  return {
+    formState,
+    handleOnChange,
+    imageUrl,
+    setImageUrl,
+    push,
+    setPublicImageId,
+  };
 };
 
 export default useHandleUser;

@@ -8,6 +8,7 @@ import {
 } from "@/lib/definitions";
 import connectToMongoDB from "@/lib/database";
 import { TUser } from "@/types/User";
+import { setRelationShipOfMedia } from "./media";
 
 export const getUsersAction = async (): Promise<{
   data: TUser[];
@@ -116,6 +117,7 @@ export const updateUserAction = async (
     email: formData.get("email"),
     name: formData.get("name"),
     avatar: formData.get("avatar"),
+    publicImageId: formData.get("publicImageId"),
     id: formData.get("id"),
   });
 
@@ -127,7 +129,7 @@ export const updateUserAction = async (
   }
 
   // 2. Prepare data for insertion into database
-  const { email, name, avatar, id } = validatedFields.data;
+  const { email, name, avatar, id, publicImageId } = validatedFields.data;
 
   await connectToMongoDB();
 
@@ -138,6 +140,10 @@ export const updateUserAction = async (
       success: false,
       message: "User not found",
     };
+  }
+
+  if (publicImageId) {
+    await setRelationShipOfMedia(publicImageId, user.id, "user");
   }
 
   user.email = email;

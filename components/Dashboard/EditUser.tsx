@@ -21,14 +21,21 @@ const EditUser = ({ user }: Props) => {
     updateUserAction,
     undefined
   );
-  const { formState, handleOnChange, imageUrl, setImageUrl, push } =
-    useHandleUser(state, {
-      name: user?.name || "",
-      email: user?.email,
-      password: "",
-      avatar: user?.avatar || "",
-      id: user?.id || "",
-    });
+  const {
+    formState,
+    handleOnChange,
+    imageUrl,
+    setImageUrl,
+    push,
+    setPublicImageId,
+  } = useHandleUser(state, {
+    name: user?.name || "",
+    email: user?.email,
+    password: "",
+    avatar: user?.avatar || "",
+    id: user?.id || "",
+    publicImageId: "",
+  });
 
   return (
     <Card className="rounded-md border w-auto">
@@ -39,6 +46,7 @@ const EditUser = ({ user }: Props) => {
         <div>
           <UploadImage
             setImageUrl={setImageUrl}
+            setPubliImageId={setPublicImageId}
             imageUrl={user.avatar}
             prevImage="user"
           />
@@ -88,6 +96,11 @@ const EditUser = ({ user }: Props) => {
               name="avatar"
               value={imageUrl}
               onChange={handleOnChange}
+            />
+            <input
+              type="hidden"
+              name="publicImageId"
+              value={formState.publicImageId}
             />
             <input
               type="hidden"

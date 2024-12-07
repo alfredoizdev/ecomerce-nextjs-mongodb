@@ -28,6 +28,7 @@ export const UpdateUserFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email." }).trim(),
   avatar: z.string().optional(),
   id: z.string().optional(),
+  publicImageId: z.string().optional(),
 });
 
 export const LoginFormSchema = z.object({
@@ -94,6 +95,7 @@ export type FormState =
         password?: string[];
         role?: string[];
         avatar?: string[];
+        publicImageId?: string[];
       };
       message?: string;
       success?: boolean;

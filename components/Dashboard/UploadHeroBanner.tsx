@@ -26,7 +26,6 @@ export default function UploadHeroBanner({
         sources: ["local"],
         multiple: false,
         maxFiles: 1,
-        cropping: true,
         maxFileSize: 10000000,
         maxImageHeight: 1000,
         maxImageWidth: 2000,

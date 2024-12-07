@@ -10,12 +10,14 @@ import { useState } from "react";
 
 type Props = {
   setImageUrl: (url: string) => void;
+  setPubliImageId?: (publicId: string) => void;
   imageUrl?: string | null;
   prevImage?: "user" | "product";
 };
 
 export default function UploadImage({
   setImageUrl,
+  setPubliImageId,
   imageUrl = null,
   prevImage = "product",
 }: Props) {
@@ -43,6 +45,10 @@ export default function UploadImage({
           const imageUrl = value.info.secure_url;
           setImageUrl(imageUrl);
           setTempImage(imageUrl);
+
+          if (setPubliImageId) {
+            setPubliImageId(value.info.public_id);
+          }
         }
       }}
       onQueuesEndAction={async () => {
