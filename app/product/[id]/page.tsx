@@ -29,7 +29,7 @@ const ProductPage = async ({ params }: { params: TParams }) => {
           You may also like
         </h3>
         <Suspense fallback={<SkeletonCustomCard count={4} />}>
-          <CollageProduct id={id} />
+          <CollageProduct theme={{ ...data }} id={id} />
         </Suspense>
       </section>
     </LayoutRegularPage>

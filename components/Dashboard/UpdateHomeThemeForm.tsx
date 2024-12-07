@@ -30,8 +30,6 @@ type Props = {
 };
 
 const UpdateHomeThemeForm = ({ initialState }: Props) => {
-  console.log(initialState);
-
   const [state, action, isPending] = useActionState(
     updateHomePageThemeAction,
     undefined

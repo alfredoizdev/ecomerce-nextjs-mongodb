@@ -30,8 +30,6 @@ const Hero = ({
 }: Props) => {
   const [offsetY, setOffsetY] = useState(0);
 
-  console.log("heroBannerImage", heroBannerImage);
-
   const handleScroll = () => {
     setOffsetY(window.scrollY);
   };
