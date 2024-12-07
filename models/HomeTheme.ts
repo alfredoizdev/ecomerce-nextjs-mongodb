@@ -17,6 +17,11 @@ export interface ITheme {
     heroColorTitle: string;
     heroColorSubtitle: string;
   };
+  footer: {
+    footerColorTitle: string;
+    backgroundColor: string;
+    color: string;
+  };
 }
 
 interface IThemeModel extends Model<IThemeDoc> {
@@ -45,6 +50,11 @@ const homeThemeSchema = new Schema<IThemeDoc, IThemeModel>(
       bannerImage: { type: String, required: true },
       heroColorTitle: { type: String, required: true, trim: true },
       heroColorSubtitle: { type: String, required: true, trim: true },
+    },
+    footer: {
+      footerColorTitle: { type: String, required: true, trim: true },
+      backgroundColor: { type: String, required: true, trim: true },
+      color: { type: String, required: true, trim: true },
     },
   },
   {

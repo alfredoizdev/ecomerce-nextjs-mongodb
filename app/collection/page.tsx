@@ -12,7 +12,7 @@ const CollectionPage = async () => {
   const { data } = await getHomePageThemeaction();
 
   return (
-    <LayoutRegularPage session={session}>
+    <LayoutRegularPage theme={data} session={session}>
       <div className="bg-gray-100 min-h-screen">
         <CustomHeader title="Collection" session={session} />
 

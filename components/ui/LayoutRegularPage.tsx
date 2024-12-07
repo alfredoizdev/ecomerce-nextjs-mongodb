@@ -9,23 +9,28 @@ import { THEME_DEFAULT } from "@/constants/theme";
 type Props = {
   children: React.ReactNode;
   session?: Session;
-  background?: string;
+  theme?: {
+    background?: string;
+    footerBackgroundColor?: string;
+    footerColorTitle?: string;
+    footerColorText?: string;
+  };
 };
 
-const LayoutRegularPage = ({ children, session, background }: Props) => {
+const LayoutRegularPage = ({ children, session, theme }: Props) => {
   return (
     <>
       <SetTheme />
       <main
         className="flex-grow "
         style={{
-          background: `${background || THEME_DEFAULT.background}`,
+          background: `${theme?.background || THEME_DEFAULT.background}`,
         }}
       >
         {children}
       </main>
-      <MobileMenu session={session} />
-      <Footer />
+      <MobileMenu {...theme} session={session} />
+      <Footer {...theme} />
     </>
   );
 };

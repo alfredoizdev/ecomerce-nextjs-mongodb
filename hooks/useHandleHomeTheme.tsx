@@ -13,6 +13,9 @@ interface FormState {
   heroColorTitle: string;
   heroColorSubtitle: string;
   cardColor: string;
+  footerColorTitle: string;
+  footerBackgroundColor: string;
+  footerColorText: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,6 +31,9 @@ const useHandleHomeTheme = (state?: any, initialState?: FormState) => {
     heroColorTitle: initialState?.heroColorTitle || "",
     heroColorSubtitle: initialState?.heroColorSubtitle || "",
     cardColor: initialState?.cardColor || "",
+    footerColorTitle: initialState?.footerColorTitle || "",
+    footerBackgroundColor: initialState?.footerBackgroundColor || "",
+    footerColorText: initialState?.footerColorText || "",
   });
 
   const [imageUrl, setImageUrl] = useState("");

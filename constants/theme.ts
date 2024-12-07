@@ -7,6 +7,9 @@ export const THEME_DEFAULT = {
   heroColorTitle: "#fff",
   heroColorSubtitle: "#fff",
   cardColor: "#ffffff",
+  footerBackgroundColor: "#111827",
+  footerColorTitle: "#fff",
+  footerColorText: "#fff",
 };
 
 export const COLOR_PICKER = [
@@ -35,4 +38,9 @@ export const COLOR_PICKER = [
   "#F4F4F4",
   "#333333",
   "#666666",
+  "#d92d2d",
+  "#9667b0",
+  "#c3db28",
+  "#8e44ad",
+  "#4b215c",
 ];

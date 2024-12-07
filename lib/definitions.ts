@@ -71,6 +71,15 @@ export const HomeThemeFormSchema = z.object({
     .min(1, { message: "Please enter a subtitle for Hero color" }),
   heroBannerImage: z.string().optional(),
   id: z.string().optional(),
+  footerBackgroundColor: z
+    .string()
+    .min(1, { message: "Please enter a footer backgrond color" }),
+  footerColorTitle: z
+    .string()
+    .min(1, { message: "Please enter a color for footer title" }),
+  footerColorText: z
+    .string()
+    .min(1, { message: "Please enter a color for footer text" }),
 });
 
 export type FormState =
@@ -109,6 +118,9 @@ export type FormStateHomeTheme =
         heroColorTitle?: string[];
         heroColorSubtitle?: string[];
         cardColor?: string[];
+        footerBackgroundColor?: string[];
+        footerColorTitle?: string[];
+        footerColorText?: string[];
       };
       message?: string;
       success?: boolean;
@@ -127,6 +139,11 @@ export type FormStateHomeTheme =
           bannerImage: string;
           heroColorTitle: string;
           heroColorSubtitle: string;
+        };
+        footer: {
+          footerColorTitle: string;
+          backgroundColor: string;
+          footerColorText: string;
         };
       };
     }

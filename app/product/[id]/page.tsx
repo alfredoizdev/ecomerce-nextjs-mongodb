@@ -17,9 +17,9 @@ const ProductPage = async ({ params }: { params: TParams }) => {
   const { data } = await getHomePageThemeaction();
 
   return (
-    <LayoutRegularPage background={data?.background} session={session}>
+    <LayoutRegularPage theme={data} session={session}>
       {/* Header */}
-      <CustomHeader title="Product Details" session={session} />
+      <CustomHeader theme={data} title="Product Details" session={session} />
       <Suspense fallback={<ShowProductSkeleton />}>
         <ShowProduct id={id} />
       </Suspense>

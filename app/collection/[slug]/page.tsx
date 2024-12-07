@@ -17,14 +17,18 @@ const CollectionPage = async ({ params }: { params: TParams }) => {
   const { data } = await getHomePageThemeaction();
 
   return (
-    <LayoutRegularPage session={session}>
+    <LayoutRegularPage theme={data} session={session}>
       <div
         className="min-h-screen"
         style={{
           background: `${data?.background || THEME_DEFAULT.background}`,
         }}
       >
-        <CustomHeader title={`Collection: ${slug}`} session={session} />
+        <CustomHeader
+          theme={data}
+          title={`Collection: ${slug}`}
+          session={session}
+        />
         <main className="max-w-7xl mx-auto px-6 lg:px-16 py-10">
           <div className="pb-3">
             <SubTitle

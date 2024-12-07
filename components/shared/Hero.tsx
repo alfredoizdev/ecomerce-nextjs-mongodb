@@ -43,7 +43,13 @@ const Hero = ({
 
   return (
     <section className="relative w-full h-[32rem] overflow-hidden">
-      <Navbar session={session} />
+      <Navbar
+        theme={{
+          textBtn: textBtn || THEME_DEFAULT.textBtn,
+          backgroundBtn: backgroundBtn || THEME_DEFAULT.backgroundBtn,
+        }}
+        session={session}
+      />
       <Image
         src={heroBannerImage || THEME_DEFAULT.heroBannerImage}
         alt="Hero banner"

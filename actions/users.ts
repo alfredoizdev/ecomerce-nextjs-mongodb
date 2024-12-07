@@ -8,7 +8,6 @@ import {
 } from "@/lib/definitions";
 import connectToMongoDB from "@/lib/database";
 import { TUser } from "@/types/User";
-// import { revalidatePath } from "next/cache";
 
 export const getUsersAction = async (): Promise<{
   data: TUser[];
@@ -36,7 +35,7 @@ export const createUserAction = async (
     email: formData.get("email"),
     password: formData.get("password"),
     name: formData.get("name"),
-    avatar: formData.get("avatar"),
+    avatar: formData.get("image"),
   });
 
   // If any form fields are invalid, return early
@@ -65,7 +64,7 @@ export const createUserAction = async (
     password,
     name,
     role: "user",
-    avatar: avatar?.toString() || "",
+    avatar: avatar || "",
   });
 
   await user.save();

@@ -262,4 +262,9 @@ export const DEFAUL_THEME_HOME = {
     heroColorTitle: "#fff",
     heroColorSubtitle: "#fff",
   },
+  footer: {
+    footerColorTitle: "#fff",
+    backgroundColor: "#111827",
+    color: "#fff",
+  },
 };

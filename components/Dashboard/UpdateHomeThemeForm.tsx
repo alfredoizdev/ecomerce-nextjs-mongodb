@@ -23,6 +23,9 @@ type Props = {
         heroColorTitle: string;
         heroColorSubtitle: string;
         cardColor: string;
+        footerColorTitle: string;
+        footerBackgroundColor: string;
+        footerColorText: string;
       }
     | undefined;
 };
@@ -308,6 +311,101 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
             {state?.errors?.textBtn && (
               <p className="text-sm text-red-500 mt-1">
                 {state.errors.textBtn}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="border-t border-gray-200 my-6"></div>
+        <div>
+          <h2 className="text-lg font-bold text-gray-700 mb-4">
+            Footer Colors
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 3">
+          <div className="mb-2">
+            <Label
+              className="block text-sm font-medium text-gray-700 mb-2"
+              htmlFor="footerColorTitle"
+            >
+              Footer Title Color
+            </Label>
+            <input
+              hidden
+              id="footerColorTitle"
+              type="text"
+              name="footerColorTitle"
+              value={formState.footerColorTitle}
+              onChange={handleOnChange}
+            />
+            <ColorPickerField
+              color={formState.footerColorTitle}
+              onChange={(newColor) =>
+                handleOnChange({
+                  target: { name: "footerColorTitle", value: newColor },
+                } as React.ChangeEvent<HTMLInputElement>)
+              }
+            />
+            {state?.errors?.footerColorTitle && (
+              <p className="text-sm text-red-500 mt-1">
+                {state.errors.footerColorTitle}
+              </p>
+            )}
+          </div>
+          <div className="mb-2">
+            <Label
+              className="block text-sm font-medium text-gray-700 mb-2"
+              htmlFor="footerBackgroundColor"
+            >
+              Footer Background Color
+            </Label>
+            <input
+              hidden
+              id="footerBackgroundColor"
+              type="text"
+              name="footerBackgroundColor"
+              value={formState.footerBackgroundColor}
+              onChange={handleOnChange}
+            />
+            <ColorPickerField
+              color={formState.footerBackgroundColor}
+              onChange={(newColor) =>
+                handleOnChange({
+                  target: { name: "footerBackgroundColor", value: newColor },
+                } as React.ChangeEvent<HTMLInputElement>)
+              }
+            />
+            {state?.errors?.footerBackgroundColor && (
+              <p className="text-sm text-red-500 mt-1">
+                {state.errors.footerBackgroundColor}
+              </p>
+            )}
+          </div>
+          <div className="mb-2">
+            <Label
+              className="block text-sm font-medium text-gray-700 mb-2"
+              htmlFor="footerColorText"
+            >
+              Footer Text Color
+            </Label>
+            <input
+              hidden
+              id="footerColorText"
+              type="text"
+              name="footerColorText"
+              value={formState.footerColorText}
+              onChange={handleOnChange}
+            />
+            <ColorPickerField
+              color={formState.footerColorText}
+              onChange={(newColor) =>
+                handleOnChange({
+                  target: { name: "footerColorText", value: newColor },
+                } as React.ChangeEvent<HTMLInputElement>)
+              }
+            />
+            {state?.errors?.footerColorText && (
+              <p className="text-sm text-red-500 mt-1">
+                {state.errors.footerColorText}
               </p>
             )}
           </div>

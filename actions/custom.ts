@@ -18,6 +18,9 @@ type DTOTheme = {
   heroColorTitle: string;
   heroColorSubtitle: string;
   cardColor: string;
+  footerBackgroundColor: string;
+  footerColorTitle: string;
+  footerColorText: string;
 };
 
 export const getHomePageThemeaction = async (): Promise<{
@@ -51,6 +54,9 @@ export const getHomePageThemeaction = async (): Promise<{
       heroColorSubtitle: theme.hero.heroColorSubtitle,
       heroColorTitle: theme.hero.heroColorTitle,
       cardColor: theme.colors.cardColor,
+      footerBackgroundColor: theme.footer.backgroundColor,
+      footerColorTitle: theme.footer.footerColorTitle,
+      footerColorText: theme.footer.color,
     },
   };
 };
@@ -70,6 +76,9 @@ export const updateHomePageThemeAction = async (
     heroColorTitle: formData.get("heroColorTitle"),
     heroColorSubtitle: formData.get("heroColorSubtitle"),
     cardColor: formData.get("cardColor"),
+    footerBackgroundColor: formData.get("footerBackgroundColor"),
+    footerColorTitle: formData.get("footerColorTitle"),
+    footerColorText: formData.get("footerColorText"),
   });
 
   if (!validatedFields.success) {
@@ -89,6 +98,9 @@ export const updateHomePageThemeAction = async (
     heroBannerImage,
     heroColorTitle,
     heroColorSubtitle,
+    footerBackgroundColor,
+    footerColorTitle,
+    footerColorText,
     cardColor,
   } = validatedFields.data;
 
@@ -115,6 +127,9 @@ export const updateHomePageThemeAction = async (
   theme.hero.heroColorTitle = heroColorTitle;
   theme.hero.heroColorSubtitle = heroColorSubtitle;
   theme.colors.cardColor = cardColor;
+  theme.footer.backgroundColor = footerBackgroundColor || "";
+  theme.footer.footerColorTitle = footerColorTitle || "";
+  theme.footer.color = footerColorText || "";
 
   // Guardamos los cambios
   await theme.save();
@@ -163,6 +178,9 @@ export const resetHomePageThemeAction = async (
   theme.hero.heroColorTitle = THEME_DEFAULT.heroColorTitle;
   theme.hero.heroColorSubtitle = THEME_DEFAULT.heroColorSubtitle;
   theme.colors.cardColor = THEME_DEFAULT.cardColor;
+  theme.footer.backgroundColor = THEME_DEFAULT.footerBackgroundColor;
+  theme.footer.footerColorTitle = THEME_DEFAULT.footerColorTitle;
+  theme.footer.color = THEME_DEFAULT.footerColorText;
 
   // Guardamos los cambios
   await theme.save();

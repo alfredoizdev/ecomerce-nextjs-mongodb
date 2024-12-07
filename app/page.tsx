@@ -18,7 +18,7 @@ export default async function Home() {
   const titleColor = darkenColor(data?.text || THEME_DEFAULT.text, 1);
 
   return (
-    <LayoutRegularPage session={session} background={data?.background}>
+    <LayoutRegularPage session={session} theme={data}>
       <Hero {...data} session={session} />
       <div className="max-w-7xl mx-auto">
         <section className="grid grid-cols-1 gap-6 px-5 md:px-8 lg:px-16 pt-6">

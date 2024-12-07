@@ -10,9 +10,13 @@ import { FaUserLarge } from "react-icons/fa6";
 type Props = {
   title: string;
   session?: Session;
+  theme?: {
+    backgroundBtn: string;
+    textBtn: string;
+  };
 };
 
-const CustomHeader = ({ title, session }: Props) => {
+const CustomHeader = ({ title, session, theme }: Props) => {
   const isLogin = session?.userId ? true : false;
 
   return (
@@ -24,14 +28,17 @@ const CustomHeader = ({ title, session }: Props) => {
         </div>
 
         {/* Menu */}
-        <nav className="space-x-8 text-sm hidden md:flex">
+        <nav className="space-x-8 text-sm hidden md:flex uppercase">
           {MENU.map((item) => (
             <Link className="text-lg" href={item.link} key={item.id}>
               {item.name}
             </Link>
           ))}
           {isLogin ? (
-            <button className="m-0 p-0 text-lg" onClick={signOutAction}>
+            <button
+              className="m-0 p-0 text-lg uppercase text-red-500"
+              onClick={signOutAction}
+            >
               Logout
             </button>
           ) : (
@@ -49,7 +56,7 @@ const CustomHeader = ({ title, session }: Props) => {
               <FaUserLarge size={22} />
             </Link>
           )}
-          <CartMenu />
+          <CartMenu {...theme} />
         </nav>
 
         {/* Mobile Menu Button */}
@@ -64,7 +71,7 @@ const CustomHeader = ({ title, session }: Props) => {
               <FaUserLarge size={20} />
             </Link>
           )}
-          <CartMenu />
+          <CartMenu {...theme} />
           <MobileButtonMenu />
         </div>
       </div>

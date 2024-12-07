@@ -24,12 +24,16 @@ export default function ColorPickerField({
 
       {/* Color Picker */}
       {showPicker && (
-        <div className="absolute z-10 mt-2">
+        <div
+          className="absolute z-10 mt-2"
+          style={{ left: "50px", top: "-50px" }}
+        >
           <div
             className="fixed inset-0 bg-black opacity-0"
             onClick={() => setShowPicker(false)}
           ></div>
           <GithubPicker
+            triangle="hide"
             color={color}
             colors={COLOR_PICKER}
             onChangeComplete={(newColor) => onChange(newColor.hex)}

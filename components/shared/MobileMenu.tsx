@@ -47,7 +47,7 @@ const MobileMenu = ({ session }: Props) => {
       </div>
 
       {/* Menu Items */}
-      <ul className="flex flex-col items-center justify-center h-full space-y-4">
+      <ul className="flex flex-col items-center justify-center h-full space-y-4 uppercase">
         {MENU.map((item) => (
           <li key={item.id} onClick={toggleMobileMenu}>
             <Link href={item.link} className="text-white text-2xl">

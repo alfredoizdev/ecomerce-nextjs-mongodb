@@ -10,14 +10,18 @@ import { FaUserLarge } from "react-icons/fa6";
 
 type Props = {
   session?: Session;
+  theme?: {
+    backgroundBtn: string;
+    textBtn: string;
+  };
 };
 
-const Navbar = ({ session }: Props) => {
+const Navbar = ({ session, theme }: Props) => {
   const isLogin = session?.userId ? true : false;
 
   return (
     <header className="absolute top-0 w-full bg-black bg-opacity-80 text-white z-10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between h-16 uppercase">
         {/* Brand */}
         <div className="text-2xl font-bold uppercase">
           <Link href="/">StyleFoot</Link>
@@ -30,11 +34,14 @@ const Navbar = ({ session }: Props) => {
             </Link>
           ))}
           {isLogin ? (
-            <button className="m-0 p-0 text-lg" onClick={signOutAction}>
+            <button
+              className="m-0 p-0 text-lg uppercase text-red-500"
+              onClick={signOutAction}
+            >
               Logout
             </button>
           ) : (
-            <Link className="text-lg" href="/auth/signin">
+            <Link className="text-lg uppercase" href="/auth/signin">
               Login
             </Link>
           )}
@@ -48,7 +55,7 @@ const Navbar = ({ session }: Props) => {
               <FaUserLarge size={23} />
             </Link>
           )}
-          <CartMenu />
+          <CartMenu {...theme} />
         </nav>
         {/* Mobile Menu */}
         <div className="md:hidden flex items-center gap-4">
@@ -62,7 +69,7 @@ const Navbar = ({ session }: Props) => {
               <FaUserLarge size={23} />
             </Link>
           )}
-          <CartMenu />
+          <CartMenu {...theme} />
           <MobileButtonMenu />
         </div>
       </div>

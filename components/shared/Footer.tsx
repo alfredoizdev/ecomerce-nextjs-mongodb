@@ -1,14 +1,45 @@
+import { THEME_DEFAULT } from "@/constants/theme";
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = () => {
+type Props = {
+  footerBackgroundColor?: string;
+  footerColorTitle?: string;
+  footerColorText?: string;
+};
+
+const Footer = ({
+  footerBackgroundColor,
+  footerColorTitle,
+  footerColorText,
+}: Props) => {
   return (
-    <footer className="bg-gray-900 text-white py-10">
+    <footer
+      className="py-10"
+      style={{
+        color: `${footerColorText || THEME_DEFAULT.footerColorText}`,
+        backgroundColor: `${
+          footerBackgroundColor || THEME_DEFAULT.footerBackgroundColor
+        }`,
+      }}
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-16 grid grid-cols-1 md:grid-cols-4 gap-6">
         {/* About Section */}
         <div>
-          <h3 className="text-xl font-bold mb-4">About Us</h3>
-          <p className="text-sm text-gray-400">
+          <h3
+            className="text-xl font-bold mb-4"
+            style={{
+              color: `${footerColorTitle || THEME_DEFAULT.footerColorTitle}`,
+            }}
+          >
+            About Us
+          </h3>
+          <p
+            className="text-sm"
+            style={{
+              color: `${footerColorText || THEME_DEFAULT.footerColorText}`,
+            }}
+          >
             We provide the best quality shoes for all your needs. Our mission is
             to deliver comfort and style in every step.
           </p>
@@ -16,7 +47,14 @@ const Footer = () => {
 
         {/* Useful Links */}
         <div>
-          <h3 className="text-xl font-bold mb-4">Useful Links</h3>
+          <h3
+            className="text-xl font-bold mb-4"
+            style={{
+              color: `${footerColorTitle || THEME_DEFAULT.footerColorTitle}`,
+            }}
+          >
+            Useful Links
+          </h3>
           <ul className="space-y-2 text-sm">
             <li>
               <Link href="#products" className="hover:text-gray-300">
@@ -43,7 +81,14 @@ const Footer = () => {
 
         {/* Customer Support Section */}
         <div>
-          <h3 className="text-xl font-bold mb-4">Customer Support</h3>
+          <h3
+            className="text-xl font-bold mb-4"
+            style={{
+              color: `${footerColorTitle || THEME_DEFAULT.footerColorTitle}`,
+            }}
+          >
+            Customer Support
+          </h3>
           <ul className="space-y-2 text-sm">
             <li>
               <Link href="#shipping" className="hover:text-gray-300">
@@ -70,8 +115,20 @@ const Footer = () => {
 
         {/* Contact Section */}
         <div>
-          <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-          <p className="text-sm text-gray-400">
+          <h3
+            className="text-xl font-bold mb-4"
+            style={{
+              color: `${footerColorTitle || THEME_DEFAULT.footerColorTitle}`,
+            }}
+          >
+            Contact Us
+          </h3>
+          <p
+            className="text-sm"
+            style={{
+              color: `${footerColorText || THEME_DEFAULT.footerColorText}`,
+            }}
+          >
             Email: support@shoes.com <br />
             Phone: +1 234 567 890
           </p>
@@ -99,7 +156,12 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mt-10 text-center text-sm text-gray-400">
+      <div
+        className="mt-10 text-center text-sm"
+        style={{
+          color: `${footerColorText || THEME_DEFAULT.footerColorText}`,
+        }}
+      >
         &copy; 2024 Shoes.com. All rights reserved.
       </div>
     </footer>
