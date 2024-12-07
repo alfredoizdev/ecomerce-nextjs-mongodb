@@ -3,8 +3,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 interface FormState {
-  primary: string;
-  secondary: string;
   background: string;
   text: string;
   backgroundBtn: string;
@@ -20,8 +18,6 @@ interface FormState {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useHandleHomeTheme = (state?: any, initialState?: FormState) => {
   const [formState, setFormState] = useState<FormState>({
-    primary: initialState?.primary || "",
-    secondary: initialState?.secondary || "",
     background: initialState?.background || "",
     text: initialState?.text || "",
     backgroundBtn: initialState?.backgroundBtn || "",

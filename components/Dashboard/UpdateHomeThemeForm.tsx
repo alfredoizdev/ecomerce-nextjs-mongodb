@@ -13,8 +13,6 @@ import ColorPickerField from "./ColorPickerField";
 type Props = {
   initialState:
     | {
-        primary: string;
-        secondary: string;
         background: string;
         text: string;
         backgroundBtn: string;
@@ -44,7 +42,10 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
       <Label className="block text-sm font-medium text-gray-700 mb-2">
         Hero Banner Image
       </Label>
-      <UploadHeroBanner setImageUrl={setImageUrl} />
+      <UploadHeroBanner
+        imageUrl={formState.heroBannerImage}
+        setImageUrl={setImageUrl}
+      />
       <form action={action}>
         {/* Hero Section Fields */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -167,59 +168,6 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
 
         {/* General Colors Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 3">
-          <div className="mb-2">
-            <Label
-              className="block text-sm font-medium text-gray-700 mb-2"
-              htmlFor="primary"
-            >
-              Primary Color
-            </Label>
-            <input
-              id="primary"
-              hidden
-              type="text"
-              name="primary"
-              value={formState.primary}
-              onChange={handleOnChange}
-            />
-            <ColorPickerField
-              color={formState.primary}
-              onChange={(newColor) =>
-                handleOnChange({
-                  target: { name: "primary", value: newColor },
-                } as React.ChangeEvent<HTMLInputElement>)
-              }
-            />
-          </div>
-          <div className="mb-2">
-            <Label
-              className="block text-sm font-medium text-gray-700 mb-2"
-              htmlFor="secondary"
-            >
-              Secondary Color
-            </Label>
-            <input
-              id="secondary"
-              hidden
-              type="text"
-              name="secondary"
-              value={formState.secondary}
-              onChange={handleOnChange}
-            />
-            <ColorPickerField
-              color={formState.secondary}
-              onChange={(newColor) =>
-                handleOnChange({
-                  target: { name: "secondary", value: newColor },
-                } as React.ChangeEvent<HTMLInputElement>)
-              }
-            />
-            {state?.errors?.secondary && (
-              <p className="text-sm text-red-500 mt-1">
-                {state.errors.secondary}
-              </p>
-            )}
-          </div>
           <div className="mb-2">
             <Label
               className="block text-sm font-medium text-gray-700 mb-2"

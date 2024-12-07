@@ -5,14 +5,17 @@ import CustomHome from "@/app/admin/custom/CustomHome";
 import { Suspense } from "react";
 import UpdateHomeThemeSkeleton from "@/components/Dashboard/UpdateThemeHomeSkeleton";
 import ResetTheme from "./ResetTheme";
+import { getHomePageThemeaction } from "@/actions/custom";
 
 const CustomPage = async () => {
+  const { data } = await getHomePageThemeaction();
+
   return (
     <LayoutDashboard>
       <Card className="overflow-auto">
         <CardHeader className="flex flex-auto flex-row align-middle justify-between">
           <h2 className="m-0 b-0">Custom Theme</h2>
-          <ResetTheme />
+          <ResetTheme image={data?.heroBannerImage} />
         </CardHeader>
 
         <CardContent>

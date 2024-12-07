@@ -247,8 +247,6 @@ export const PRODUCT_SIZES = ["5", "6", "7", "8", "9", "10", "11", "12"];
 
 export const DEFAUL_THEME_HOME = {
   colors: {
-    primary: "#007BFF", // Azul predeterminado
-    secondary: "#FFC107", // Amarillo predeterminado
     background: "#F8F9FA", // Fondo gris claro
     text: "#515050", // Texto negro
     cardColor: "#ffffff",

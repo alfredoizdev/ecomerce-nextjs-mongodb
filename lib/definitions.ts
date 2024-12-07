@@ -56,8 +56,6 @@ export const ProductFormSchema = z.object({
 });
 
 export const HomeThemeFormSchema = z.object({
-  primary: z.string().min(1, { message: "Please enter a primary color" }),
-  secondary: z.string().min(1, { message: "Please enter a secondary color" }),
   background: z.string().min(1, { message: "Please enter a background color" }),
   text: z.string().min(1, { message: "Please enter a text color" }),
   backgroundBtn: z.string().min(1, { message: "Please enter a button color" }),
@@ -101,8 +99,6 @@ export type FormStateHomeTheme =
   | {
       errors?: {
         id?: string[];
-        primary?: string[];
-        secondary?: string[];
         background?: string[];
         text?: string[];
         backgroundBtn?: string[];
@@ -118,8 +114,6 @@ export type FormStateHomeTheme =
       success?: boolean;
       data?: {
         id?: string;
-        primary: string;
-        secondary: string;
         background: string;
         text: string;
         cardColor: string;

@@ -1,11 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { extractIdFromUrl } from "@/utils/image";
 import { toast } from "sonner";
 
-export default function ResetTheme() {
+type Props = {
+  image?: string;
+};
+
+export default function ResetTheme({ image }: Props) {
+  const imageId = extractIdFromUrl(image || "");
   const handleOnClick = async () => {
     try {
-      const response = await fetch("/api/reset", {
+      const response = await fetch(`/api/reset?id=${imageId}`, {
         method: "GET",
       });
 

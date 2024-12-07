@@ -1,14 +1,14 @@
 "use server";
 
 import { THEME_DEFAULT } from "@/constants/theme";
+import cloudinary from "@/lib/cloudinary";
 import connectToMongoDB from "@/lib/database";
 import { FormStateHomeTheme, HomeThemeFormSchema } from "@/lib/definitions";
 import HomeTheme from "@/models/HomeTheme";
+import { extractIdFromUrl } from "@/utils/image";
 import { revalidatePath } from "next/cache";
 
 type DTOTheme = {
-  primary: string;
-  secondary: string;
   background: string;
   text: string;
   backgroundBtn: string;
@@ -42,8 +42,6 @@ export const getHomePageThemeaction = async (): Promise<{
     success: true,
     message: "",
     data: {
-      primary: theme.colors.primary,
-      secondary: theme.colors.secondary,
       background: theme.colors.background,
       text: theme.colors.text,
       backgroundBtn: theme.colors.button.background,
@@ -63,8 +61,6 @@ export const updateHomePageThemeAction = async (
   formData: FormData
 ): Promise<FormStateHomeTheme> => {
   const validatedFields = HomeThemeFormSchema.safeParse({
-    primary: formData.get("primary"),
-    secondary: formData.get("secondary"),
     background: formData.get("background"),
     text: formData.get("text"),
     backgroundBtn: formData.get("backgroundBtn"),
@@ -85,8 +81,6 @@ export const updateHomePageThemeAction = async (
   }
 
   const {
-    primary,
-    secondary,
     background,
     text,
     backgroundBtn,
@@ -112,8 +106,6 @@ export const updateHomePageThemeAction = async (
   }
 
   // Actualizamos las propiedades del tema
-  theme.colors.primary = primary;
-  theme.colors.secondary = secondary;
   theme.colors.background = background;
   theme.colors.text = text;
   theme.colors.button.background = backgroundBtn;
@@ -136,7 +128,9 @@ export const updateHomePageThemeAction = async (
   };
 };
 
-export const resetHomePageThemeAction = async (): Promise<{
+export const resetHomePageThemeAction = async (
+  imageId: string
+): Promise<{
   success: boolean;
   message?: string;
 }> => {
@@ -152,9 +146,14 @@ export const resetHomePageThemeAction = async (): Promise<{
     };
   }
 
+  if (imageId) {
+    await cloudinary.api.delete_resources([imageId], {
+      type: "upload",
+      resource_type: "image",
+    });
+  }
+
   // Actualizamos las propiedades del tema
-  theme.colors.primary = THEME_DEFAULT.primary;
-  theme.colors.secondary = THEME_DEFAULT.secondary;
   theme.colors.background = THEME_DEFAULT.background;
   theme.colors.text = THEME_DEFAULT.text;
   theme.colors.button.background = THEME_DEFAULT.backgroundBtn;

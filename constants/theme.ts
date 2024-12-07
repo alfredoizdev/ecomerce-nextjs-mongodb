@@ -6,8 +6,6 @@ export const THEME_DEFAULT = {
   heroBannerImage: "/images/shoes/red/red-banner.webp",
   heroColorTitle: "#fff",
   heroColorSubtitle: "#fff",
-  primary: "#007BFF",
-  secondary: "#6C757D",
   cardColor: "#ffffff",
 };
 

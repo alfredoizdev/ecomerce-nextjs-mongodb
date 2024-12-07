@@ -2,8 +2,6 @@ import { Model, Schema, model, models, Document } from "mongoose";
 
 export interface ITheme {
   colors: {
-    primary: string;
-    secondary: string;
     background: string;
     text: string;
     cardColor: string;
@@ -33,8 +31,6 @@ interface IThemeDoc extends Document, ITheme {
 const homeThemeSchema = new Schema<IThemeDoc, IThemeModel>(
   {
     colors: {
-      primary: { type: String, required: true, trim: true },
-      secondary: { type: String, required: true, trim: true },
       background: { type: String, required: true, trim: true },
       text: { type: String, required: true, trim: true },
       cardColor: { type: String, required: true, trim: true },
