@@ -21,6 +21,8 @@ type DTOTheme = {
   footerBackgroundColor: string;
   footerColorTitle: string;
   footerColorText: string;
+  navbarColor: string;
+  navbarTextColor: string;
 };
 
 export const getHomePageThemeaction = async (): Promise<{
@@ -57,6 +59,8 @@ export const getHomePageThemeaction = async (): Promise<{
       footerBackgroundColor: theme.footer.backgroundColor,
       footerColorTitle: theme.footer.footerColorTitle,
       footerColorText: theme.footer.color,
+      navbarColor: theme.navbar.navbarColor,
+      navbarTextColor: theme.navbar.navbarTextColor,
     },
   };
 };
@@ -79,6 +83,8 @@ export const updateHomePageThemeAction = async (
     footerBackgroundColor: formData.get("footerBackgroundColor"),
     footerColorTitle: formData.get("footerColorTitle"),
     footerColorText: formData.get("footerColorText"),
+    navbarTextColor: formData.get("navbarTextColor"),
+    navbarColor: formData.get("navbarColor"),
   });
 
   if (!validatedFields.success) {
@@ -102,6 +108,8 @@ export const updateHomePageThemeAction = async (
     footerColorTitle,
     footerColorText,
     cardColor,
+    navbarColor,
+    navbarTextColor,
   } = validatedFields.data;
 
   await connectToMongoDB();
@@ -130,6 +138,8 @@ export const updateHomePageThemeAction = async (
   theme.footer.backgroundColor = footerBackgroundColor || "";
   theme.footer.footerColorTitle = footerColorTitle || "";
   theme.footer.color = footerColorText || "";
+  theme.navbar.navbarColor = navbarColor || "";
+  theme.navbar.navbarTextColor = navbarTextColor || "";
 
   // Guardamos los cambios
   await theme.save();
@@ -181,6 +191,8 @@ export const resetHomePageThemeAction = async (
   theme.footer.backgroundColor = THEME_DEFAULT.footerBackgroundColor;
   theme.footer.footerColorTitle = THEME_DEFAULT.footerColorTitle;
   theme.footer.color = THEME_DEFAULT.footerColorText;
+  theme.navbar.navbarColor = THEME_DEFAULT.navbarColor;
+  theme.navbar.navbarTextColor = THEME_DEFAULT.navbarTextColor;
 
   // Guardamos los cambios
   await theme.save();

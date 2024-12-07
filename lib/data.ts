@@ -267,4 +267,8 @@ export const DEFAUL_THEME_HOME = {
     backgroundColor: "#111827",
     color: "#fff",
   },
+  navbar: {
+    navbarColor: "#0b0a07",
+    navbarTextColor: "#fff",
+  },
 };

@@ -1,21 +1,31 @@
 "use client";
 import { THEME_DEFAULT } from "@/constants/theme";
 import { useCartStore } from "@/store/useCartStore";
-import Image from "next/image";
+import { FaShoppingCart } from "react-icons/fa";
 import Link from "next/link";
 
 type Props = {
   backgroundBtn?: string;
   textBtn?: string;
+  navbarTextColor?: string;
 };
 
-const CartMenu = ({ backgroundBtn, textBtn }: Props) => {
+const CartMenu = ({ backgroundBtn, textBtn, navbarTextColor }: Props) => {
   const { cart } = useCartStore((state) => state);
 
   return (
     <div className="relative">
-      <Link className="text-lg" href="/cart">
-        <Image src="/icons/cart.svg" alt="Cart" width={24} height={24} />
+      <Link
+        className="text-lg"
+        href="/cart"
+        style={{
+          color: `${navbarTextColor || THEME_DEFAULT.navbarTextColor}`,
+        }}
+      >
+        <FaShoppingCart
+          size={24}
+          color={`${navbarTextColor || THEME_DEFAULT.navbarTextColor}`}
+        />
       </Link>
       {cart.length !== 0 && (
         <span

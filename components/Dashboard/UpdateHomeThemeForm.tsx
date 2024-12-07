@@ -26,6 +26,8 @@ type Props = {
         footerColorTitle: string;
         footerBackgroundColor: string;
         footerColorText: string;
+        navbarColor: string;
+        navbarTextColor: string;
       }
     | undefined;
 };
@@ -170,7 +172,7 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
         </div>
 
         {/* General Colors Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 3">
+        <div className="grid grid-cols-1 lg:grid-cols-4">
           <div className="mb-2">
             <Label
               className="block text-sm font-medium text-gray-700 mb-2"
@@ -315,13 +317,14 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
             )}
           </div>
         </div>
+        {/* Footer Colors Section */}
         <div className="border-t border-gray-200 my-6"></div>
         <div>
           <h2 className="text-lg font-bold text-gray-700 mb-4">
             Footer Colors
           </h2>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 3">
+        <div className="grid grid-cols-1 lg:grid-cols-4">
           <div className="mb-2">
             <Label
               className="block text-sm font-medium text-gray-700 mb-2"
@@ -406,6 +409,72 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
             {state?.errors?.footerColorText && (
               <p className="text-sm text-red-500 mt-1">
                 {state.errors.footerColorText}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="border-t border-gray-200 my-6"></div>
+        <div>
+          <h2 className="text-lg font-bold text-gray-700 mb-4">
+            Navbar Colors Section
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-4">
+          <div className="mb-2">
+            <Label
+              className="block text-sm font-medium text-gray-700 mb-2"
+              htmlFor="navbarColor"
+            >
+              Navbar Color
+            </Label>
+            <input
+              hidden
+              id="navbarColor"
+              type="text"
+              name="navbarColor"
+              value={formState.navbarColor}
+              onChange={handleOnChange}
+            />
+            <ColorPickerField
+              color={formState.navbarColor}
+              onChange={(newColor) =>
+                handleOnChange({
+                  target: { name: "navbarColor", value: newColor },
+                } as React.ChangeEvent<HTMLInputElement>)
+              }
+            />
+            {state?.errors?.navbarColor && (
+              <p className="text-sm text-red-500 mt-1">
+                {state.errors.navbarColor}
+              </p>
+            )}
+          </div>
+          <div className="mb-2">
+            <Label
+              className="block text-sm font-medium text-gray-700 mb-2"
+              htmlFor="navbarTextColor"
+            >
+              Navbar Color Text
+            </Label>
+            <input
+              hidden
+              id="navbarTextColor"
+              type="text"
+              name="navbarTextColor"
+              value={formState.navbarTextColor}
+              onChange={handleOnChange}
+            />
+            <ColorPickerField
+              color={formState.navbarTextColor}
+              onChange={(newColor) =>
+                handleOnChange({
+                  target: { name: "navbarTextColor", value: newColor },
+                } as React.ChangeEvent<HTMLInputElement>)
+              }
+            />
+            {state?.errors?.navbarTextColor && (
+              <p className="text-sm text-red-500 mt-1">
+                {state.errors.navbarTextColor}
               </p>
             )}
           </div>

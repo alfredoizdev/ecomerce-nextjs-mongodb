@@ -22,6 +22,10 @@ export interface ITheme {
     backgroundColor: string;
     color: string;
   };
+  navbar: {
+    navbarColor: string;
+    navbarTextColor: string;
+  };
 }
 
 interface IThemeModel extends Model<IThemeDoc> {
@@ -55,6 +59,10 @@ const homeThemeSchema = new Schema<IThemeDoc, IThemeModel>(
       footerColorTitle: { type: String, required: true, trim: true },
       backgroundColor: { type: String, required: true, trim: true },
       color: { type: String, required: true, trim: true },
+    },
+    navbar: {
+      navbarColor: { type: String, required: true, trim: true },
+      navbarTextColor: { type: String, required: true, trim: true },
     },
   },
   {

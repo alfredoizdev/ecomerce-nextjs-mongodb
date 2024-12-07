@@ -13,6 +13,8 @@ type Props = {
   theme?: {
     backgroundBtn: string;
     textBtn: string;
+    navbarColor: string;
+    navbarTextColor: string;
   };
 };
 
@@ -20,7 +22,13 @@ const Navbar = ({ session, theme }: Props) => {
   const isLogin = session?.userId ? true : false;
 
   return (
-    <header className="absolute top-0 w-full bg-black bg-opacity-80 text-white z-10">
+    <header
+      className="absolute top-0 w-full bg-opacity-80 z-10"
+      style={{
+        backgroundColor: theme?.navbarColor || "black",
+        color: theme?.navbarTextColor || "white",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between h-16 uppercase">
         {/* Brand */}
         <div className="text-2xl font-bold uppercase">

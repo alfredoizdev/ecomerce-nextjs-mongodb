@@ -80,6 +80,10 @@ export const HomeThemeFormSchema = z.object({
   footerColorText: z
     .string()
     .min(1, { message: "Please enter a color for footer text" }),
+  navbarColor: z.string().min(1, { message: "Please enter a navbar color" }),
+  navbarTextColor: z
+    .string()
+    .min(1, { message: "Please enter a navbar text color" }),
 });
 
 export type FormState =
@@ -121,6 +125,8 @@ export type FormStateHomeTheme =
         footerBackgroundColor?: string[];
         footerColorTitle?: string[];
         footerColorText?: string[];
+        navbarColor?: string[];
+        navbarTextColor?: string[];
       };
       message?: string;
       success?: boolean;
@@ -144,6 +150,10 @@ export type FormStateHomeTheme =
           footerColorTitle: string;
           backgroundColor: string;
           footerColorText: string;
+        };
+        navbar: {
+          navbarColor: string;
+          navbarTextColor: string;
         };
       };
     }

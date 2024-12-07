@@ -43,7 +43,7 @@ const Cart = ({ session, theme }: Props) => {
       className=" min-h-screen"
       style={{ background: `${theme?.background || THEME_DEFAULT.background}` }}
     >
-      <CustomHeader theme={theme} title="Cart" session={session} />
+      <CustomHeader {...theme} title="Cart" session={session} />
       <main className="max-w-7xl mx-auto px-6 lg:px-16 py-10">
         <div className="pb-3">
           <SubTitle

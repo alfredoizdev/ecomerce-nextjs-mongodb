@@ -16,6 +16,8 @@ type Props = {
   backgroundBtn?: string;
   heroColorTitle?: string;
   heroColorSubtitle?: string;
+  navbarColor?: string;
+  navbarTextColor?: string;
 };
 
 const Hero = ({
@@ -27,6 +29,8 @@ const Hero = ({
   backgroundBtn,
   heroColorTitle,
   heroColorSubtitle,
+  navbarColor,
+  navbarTextColor,
 }: Props) => {
   const [offsetY, setOffsetY] = useState(0);
 
@@ -47,6 +51,8 @@ const Hero = ({
         theme={{
           textBtn: textBtn || THEME_DEFAULT.textBtn,
           backgroundBtn: backgroundBtn || THEME_DEFAULT.backgroundBtn,
+          navbarColor: navbarColor || THEME_DEFAULT.navbarColor,
+          navbarTextColor: navbarTextColor || THEME_DEFAULT.navbarTextColor,
         }}
         session={session}
       />
@@ -67,7 +73,7 @@ const Hero = ({
       ></div>
 
       {/* Velo Opaco */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 bg-black/40"></div>
 
       {/* COPY */}
       <div className="absolute inset-0 flex items-center">

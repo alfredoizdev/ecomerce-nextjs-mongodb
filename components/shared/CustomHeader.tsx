@@ -6,6 +6,7 @@ import { signOutAction } from "@/actions/auth";
 import { Session } from "@/types/Session";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { FaUserLarge } from "react-icons/fa6";
+import { THEME_DEFAULT } from "@/constants/theme";
 
 type Props = {
   title: string;
@@ -13,6 +14,8 @@ type Props = {
   theme?: {
     backgroundBtn: string;
     textBtn: string;
+    navbarColor: string;
+    navbarTextColor: string;
   };
 };
 
@@ -20,7 +23,13 @@ const CustomHeader = ({ title, session, theme }: Props) => {
   const isLogin = session?.userId ? true : false;
 
   return (
-    <header className="bg-black text-white py-6">
+    <header
+      className="py-6"
+      style={{
+        backgroundColor: theme?.navbarColor || THEME_DEFAULT.navbarColor,
+        color: theme?.navbarTextColor || THEME_DEFAULT.navbarTextColor,
+      }}
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between">
         {/* Title and Subtext */}
         <div>
