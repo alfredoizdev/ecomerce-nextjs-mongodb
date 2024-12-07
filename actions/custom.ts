@@ -5,7 +5,6 @@ import cloudinary from "@/lib/cloudinary";
 import connectToMongoDB from "@/lib/database";
 import { FormStateHomeTheme, HomeThemeFormSchema } from "@/lib/definitions";
 import HomeTheme from "@/models/HomeTheme";
-import { extractIdFromUrl } from "@/utils/image";
 import { revalidatePath } from "next/cache";
 
 type DTOTheme = {
