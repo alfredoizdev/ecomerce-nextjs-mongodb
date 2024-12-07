@@ -1,22 +1,30 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { THEME_DEFAULT } from "@/constants/theme";
 import { Product } from "@/types/Product";
 import { calculateDiscountedPrice } from "@/utils/pricing";
+import { darkenColor } from "@/utils/theme";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+type Props = {
+  product: Product;
+  backgroundBtn?: string;
+  background?: string;
+  textBtn?: string;
+  text?: string;
+  cardColor?: string;
+};
+
 const CustomCard = ({
-  id,
-  alt,
-  description,
-  image,
-  name,
-  price,
-  discountPercentage = 0,
-  inStock,
-}: Product) => {
+  product: { id, name, description, price, discountPercentage, image, inStock },
+  cardColor,
+  backgroundBtn,
+  textBtn,
+  text,
+}: Props) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -26,9 +34,13 @@ const CustomCard = ({
   };
 
   const discountedPrice = calculateDiscountedPrice(price, discountPercentage);
+  const titleColor = darkenColor(text || THEME_DEFAULT.text, 20);
 
   return (
-    <div className="relative bg-white p-4 rounded-lg shadow-md text-center">
+    <div
+      className="relative p-4 rounded-lg shadow-md text-center"
+      style={{ background: `${cardColor || THEME_DEFAULT.cardColor}` }}
+    >
       {/* Badge de descuento */}
       {discountPercentage > 0 && (
         <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold py-1 px-2 rounded">
@@ -49,7 +61,7 @@ const CustomCard = ({
           <div className="relative overflow-hidden rounded-md">
             <Image
               src={image}
-              alt={alt}
+              alt={"Product image"}
               width={300}
               height={200}
               className={`mx-auto rounded-md transform transition-transform duration-300 ${
@@ -61,26 +73,47 @@ const CustomCard = ({
       </div>
 
       {/* Información del producto */}
-      <h3 className="mt-4 text-lg font-bold">{name}</h3>
-      <p className="text-sm text-gray-600">{description}</p>
+      <h3 className="mt-4 text-lg font-bold" style={{ color: titleColor }}>
+        {name}
+      </h3>
+      <p className="text-sm" style={{ color: `${text || THEME_DEFAULT.text}` }}>
+        {description}
+      </p>
 
       {/* Precios */}
       <div className="mt-2">
         {discountedPrice ? (
           <div>
-            <p className="text-sm text-gray-500 line-through">${price}</p>
+            <p
+              className="text-sm line-through"
+              style={{
+                color: `${text || THEME_DEFAULT.text}`,
+              }}
+            >
+              ${price}
+            </p>
             <p className="text-lg font-semibold text-red-600">
               ${discountedPrice}
             </p>
           </div>
         ) : (
-          <p className="text-lg font-semibold">${price}</p>
+          <p
+            className="text-lg font-semibold"
+            style={{
+              color: `${text || THEME_DEFAULT.text}`,
+            }}
+          >
+            ${price}
+          </p>
         )}
       </div>
 
       {/* Botón */}
       <Button
-        variant={"default"}
+        style={{
+          backgroundColor: `${backgroundBtn || "#120401"}`,
+          color: `${textBtn || THEME_DEFAULT.textBtn}`,
+        }}
         className="mt-4"
         onClick={handleClick}
         disabled={inStock === "out"} // Desactivar si está fuera de stock

@@ -55,6 +55,26 @@ export const ProductFormSchema = z.object({
   id: z.string().optional(),
 });
 
+export const HomeThemeFormSchema = z.object({
+  primary: z.string().min(1, { message: "Please enter a primary color" }),
+  secondary: z.string().min(1, { message: "Please enter a secondary color" }),
+  background: z.string().min(1, { message: "Please enter a background color" }),
+  text: z.string().min(1, { message: "Please enter a text color" }),
+  backgroundBtn: z.string().min(1, { message: "Please enter a button color" }),
+  textBtn: z.string().min(1, { message: "Please enter a button text color" }),
+  heroTitle: z.string().min(1, { message: "Please enter a title" }),
+  heroSubtitle: z.string().min(1, { message: "Please enter a subtitle" }),
+  cardColor: z.string().min(1, { message: "Please enter a card color" }),
+  heroColorTitle: z
+    .string()
+    .min(1, { message: "Please enter a title for Hero color" }),
+  heroColorSubtitle: z
+    .string()
+    .min(1, { message: "Please enter a subtitle for Hero color" }),
+  heroBannerImage: z.string().optional(),
+  id: z.string().optional(),
+});
+
 export type FormState =
   | {
       errors?: {
@@ -76,6 +96,47 @@ export type SessionPayload = {
   name: string;
   email: string;
 };
+
+export type FormStateHomeTheme =
+  | {
+      errors?: {
+        id?: string[];
+        primary?: string[];
+        secondary?: string[];
+        background?: string[];
+        text?: string[];
+        backgroundBtn?: string[];
+        textBtn?: string[];
+        heroTitle?: string[];
+        heroSubtitle?: string[];
+        heroBannerImage?: string[];
+        heroColorTitle?: string[];
+        heroColorSubtitle?: string[];
+        cardColor?: string[];
+      };
+      message?: string;
+      success?: boolean;
+      data?: {
+        id?: string;
+        primary: string;
+        secondary: string;
+        background: string;
+        text: string;
+        cardColor: string;
+        button: {
+          background: string;
+          text: string;
+        };
+        hero: {
+          title: string;
+          subtitle: string;
+          bannerImage: string;
+          heroColorTitle: string;
+          heroColorSubtitle: string;
+        };
+      };
+    }
+  | undefined;
 
 export type FormStateProduct =
   | {

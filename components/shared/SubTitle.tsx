@@ -1,11 +1,19 @@
+import { THEME_DEFAULT } from "@/constants/theme";
+
 type Props = {
   text: string;
+  textColor?: string;
 };
 
-const SubTitle = ({ text }: Props) => {
+const SubTitle = ({ text, textColor }: Props) => {
   return (
     <div className="w-full">
-      <p className="text-gray-600 font-normal">{text}</p>
+      <p
+        className="font-normal"
+        style={{ color: `${textColor || THEME_DEFAULT.text}` }}
+      >
+        {text}
+      </p>
     </div>
   );
 };

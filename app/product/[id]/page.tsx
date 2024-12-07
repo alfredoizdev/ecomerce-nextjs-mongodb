@@ -6,6 +6,7 @@ import ShowProductSkeleton from "@/components/ShowProductSkeleton/ShowProductSke
 import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCard";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
 import { getSession } from "@/utils/session";
+import { getHomePageThemeaction } from "@/actions/custom";
 
 type TParams = Promise<{ id: string }>;
 
@@ -13,9 +14,10 @@ const ProductPage = async ({ params }: { params: TParams }) => {
   const { id } = await params;
 
   const session = await getSession();
+  const { data } = await getHomePageThemeaction();
 
   return (
-    <LayoutRegularPage session={session}>
+    <LayoutRegularPage background={data?.background} session={session}>
       {/* Header */}
       <CustomHeader title="Product Details" session={session} />
       <Suspense fallback={<ShowProductSkeleton />}>

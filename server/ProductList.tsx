@@ -5,9 +5,14 @@ import NotFoundText from "@/components/ui/NotFoundText";
 type Props = {
   limit?: number;
   gender?: string;
+  theme?: {
+    text?: string;
+    backgroundBtn?: string;
+    textBtn?: string;
+  };
 };
 
-const ProductList = async ({ limit, gender }: Props) => {
+const ProductList = async ({ limit, gender, theme }: Props) => {
   const products = await getProductsAction(gender);
 
   if (!products.length) return <NotFoundText text="Products Not found" />;
@@ -15,12 +20,14 @@ const ProductList = async ({ limit, gender }: Props) => {
   if (limit)
     return products
       .slice(0, limit)
-      .map((product) => <CustomCard {...product} key={product.id} />);
+      .map((product) => (
+        <CustomCard {...theme} product={product} key={product.id} />
+      ));
 
   return (
     <>
       {products.map((product) => (
-        <CustomCard {...product} key={product.id} />
+        <CustomCard {...theme} product={product} key={product.id} />
       ))}
     </>
   );

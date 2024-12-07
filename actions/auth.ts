@@ -63,11 +63,12 @@ export const signUpAction = async (
     email: formData.get("email"),
     password: formData.get("password"),
     name: formData.get("name"),
-    avatar: formData.get("image"),
+    avatar: formData.get("image") || "",
   });
 
   // If any form fields are invalid, return early
   if (!validatedFields.success) {
+    console.log(validatedFields.error.flatten().fieldErrors);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     };
@@ -110,7 +111,7 @@ export const signUpAction = async (
     password,
     name,
     role: "user",
-    avatar: avatar?.toString() || "",
+    avatar: avatar?.toString() || "/images/not-profile-image.webp",
   });
   await user.save();
   const userId = user.id.toString();

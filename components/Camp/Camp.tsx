@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Camp = () => {
   return (
-    <section className="bg-gray-100 py-6">
+    <section className="py-6">
       <div className="mx-auto grid gap-6 px-4 md:px-8 lg:px-16 pt-6">
         {/* First Row: Two Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -41,6 +41,7 @@ export const userSchema = new Schema<IUserDoc, IUserModel>(
     },
     avatar: {
       type: String,
+      required: false,
       default: "/images/not-profile-image.webp",
     },
   },

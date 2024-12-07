@@ -5,9 +5,11 @@ import SkeletonCustomCard from "@/components/SkeletonCustomCard/SkeletonCustomCa
 import SubTitle from "@/components/shared/SubTitle";
 import LayoutRegularPage from "@/components/ui/LayoutRegularPage";
 import { getSession } from "@/utils/session";
+import { getHomePageThemeaction } from "@/actions/custom";
 
 const CollectionPage = async () => {
   const session = await getSession();
+  const { data } = await getHomePageThemeaction();
 
   return (
     <LayoutRegularPage session={session}>
@@ -16,7 +18,10 @@ const CollectionPage = async () => {
 
         <main className="max-w-7xl mx-auto px-6 lg:px-16 py-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <SubTitle text="Discover our latest and greatest products" />
+            <SubTitle
+              textColor={data?.text}
+              text="Discover our latest and greatest products"
+            />
             <Suspense fallback={<SkeletonCustomCard count={8} />}>
               <CollectionList />
             </Suspense>

@@ -219,3 +219,49 @@ export const PRODUCTS: Product[] = [
     },
   },
 ];
+
+export const PRODUCT_CATEGORIES = [
+  "Running",
+  "Sportswear",
+  "Casual",
+  "Hiking",
+  "Boots",
+];
+
+export const PRODUCT_COLORS = [
+  "Red",
+  "Blue",
+  "Black",
+  "Green",
+  "White",
+  "Yellow",
+  "Brown",
+  "Pink",
+  "Orange",
+  "Purple",
+  "Gray",
+  "Silver",
+];
+
+export const PRODUCT_SIZES = ["5", "6", "7", "8", "9", "10", "11", "12"];
+
+export const DEFAUL_THEME_HOME = {
+  colors: {
+    primary: "#007BFF", // Azul predeterminado
+    secondary: "#FFC107", // Amarillo predeterminado
+    background: "#F8F9FA", // Fondo gris claro
+    text: "#515050", // Texto negro
+    cardColor: "#ffffff",
+    button: {
+      background: "#171717", // Verde para botones
+      text: "#fafafa", // Texto blanco
+    },
+  },
+  hero: {
+    title: "Welcome to Our Platform",
+    subtitle: "Build your next project with confidence",
+    bannerImage: "/images/shoes/red/red-banner.webp", // Imagen placeholder
+    heroColorTitle: "#fff",
+    heroColorSubtitle: "#fff",
+  },
+};
