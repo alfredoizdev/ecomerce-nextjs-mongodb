@@ -13,7 +13,7 @@ export const getCouldImageAction = cache(async (): Promise<DTOMedia[]> => {
   try {
     // Fetch images from Cloudinary with a max result limit
     const res = await cloudinary.search
-      .expression("resource_type:image") // Specify image type explicitly for clarity
+      .expression(`folder:${process.env.NEXT_PUBLIC_FOLDER_CLOUDINARY}/*`) // Specify image type explicitly for clarity
       .max_results(100) // Adjust the maximum results as needed
       .execute();
 
@@ -31,22 +31,6 @@ export const getCouldImageAction = cache(async (): Promise<DTOMedia[]> => {
     return [];
   }
 });
-
-// export const setRelationShipOfMedia = async (
-//   mediaId: string,
-//   id: string,
-//   type: "user" | "product" | "hero"
-// ) => {
-//   const media = Media.build({
-//     entityId: id,
-//     type,
-//     publicId: mediaId,
-//     secureUrl: mediaId,
-//     resourceType: "image",
-//   });
-
-//   await media.save();
-// };
 
 export const setRelationShipOfMedia = async (
   mediaId: string,

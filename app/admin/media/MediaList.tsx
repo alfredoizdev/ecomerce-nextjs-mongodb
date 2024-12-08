@@ -1,9 +1,14 @@
 import { getCouldImageAction } from "@/actions/media";
 import DeleteMedia from "@/components/Dashboard/media/DeleteMedia";
+import NotFoundText from "@/components/ui/NotFoundText";
 import Image from "next/image";
 
 const MediaList = async () => {
   const media = await getCouldImageAction();
+
+  if (!media.length) {
+    return <NotFoundText text="No media found" />;
+  }
 
   return (
     <div className="grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-6 auto-rows-[150px]">
