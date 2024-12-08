@@ -23,10 +23,10 @@ export default function UploadImage({
 }: Props) {
   const [tempImage, setTempImage] = useState("");
 
-  const prevImageSrc =
-    prevImage === "user"
-      ? "/images/not-profile-image.webp"
-      : "/images/shoes/product/not-image.webp";
+  // const prevImageSrc =
+  //   prevImage === "user"
+  //     ? "/images/not-profile-image.webp"
+  //     : "/images/shoes/product/not-image.webp";
 
   return (
     <CldUploadWidget

@@ -18,9 +18,8 @@ import {
 } from "@/components/ui/select";
 import UploadImage from "./UploadImage";
 import useCreateProductForm from "@/hooks/useCreateProductForm";
-import Image from "next/image";
-import { IoImages } from "react-icons/io5";
 import SetImageFromGallery from "./media/SetImageFromGallery";
+import { useMediaStore } from "@/store/useMediaStore";
 
 // const initialState = {
 //   name: "Blue Snickers",
@@ -54,6 +53,7 @@ const initialState = {
 
 const CrateProduct = () => {
   const { push } = useRouter();
+  const { setCurrentMedia } = useMediaStore((state) => state);
   const [state, action, isPending] = useActionState(
     createProductAction,
     undefined
@@ -67,6 +67,11 @@ const CrateProduct = () => {
     setPublicImageId,
   } = useCreateProductForm(initialState, state);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setCurrentMedia(null);
+  };
+
   return (
     <div className="w-full">
       <div className="flex flex-auto flex-row gap-2 w-full">
@@ -76,7 +81,7 @@ const CrateProduct = () => {
         />
         <SetImageFromGallery />
       </div>
-      <form action={action} className="space-y-6">
+      <form action={action} className="space-y-6" onSubmit={handleSubmit}>
         {/* Contenedor del formulario con diseño de grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>

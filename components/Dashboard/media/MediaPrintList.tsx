@@ -3,13 +3,14 @@ import Image from "next/image";
 import { DTOMedia } from "@/types/Media";
 import { useMediaStore } from "@/store/useMediaStore";
 import { useEffect } from "react";
+import MediaSkeleton from "./MediaSkeleton";
 
 type Props = {
   handleDrawer: () => void;
 };
 
 const MediaPrintList = ({ handleDrawer }: Props) => {
-  const { getMediaList, mediaList, setCurrentMedia } = useMediaStore(
+  const { getMediaList, mediaList, setCurrentMedia, isLoading } = useMediaStore(
     (state) => state
   );
 
@@ -21,6 +22,10 @@ const MediaPrintList = ({ handleDrawer }: Props) => {
     setCurrentMedia(image);
     handleDrawer();
   };
+
+  if (isLoading) {
+    return <MediaSkeleton />;
+  }
 
   return (
     <div className="grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-6 auto-rows-[150px]">
