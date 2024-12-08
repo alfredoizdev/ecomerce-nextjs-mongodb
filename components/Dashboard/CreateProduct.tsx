@@ -65,12 +65,15 @@ const CrateProduct = () => {
     setPublicImageId,
   } = useCreateProductForm(initialState, state);
 
+  console.log("formFields", formFields.image);
+
   return (
     <div className="w-full">
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 w-full">
         {/* Upload Section */}
         <div className="flex flex-col items-center">
           <UploadImage
+            imageUrl={formFields.image}
             setPubliImageId={setPublicImageId}
             setImageUrl={setImageUrl}
           />
