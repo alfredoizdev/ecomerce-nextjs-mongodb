@@ -35,6 +35,12 @@ export default function UploadImage({
         sources: ["local"],
         multiple: false,
         maxFiles: 1,
+        maxFileSize: 10000000,
+        maxImageHeight: 500,
+        maxImageWidth: 500,
+        minImageHeight: 300,
+        minImageWidth: 300,
+        folder: `${process.env.NEXT_PUBLIC_FOLDER_CLOUDINARY}/${prevImage}`,
       }}
       onSuccess={(value: CloudinaryUploadWidgetResults) => {
         if (

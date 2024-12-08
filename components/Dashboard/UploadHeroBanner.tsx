@@ -34,6 +34,7 @@ export default function UploadHeroBanner({
         maxImageWidth: 2000,
         minImageHeight: 500,
         minImageWidth: 1000,
+        folder: `${process.env.NEXT_PUBLIC_FOLDER_CLOUDINARY}/hero`,
       }}
       onSuccess={(value: CloudinaryUploadWidgetResults) => {
         if (
