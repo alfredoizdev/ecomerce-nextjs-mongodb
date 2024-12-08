@@ -9,6 +9,7 @@ export type Product = {
   category: string;
   discountPercentage: number;
   inStock: string;
+  publicImageId?: string;
   details: {
     material: string;
     sole: string;

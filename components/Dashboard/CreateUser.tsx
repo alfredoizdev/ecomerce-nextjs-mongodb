@@ -16,8 +16,14 @@ const CreateUser = () => {
     createUserAction,
     undefined
   );
-  const { formState, handleOnChange, imageUrl, setImageUrl, push } =
-    useHandleUser(state);
+  const {
+    formState,
+    handleOnChange,
+    imageUrl,
+    setImageUrl,
+    push,
+    setPublicImageId,
+  } = useHandleUser(state);
 
   return (
     <Card className="rounded-md border w-auto">
@@ -26,7 +32,11 @@ const CreateUser = () => {
       </CardHeader>
       <CardContent className="p-5">
         <div>
-          <UploadImage setImageUrl={setImageUrl} prevImage="user" />
+          <UploadImage
+            setPubliImageId={setPublicImageId}
+            setImageUrl={setImageUrl}
+            prevImage="user"
+          />
         </div>
         <form action={action}>
           <div className="grid grid-cols-1 gap-6">
@@ -92,6 +102,12 @@ const CreateUser = () => {
               type="hidden"
               name="image"
               value={imageUrl}
+              onChange={handleOnChange}
+            />
+            <input
+              type="hidden"
+              name="publicImageId"
+              value={formState.publicImageId}
               onChange={handleOnChange}
             />
             {/* Submit Button */}

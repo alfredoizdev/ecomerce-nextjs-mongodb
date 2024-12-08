@@ -1,4 +1,5 @@
 import { getCouldImageAction } from "@/actions/media";
+import DeleteMedia from "@/components/Dashboard/media/DeleteMedia";
 import Image from "next/image";
 
 const MediaList = async () => {
@@ -18,7 +19,7 @@ const MediaList = async () => {
         return (
           <div
             key={index}
-            className={`relative ${sizeClass} rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300`}
+            className={`relative ${sizeClass} rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 group`}
           >
             <Image
               src={image.secure_url}
@@ -28,6 +29,9 @@ const MediaList = async () => {
               style={{ objectFit: "cover" }}
               className="rounded-lg object-cover"
             />
+
+            {/* Delete Button on Hover */}
+            <DeleteMedia publicImageId={image.public_id} />
           </div>
         );
       })}

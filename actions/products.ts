@@ -8,6 +8,7 @@ import Product from "@/models/Product";
 import { Product as TProduct } from "@/types/Product";
 import cloudinary from "@/lib/cloudinary";
 import { extractIdFromUrl } from "@/utils/image";
+import { setRelationShipOfMedia } from "./media";
 
 export const deleteImageAction = async (image: string) => {
   const imageId = extractIdFromUrl(image);
@@ -97,6 +98,7 @@ export const updateProductAction = async (
     gender: formData.get("gender"),
     weight: formData.get("weight"),
     inStock: formData.get("inStock"),
+    publicImageId: formData.get("publicImageId"),
     id: formData.get("id"),
   });
 
@@ -120,6 +122,7 @@ export const updateProductAction = async (
     sizes,
     gender,
     inStock,
+    publicImageId,
     id,
   } = validatedFields.data;
 
@@ -135,6 +138,10 @@ export const updateProductAction = async (
       success: false,
       message: "Product not found.",
     };
+  }
+
+  if (publicImageId) {
+    await setRelationShipOfMedia(publicImageId, product.id, "product");
   }
 
   product.name = name;
@@ -177,6 +184,7 @@ export const createProductAction = async (
     gender: formData.get("gender"),
     weight: formData.get("weight"),
     inStock: formData.get("inStock"),
+    publicImageId: formData.get("publicImageId"),
   });
 
   if (!validatedFields.success) {
@@ -196,6 +204,7 @@ export const createProductAction = async (
         weight: formData.get("weight") as string,
         gender: formData.get("gender") as string,
         inStock: formData.get("inStock") as string,
+        publicImageId: formData.get("publicImageId") as string,
       },
     };
   }
@@ -213,6 +222,7 @@ export const createProductAction = async (
     sizes,
     gender,
     inStock,
+    publicImageId,
   } = validatedFields.data;
 
   const setColor = colors.split(",").map((color: string) => color.trim());
@@ -242,6 +252,11 @@ export const createProductAction = async (
   });
 
   await newProduct.save();
+
+  if (publicImageId) {
+    await setRelationShipOfMedia(publicImageId, newProduct.id, "product");
+  }
+
   revalidatePath("/admin/products");
 
   return {

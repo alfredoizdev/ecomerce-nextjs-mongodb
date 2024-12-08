@@ -18,6 +18,7 @@ export const SignupFormSchema = z.object({
   role: z.string().optional(),
   avatar: z.string().optional(),
   id: z.string().optional(),
+  publicImageId: z.string().optional(),
 });
 
 export const UpdateUserFormSchema = z.object({
@@ -53,6 +54,7 @@ export const ProductFormSchema = z.object({
   colors: z.string().min(1, { message: "Please select a color" }),
   sizes: z.string().min(1, { message: "Please select a size" }),
   inStock: z.string().default("in").optional(),
+  publicImageId: z.string().optional(),
   id: z.string().optional(),
 });
 
@@ -178,6 +180,7 @@ export type FormStateProduct =
         weight?: string[];
         image?: string[];
         inStock?: string[];
+        publicImageId?: string[];
       };
       message?: string;
       success?: boolean;
@@ -195,6 +198,7 @@ export type FormStateProduct =
         weight: string;
         gender: string;
         image?: string;
+        publicImageId?: string;
         inStock: string;
       };
     }

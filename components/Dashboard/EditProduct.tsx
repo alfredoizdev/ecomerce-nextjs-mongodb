@@ -300,6 +300,12 @@ const EditProduct = ({ product }: Props) => {
           />
           <input
             hidden={true}
+            name="publicImageId"
+            value={formFields?.publicImageId || ""}
+            onChange={handleOnChange}
+          />
+          <input
+            hidden={true}
             name="id"
             value={formFields?.id || ""}
             onChange={handleOnChange}

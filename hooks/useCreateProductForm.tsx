@@ -16,6 +16,7 @@ interface ProductFormData {
   sizes: string;
   image?: string;
   inStock: string;
+  publicImageId?: string;
 }
 
 const useCreateProductForm = (
@@ -24,6 +25,7 @@ const useCreateProductForm = (
   state: any // Estado del action
 ) => {
   const [formFields, setFormFields] = useState<ProductFormData>(initialState);
+  const [publicImageId, setPublicImageId] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const { push } = useRouter();
 
@@ -65,6 +67,12 @@ const useCreateProductForm = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.message, state?.success, push]);
 
+  useEffect(() => {
+    if (publicImageId) {
+      setFormFields((prev) => ({ ...prev, publicImageId }));
+    }
+  }, [publicImageId]);
+
   return {
     formFields,
     handleOnChange,
@@ -72,6 +80,7 @@ const useCreateProductForm = (
     resetForm,
     setFormFields,
     setImageUrl,
+    setPublicImageId,
   };
 };
 

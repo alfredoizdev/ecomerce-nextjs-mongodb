@@ -1,9 +1,9 @@
 import { Schema, Document, model, Model, models } from "mongoose";
 
 export interface IMedia {
-  public_id: string; // Cloudinary public_id
-  secure_url: string; // Cloudinary secure URL
-  resource_type: "image" | "video"; // Type of media (image or video)
+  publicId: string; // Cloudinary public_id
+  secureUrl: string; // Cloudinary secure URL
+  resourceType: "image" | "video"; // Type of media (image or video)
   type: "user" | "product" | "hero"; // Entity type this media is associated with
   entityId: string; // ID of the associated entity (userId, productId, etc.)
   alt?: string; // Optional alt text
@@ -20,16 +20,16 @@ interface IMediaDoc extends Document, IMedia {
 
 const mediaSchema = new Schema<IMediaDoc, IMediaModel>(
   {
-    public_id: {
+    publicId: {
       type: String,
       required: true,
       unique: true,
     },
-    secure_url: {
+    secureUrl: {
       type: String,
       required: true,
     },
-    resource_type: {
+    resourceType: {
       type: String,
       required: true,
       enum: ["image", "video"],

@@ -19,35 +19,35 @@ import {
 import UploadImage from "./UploadImage";
 import useCreateProductForm from "@/hooks/useCreateProductForm";
 
-// const initialState = {
-//   name: "Blue Snickers",
-//   description: "Comfortable and stylish blue snickers perfect for casual wear.",
-//   price: 79.99,
-//   category: "Running",
-//   gender: "women",
-//   discountPercentage: 10,
-//   material: "Leather",
-//   sole: "Rubber",
-//   weight: "500g",
-//   colors: "Blue, White",
-//   sizes: "7, 8, 9, 10, 11",
-//   inStock: true,
-// };
-
 const initialState = {
-  name: "",
-  description: "",
-  price: 0,
-  category: "",
-  gender: "",
-  discountPercentage: 0,
-  material: "",
-  sole: "",
-  weight: "",
-  colors: "",
-  sizes: "",
+  name: "Blue Snickers",
+  description: "Comfortable and stylish blue snickers perfect for casual wear.",
+  price: 79.99,
+  category: "Running",
+  gender: "women",
+  discountPercentage: 10,
+  material: "Leather",
+  sole: "Rubber",
+  weight: "500g",
+  colors: "Blue, White",
+  sizes: "7, 8, 9, 10, 11",
   inStock: "in",
 };
+
+// const initialState = {
+//   name: "",
+//   description: "",
+//   price: 0,
+//   category: "",
+//   gender: "",
+//   discountPercentage: 0,
+//   material: "",
+//   sole: "",
+//   weight: "",
+//   colors: "",
+//   sizes: "",
+//   inStock: "in",
+// };
 
 const CrateProduct = () => {
   const { push } = useRouter();
@@ -56,13 +56,21 @@ const CrateProduct = () => {
     undefined
   );
 
-  const { formFields, handleOnChange, handleSelectOnChange, setImageUrl } =
-    useCreateProductForm(initialState, state);
+  const {
+    formFields,
+    handleOnChange,
+    handleSelectOnChange,
+    setImageUrl,
+    setPublicImageId,
+  } = useCreateProductForm(initialState, state);
 
   return (
     <div className="w-full">
       <div>
-        <UploadImage setImageUrl={setImageUrl} />
+        <UploadImage
+          setPubliImageId={setPublicImageId}
+          setImageUrl={setImageUrl}
+        />
       </div>
       <form action={action} className="space-y-6">
         {/* Contenedor del formulario con diseño de grid */}
@@ -321,6 +329,12 @@ const CrateProduct = () => {
             hidden={true}
             name="image"
             value={formFields?.image || ""}
+            onChange={handleOnChange}
+          />
+          <input
+            hidden={true}
+            name="publicImageId"
+            value={formFields?.publicImageId || ""}
             onChange={handleOnChange}
           />
           <Textarea

@@ -37,6 +37,7 @@ export const createUserAction = async (
     password: formData.get("password"),
     name: formData.get("name"),
     avatar: formData.get("image"),
+    publicImageId: formData.get("publicImageId"),
   });
 
   // If any form fields are invalid, return early
@@ -47,7 +48,7 @@ export const createUserAction = async (
   }
 
   // 2. Prepare data for insertion into database
-  const { email, password, name, avatar } = validatedFields.data;
+  const { email, password, name, avatar, publicImageId } = validatedFields.data;
 
   await connectToMongoDB();
 
@@ -75,6 +76,10 @@ export const createUserAction = async (
       success: false,
       message: "An error occurred while creating your account.",
     };
+  }
+
+  if (publicImageId) {
+    await setRelationShipOfMedia(publicImageId, user.id, "user");
   }
 
   return {
