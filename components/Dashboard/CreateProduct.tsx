@@ -19,41 +19,39 @@ import {
 import UploadImage from "./UploadImage";
 import useCreateProductForm from "@/hooks/useCreateProductForm";
 import SetImageFromGallery from "./media/SetImageFromGallery";
-import { useMediaStore } from "@/store/useMediaStore";
-
-// const initialState = {
-//   name: "Blue Snickers",
-//   description: "Comfortable and stylish blue snickers perfect for casual wear.",
-//   price: 79.99,
-//   category: "Running",
-//   gender: "women",
-//   discountPercentage: 10,
-//   material: "Leather",
-//   sole: "Rubber",
-//   weight: "500g",
-//   colors: "Blue, White",
-//   sizes: "7, 8, 9, 10, 11",
-//   inStock: "in",
-// };
 
 const initialState = {
-  name: "",
-  description: "",
-  price: 0,
-  category: "",
-  gender: "",
-  discountPercentage: 0,
-  material: "",
-  sole: "",
-  weight: "",
-  colors: "",
-  sizes: "",
+  name: "Blue Snickers",
+  description: "Comfortable and stylish blue snickers perfect for casual wear.",
+  price: 79.99,
+  category: "Running",
+  gender: "women",
+  discountPercentage: 10,
+  material: "Leather",
+  sole: "Rubber",
+  weight: "500g",
+  colors: "Blue, White",
+  sizes: "7, 8, 9, 10, 11",
   inStock: "in",
 };
 
+// const initialState = {
+//   name: "",
+//   description: "",
+//   price: 0,
+//   category: "",
+//   gender: "",
+//   discountPercentage: 0,
+//   material: "",
+//   sole: "",
+//   weight: "",
+//   colors: "",
+//   sizes: "",
+//   inStock: "in",
+// };
+
 const CrateProduct = () => {
   const { push } = useRouter();
-  const { setCurrentMedia } = useMediaStore((state) => state);
   const [state, action, isPending] = useActionState(
     createProductAction,
     undefined
@@ -67,11 +65,6 @@ const CrateProduct = () => {
     setPublicImageId,
   } = useCreateProductForm(initialState, state);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setCurrentMedia(null);
-  };
-
   return (
     <div className="w-full">
       <div className="flex flex-auto flex-row gap-2 w-full">
@@ -81,7 +74,7 @@ const CrateProduct = () => {
         />
         <SetImageFromGallery />
       </div>
-      <form action={action} className="space-y-6" onSubmit={handleSubmit}>
+      <form action={action} className="space-y-6">
         {/* Contenedor del formulario con diseño de grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>

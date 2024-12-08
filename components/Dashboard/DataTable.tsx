@@ -14,6 +14,7 @@ import {
   getFilteredRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { useMediaStore } from "@/store/useMediaStore";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
@@ -47,6 +48,7 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const { setCurrentMedia } = useMediaStore((state) => state);
 
   const { push } = useRouter();
 
@@ -72,6 +74,11 @@ export function DataTable<TData, TValue>({
       },
     },
   });
+
+  const handleOnAddProductClick = () => {
+    setCurrentMedia(null);
+    push("/admin/products/add");
+  };
 
   return (
     <Card className="rounded-md border w-auto">
@@ -114,7 +121,7 @@ export function DataTable<TData, TValue>({
         <Button
           className="ml-3"
           variant={"default"}
-          onClick={() => push("/admin/products/add")}
+          onClick={handleOnAddProductClick}
         >
           Add Product
         </Button>
