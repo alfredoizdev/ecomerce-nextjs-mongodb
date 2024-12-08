@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Product } from "@/types/Product";
+import { useMediaStore } from "@/store/useMediaStore";
 
 const useEditProductForm = (
   initialState: Product,
@@ -9,6 +10,7 @@ const useEditProductForm = (
   state: any // Estado del action
 ) => {
   const [formFields, setFormFields] = useState<Product>(initialState);
+  const { currentMedia } = useMediaStore((state) => state);
   const [imageUrl, setImageUrl] = useState("");
   const { push } = useRouter();
 
@@ -63,6 +65,12 @@ const useEditProductForm = (
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.message, state?.success, push]);
+
+  useEffect(() => {
+    if (currentMedia) {
+      setFormFields((prev) => ({ ...prev, image: currentMedia.secure_url }));
+    }
+  }, [currentMedia]);
 
   return {
     formFields,

@@ -67,13 +67,37 @@ const CrateProduct = () => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-auto flex-row gap-2 w-full">
-        <UploadImage
-          setPubliImageId={setPublicImageId}
-          setImageUrl={setImageUrl}
-        />
-        <SetImageFromGallery />
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 w-full">
+        {/* Upload Section */}
+        <div className="flex flex-col items-center">
+          <UploadImage
+            setPubliImageId={setPublicImageId}
+            setImageUrl={setImageUrl}
+          />
+          <p className="text-sm text-gray-600 mt-2 text-center">Upload</p>
+        </div>
+
+        {/* Separator */}
+        <div className="relative flex items-center w-full lg:w-auto lg:px-4">
+          <span className="text-gray-500 text-sm font-semibold px-2 z-10 bg-white">
+            OR
+          </span>
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-300"></div>
+          </div>
+        </div>
+
+        {/* Choose from Gallery Section */}
+        <div className="flex flex-col items-center">
+          <SetImageFromGallery />
+          <p className="text-sm text-gray-600 mt-2 text-center lg:text-left">
+            Choose from Gallery
+          </p>
+        </div>
       </div>
+
+      {/* Horizontal Rule Separator */}
+      <hr className="my-6 border-t border-gray-300" />
       <form action={action} className="space-y-6">
         {/* Contenedor del formulario con diseño de grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
