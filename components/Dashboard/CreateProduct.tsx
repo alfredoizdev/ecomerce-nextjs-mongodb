@@ -18,36 +18,39 @@ import {
 } from "@/components/ui/select";
 import UploadImage from "./UploadImage";
 import useCreateProductForm from "@/hooks/useCreateProductForm";
-
-const initialState = {
-  name: "Blue Snickers",
-  description: "Comfortable and stylish blue snickers perfect for casual wear.",
-  price: 79.99,
-  category: "Running",
-  gender: "women",
-  discountPercentage: 10,
-  material: "Leather",
-  sole: "Rubber",
-  weight: "500g",
-  colors: "Blue, White",
-  sizes: "7, 8, 9, 10, 11",
-  inStock: "in",
-};
+import Image from "next/image";
+import { IoImages } from "react-icons/io5";
+import SetImageFromGallery from "./media/SetImageFromGallery";
 
 // const initialState = {
-//   name: "",
-//   description: "",
-//   price: 0,
-//   category: "",
-//   gender: "",
-//   discountPercentage: 0,
-//   material: "",
-//   sole: "",
-//   weight: "",
-//   colors: "",
-//   sizes: "",
+//   name: "Blue Snickers",
+//   description: "Comfortable and stylish blue snickers perfect for casual wear.",
+//   price: 79.99,
+//   category: "Running",
+//   gender: "women",
+//   discountPercentage: 10,
+//   material: "Leather",
+//   sole: "Rubber",
+//   weight: "500g",
+//   colors: "Blue, White",
+//   sizes: "7, 8, 9, 10, 11",
 //   inStock: "in",
 // };
+
+const initialState = {
+  name: "",
+  description: "",
+  price: 0,
+  category: "",
+  gender: "",
+  discountPercentage: 0,
+  material: "",
+  sole: "",
+  weight: "",
+  colors: "",
+  sizes: "",
+  inStock: "in",
+};
 
 const CrateProduct = () => {
   const { push } = useRouter();
@@ -66,11 +69,12 @@ const CrateProduct = () => {
 
   return (
     <div className="w-full">
-      <div>
+      <div className="flex flex-auto flex-row gap-2 w-full">
         <UploadImage
           setPubliImageId={setPublicImageId}
           setImageUrl={setImageUrl}
         />
+        <SetImageFromGallery />
       </div>
       <form action={action} className="space-y-6">
         {/* Contenedor del formulario con diseño de grid */}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useMediaStore } from "@/store/useMediaStore";
 
 interface ProductFormData {
   name: string;
@@ -24,6 +25,7 @@ const useCreateProductForm = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   state: any // Estado del action
 ) => {
+  const { currentMedia } = useMediaStore((state) => state);
   const [formFields, setFormFields] = useState<ProductFormData>(initialState);
   const [publicImageId, setPublicImageId] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -72,6 +74,13 @@ const useCreateProductForm = (
       setFormFields((prev) => ({ ...prev, publicImageId }));
     }
   }, [publicImageId]);
+
+  useEffect(() => {
+    if (currentMedia) {
+      setImageUrl(currentMedia.secure_url);
+      setPublicImageId(currentMedia.public_id);
+    }
+  }, [currentMedia]);
 
   return {
     formFields,

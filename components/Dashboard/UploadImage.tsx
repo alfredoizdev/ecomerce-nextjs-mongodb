@@ -70,7 +70,7 @@ export default function UploadImage({
           <>
             {imageUrl ? (
               <div
-                className="relative mb-4 w-[200px] h-[200px] border border-gray-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer group"
+                className="relative mb-4 w-[150px] h-[150px] border border-gray-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer group"
                 onClick={() => open()}
                 role="button"
               >
@@ -91,30 +91,24 @@ export default function UploadImage({
                     Edit Image
                   </span>
                 </div>
-              </div>
-            ) : (
-              <div
-                className="relative mb-4 w-[200px] h-[200px] border border-gray-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer group"
-                onClick={() => open()}
-                role="button"
-              >
-                {/* Imagen */}
-                <Image
-                  src={tempImage || prevImageSrc}
-                  fill
-                  sizes="200px"
-                  priority
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  alt="Uploaded image"
-                />
-
-                {/* Ícono de Edición y Texto */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <MdCloudUpload size={40} className="text-white mb-2" />
                   <span className="text-sm font-semibold text-white">
                     Upload Image
                   </span>
                 </div>
+              </div>
+            ) : (
+              <div
+                className="mb-4 w-[150px] h-[150px] border border-gray-300 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer group"
+                onClick={() => open()}
+                role="button"
+              >
+                <div className="flex justify-center items-center w-full h-full">
+                  <MdCloudUpload size={100} className="text-gray-900 mb-2" />
+                </div>
+
+                {/* Ícono de Edición y Texto */}
               </div>
             )}
           </>
