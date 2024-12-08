@@ -32,20 +32,68 @@ export const getCouldImageAction = cache(async (): Promise<DTOMedia[]> => {
   }
 });
 
+// export const setRelationShipOfMedia = async (
+//   mediaId: string,
+//   id: string,
+//   type: "user" | "product" | "hero"
+// ) => {
+//   const media = Media.build({
+//     entityId: id,
+//     type,
+//     publicId: mediaId,
+//     secureUrl: mediaId,
+//     resourceType: "image",
+//   });
+
+//   await media.save();
+// };
+
 export const setRelationShipOfMedia = async (
   mediaId: string,
   id: string,
   type: "user" | "product" | "hero"
-) => {
-  const media = Media.build({
-    entityId: id,
-    type,
-    publicId: mediaId,
-    secureUrl: mediaId,
-    resourceType: "image",
-  });
+): Promise<{
+  success: boolean;
+  message: string;
+}> => {
+  try {
+    // Check if a media with the same publicId already exists
+    const existingMedia = await Media.findOne({ publicId: mediaId });
 
-  await media.save();
+    if (existingMedia) {
+      // Update the existing media relationship
+      existingMedia.entityId = id;
+      existingMedia.type = type;
+
+      await existingMedia.save();
+
+      return {
+        success: true,
+        message: "Existing media relationship updated successfully.",
+      };
+    }
+
+    // Create new media relationship if it doesn't exist
+    const media = Media.build({
+      entityId: id,
+      type,
+      publicId: mediaId, // Ensure this is unique
+      resourceType: "image", // Default to image, adjust as necessary
+    });
+
+    await media.save();
+
+    return {
+      success: true,
+      message: "Media relationship created successfully.",
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: "An error occurred while setting the media relationship.",
+    };
+  }
 };
 
 export const deleteMediaAction = async (
@@ -54,6 +102,8 @@ export const deleteMediaAction = async (
   message: string;
   success: boolean;
 }> => {
+  console.log("publicImageId", publicImageId);
+
   try {
     await cloudinary.uploader.destroy(publicImageId);
 
@@ -68,7 +118,7 @@ export const deleteMediaAction = async (
       if (updatedEntity) {
         updatedEntity.save();
       }
-      await Media.deleteOne({ entityId: entity.entityId });
+      await Media.deleteMany({ entityId: entity.entityId });
     }
 
     revalidatePath("/admin/media", "page");

@@ -167,47 +167,58 @@ export const resetHomePageThemeAction = async (
 }> => {
   await connectToMongoDB();
 
-  // Usamos findOne para obtener un único tema
-  const theme = await HomeTheme.findOne({}).exec();
+  try {
+    // Usamos findOne para obtener un único tema
+    const theme = await HomeTheme.findOne({}).exec();
 
-  if (!theme) {
+    if (!theme) {
+      return {
+        success: false,
+        message: "Theme not found",
+      };
+    }
+
+    if (imageId) {
+      await cloudinary.api.delete_resources([imageId], {
+        type: "upload",
+        resource_type: "image",
+      });
+    }
+
+    // Actualizamos las propiedades del tema
+    theme.colors.background = THEME_DEFAULT.background;
+    theme.colors.text = THEME_DEFAULT.text;
+    theme.colors.button.background = THEME_DEFAULT.backgroundBtn;
+    theme.colors.button.text = THEME_DEFAULT.textBtn;
+    theme.hero.title = "Your favorite shoe store";
+    theme.hero.subtitle = "The best shoes in the world";
+    theme.hero.bannerImage = THEME_DEFAULT.heroBannerImage;
+    theme.hero.heroColorTitle = THEME_DEFAULT.heroColorTitle;
+    theme.hero.heroColorSubtitle = THEME_DEFAULT.heroColorSubtitle;
+    theme.colors.cardColor = THEME_DEFAULT.cardColor;
+    theme.footer.backgroundColor = THEME_DEFAULT.footerBackgroundColor;
+    theme.footer.footerColorTitle = THEME_DEFAULT.footerColorTitle;
+    theme.footer.color = THEME_DEFAULT.footerColorText;
+    theme.navbar.navbarColor = THEME_DEFAULT.navbarColor;
+    theme.navbar.navbarTextColor = THEME_DEFAULT.navbarTextColor;
+
+    // Guardamos los cambios
+    await theme.save();
+
+    revalidatePath("/admin/custom", "page");
+
+    return {
+      success: true,
+      message: "Theme reset successfully",
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+
     return {
       success: false,
-      message: "Theme not found",
+      message: "An Error",
     };
   }
-
-  if (imageId) {
-    await cloudinary.api.delete_resources([imageId], {
-      type: "upload",
-      resource_type: "image",
-    });
-  }
-
-  // Actualizamos las propiedades del tema
-  theme.colors.background = THEME_DEFAULT.background;
-  theme.colors.text = THEME_DEFAULT.text;
-  theme.colors.button.background = THEME_DEFAULT.backgroundBtn;
-  theme.colors.button.text = THEME_DEFAULT.textBtn;
-  theme.hero.title = "Your favorite shoe store";
-  theme.hero.subtitle = "The best shoes in the world";
-  theme.hero.bannerImage = THEME_DEFAULT.heroBannerImage;
-  theme.hero.heroColorTitle = THEME_DEFAULT.heroColorTitle;
-  theme.hero.heroColorSubtitle = THEME_DEFAULT.heroColorSubtitle;
-  theme.colors.cardColor = THEME_DEFAULT.cardColor;
-  theme.footer.backgroundColor = THEME_DEFAULT.footerBackgroundColor;
-  theme.footer.footerColorTitle = THEME_DEFAULT.footerColorTitle;
-  theme.footer.color = THEME_DEFAULT.footerColorText;
-  theme.navbar.navbarColor = THEME_DEFAULT.navbarColor;
-  theme.navbar.navbarTextColor = THEME_DEFAULT.navbarTextColor;
-
-  // Guardamos los cambios
-  await theme.save();
-
-  revalidatePath("/admin/custom", "page");
-
-  return {
-    success: true,
-    message: "Theme reset successfully",
-  };
 };

@@ -2,7 +2,6 @@ import { Schema, Document, model, Model, models } from "mongoose";
 
 export interface IMedia {
   publicId: string; // Cloudinary public_id
-  secureUrl: string; // Cloudinary secure URL
   resourceType: "image" | "video"; // Type of media (image or video)
   type: "user" | "product" | "hero"; // Entity type this media is associated with
   entityId: string; // ID of the associated entity (userId, productId, etc.)
@@ -24,10 +23,6 @@ const mediaSchema = new Schema<IMediaDoc, IMediaModel>(
       type: String,
       required: true,
       unique: true,
-    },
-    secureUrl: {
-      type: String,
-      required: true,
     },
     resourceType: {
       type: String,
