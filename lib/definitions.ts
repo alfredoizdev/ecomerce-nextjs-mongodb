@@ -87,6 +87,7 @@ export const HomeThemeFormSchema = z.object({
   navbarTextColor: z
     .string()
     .min(1, { message: "Please enter a navbar text color" }),
+  publicImageId: z.string().optional(),
 });
 
 export type FormState =
@@ -131,6 +132,7 @@ export type FormStateHomeTheme =
         footerColorText?: string[];
         navbarColor?: string[];
         navbarTextColor?: string[];
+        publicImageId?: string[];
       };
       message?: string;
       success?: boolean;

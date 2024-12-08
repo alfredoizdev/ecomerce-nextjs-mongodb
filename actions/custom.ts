@@ -6,6 +6,7 @@ import connectToMongoDB from "@/lib/database";
 import { FormStateHomeTheme, HomeThemeFormSchema } from "@/lib/definitions";
 import HomeTheme from "@/models/HomeTheme";
 import { revalidatePath } from "next/cache";
+import { setRelationShipOfMedia } from "./media";
 
 type DTOTheme = {
   background: string;
@@ -85,6 +86,7 @@ export const updateHomePageThemeAction = async (
     footerColorText: formData.get("footerColorText"),
     navbarTextColor: formData.get("navbarTextColor"),
     navbarColor: formData.get("navbarColor"),
+    publicImageId: formData.get("publicImageId"),
   });
 
   if (!validatedFields.success) {
@@ -110,6 +112,7 @@ export const updateHomePageThemeAction = async (
     cardColor,
     navbarColor,
     navbarTextColor,
+    publicImageId,
   } = validatedFields.data;
 
   await connectToMongoDB();
@@ -143,6 +146,10 @@ export const updateHomePageThemeAction = async (
 
   // Guardamos los cambios
   await theme.save();
+
+  if (publicImageId) {
+    await setRelationShipOfMedia(publicImageId, theme.id, "hero");
+  }
 
   revalidatePath("/admin/custom", "page");
 

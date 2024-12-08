@@ -11,16 +11,23 @@ import { cache } from "react";
 
 export const getCouldImageAction = cache(async (): Promise<DTOMedia[]> => {
   try {
-    const res = await cloudinary.search.expression().max_results(100).execute();
+    // Fetch images from Cloudinary with a max result limit
+    const res = await cloudinary.search
+      .expression("resource_type:image") // Specify image type explicitly for clarity
+      .max_results(100) // Adjust the maximum results as needed
+      .execute();
 
-    return res.resources as DTOMedia[];
-  } catch (err) {
-    if (err instanceof Error) {
-      console.error(err.message);
-
-      return [];
+    // Ensure the resources exist and are valid
+    if (res.resources && Array.isArray(res.resources)) {
+      return res.resources as DTOMedia[];
     }
 
+    return [];
+  } catch (err) {
+    console.error(
+      "Error fetching media from Cloudinary:",
+      err instanceof Error ? err.message : err
+    );
     return [];
   }
 });
@@ -48,48 +55,21 @@ export const deleteMediaAction = async (
   success: boolean;
 }> => {
   try {
+    await cloudinary.uploader.destroy(publicImageId);
+
     const entity = await Media.findOne({ publicId: publicImageId });
 
     if (entity) {
-      switch (entity.type) {
-        case "user":
-          const user = await User.findByIdAndUpdate(entity.entityId, {
-            avatar: "/images/not-profile-image.webp",
-          });
-          if (user) {
-            user.save();
-          }
-          break;
-        case "product":
-          const product = await Product.findByIdAndUpdate(entity.entityId, {
-            image: "/images/not-image.webp",
-          });
+      const updatedEntity = await updateEntityByType(
+        entity.type,
+        entity.entityId
+      );
 
-          if (product) {
-            product.save();
-          }
-          break;
-        case "hero":
-          const theme = await HomeTheme.findByIdAndUpdate(entity.entityId, {
-            hero: "/images/shoes/red/red-banner.webp",
-          });
-
-          if (theme) {
-            theme.save();
-          }
-          break;
+      if (updatedEntity) {
+        updatedEntity.save();
       }
+      await Media.deleteOne({ entityId: entity.entityId });
     }
-
-    if (!entity) {
-      return {
-        message: "Media not found",
-        success: false,
-      };
-    }
-
-    await cloudinary.uploader.destroy(entity.publicId);
-    await Media.deleteOne({ entityId: entity.entityId });
 
     revalidatePath("/admin/media", "page");
 
@@ -111,5 +91,25 @@ export const deleteMediaAction = async (
       message: "An error occurred",
       success: false,
     };
+  }
+};
+
+const updateEntityByType = async (entityType: string, entityId: string) => {
+  switch (entityType) {
+    case "user":
+      return await User.findByIdAndUpdate(entityId, {
+        avatar: "/images/not-profile-image.webp",
+      });
+
+    case "product":
+      return await Product.findByIdAndUpdate(entityId, {
+        image: "/images/not-image.webp",
+      });
+    case "hero":
+      return await HomeTheme.findByIdAndUpdate(entityId, {
+        "hero.bannerImage": "/images/shoes/red/red-banner.webp",
+      });
+    default:
+      throw new Error(`Unsupported media type: ${entityId}`);
   }
 };

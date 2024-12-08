@@ -18,10 +18,12 @@ interface FormState {
   footerColorText: string;
   navbarColor: string;
   navbarTextColor: string;
+  publicImageId?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useHandleHomeTheme = (state?: any, initialState?: FormState) => {
+  const [publicImageId, setPublicImageId] = useState("");
   const [formState, setFormState] = useState<FormState>({
     background: initialState?.background || "",
     text: initialState?.text || "",
@@ -38,6 +40,7 @@ const useHandleHomeTheme = (state?: any, initialState?: FormState) => {
     footerColorText: initialState?.footerColorText || "",
     navbarColor: initialState?.navbarColor || "",
     navbarTextColor: initialState?.navbarTextColor || "",
+    publicImageId: initialState?.publicImageId || "",
   });
 
   const [imageUrl, setImageUrl] = useState("");
@@ -74,7 +77,20 @@ const useHandleHomeTheme = (state?: any, initialState?: FormState) => {
     }
   }, [imageUrl]);
 
-  return { formState, handleOnChange, imageUrl, setImageUrl, push };
+  useEffect(() => {
+    if (publicImageId) {
+      setFormState((prev) => ({ ...prev, publicImageId }));
+    }
+  }, [publicImageId]);
+
+  return {
+    formState,
+    handleOnChange,
+    imageUrl,
+    setImageUrl,
+    push,
+    setPublicImageId,
+  };
 };
 
 export default useHandleHomeTheme;

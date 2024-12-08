@@ -9,12 +9,14 @@ import Image from "next/image";
 import { useState } from "react";
 
 type Props = {
+  setPublicImageId: (id: string) => void;
   setImageUrl: (url: string) => void;
   imageUrl?: string | null;
 };
 
 export default function UploadHeroBanner({
   setImageUrl,
+  setPublicImageId,
   imageUrl = null,
 }: Props) {
   const [tempImage, setTempImage] = useState("");
@@ -42,6 +44,7 @@ export default function UploadHeroBanner({
           const imageUrl = value.info.secure_url;
           setImageUrl(imageUrl);
           setTempImage(imageUrl);
+          setPublicImageId(value.info.public_id);
         }
       }}
     >

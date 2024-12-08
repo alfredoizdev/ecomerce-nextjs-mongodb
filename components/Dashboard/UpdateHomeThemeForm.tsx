@@ -37,10 +37,8 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
     updateHomePageThemeAction,
     undefined
   );
-  const { formState, handleOnChange, setImageUrl, push } = useHandleHomeTheme(
-    state,
-    initialState
-  );
+  const { formState, handleOnChange, setImageUrl, push, setPublicImageId } =
+    useHandleHomeTheme(state, initialState);
 
   return (
     <div>
@@ -50,6 +48,7 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
       <UploadHeroBanner
         imageUrl={formState.heroBannerImage}
         setImageUrl={setImageUrl}
+        setPublicImageId={setPublicImageId}
       />
       <form action={action}>
         {/* Hero Section Fields */}
@@ -338,6 +337,14 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
               type="text"
               name="footerColorTitle"
               value={formState.footerColorTitle}
+              onChange={handleOnChange}
+            />
+            <input
+              hidden
+              id="publicImageId"
+              type="text"
+              name="publicImageId"
+              value={formState.publicImageId}
               onChange={handleOnChange}
             />
             <ColorPickerField
