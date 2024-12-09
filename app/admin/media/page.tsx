@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import MediaList from "./MediaList";
 import { Suspense } from "react";
 import MediaSkeleton from "@/components/Dashboard/media/MediaSkeleton";
+import UploadFloat from "@/components/Dashboard/media/UploadFloat";
 
 const mediaPage = async () => {
   const session = await verifySession();
@@ -20,6 +21,7 @@ const mediaPage = async () => {
       <Suspense fallback={<MediaSkeleton count={10} />}>
         <MediaList />
       </Suspense>
+      <UploadFloat />
     </LayoutDashboard>
   );
 };

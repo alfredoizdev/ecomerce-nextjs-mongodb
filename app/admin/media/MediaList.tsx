@@ -1,5 +1,5 @@
 import { getCouldImageAction } from "@/actions/media";
-import DeleteMedia from "@/components/Dashboard/media/DeleteMedia";
+import DetailMedia from "@/components/Dashboard/media/DetailMedia";
 import NotFoundText from "@/components/ui/NotFoundText";
 import Image from "next/image";
 
@@ -34,9 +34,7 @@ const MediaList = async () => {
               style={{ objectFit: "cover" }}
               className="rounded-lg object-cover"
             />
-
-            {/* Delete Button on Hover */}
-            <DeleteMedia publicImageId={image.public_id} />
+            <DetailMedia media={image} />
           </div>
         );
       })}

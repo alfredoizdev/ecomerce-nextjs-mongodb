@@ -7,9 +7,12 @@ import Product from "@/models/Product";
 import User from "@/models/User";
 import { DTOMedia } from "@/types/Media";
 import { revalidatePath } from "next/cache";
-import { cache } from "react";
 
-export const getCouldImageAction = cache(async (): Promise<DTOMedia[]> => {
+export const customRevalidateTag = async (path: string) => {
+  revalidatePath(path, "page");
+};
+
+export const getCouldImageAction = async (): Promise<DTOMedia[]> => {
   try {
     // Fetch images from Cloudinary with a max result limit
     const res = await cloudinary.search
@@ -30,7 +33,7 @@ export const getCouldImageAction = cache(async (): Promise<DTOMedia[]> => {
     );
     return [];
   }
-});
+};
 
 export const setRelationShipOfMedia = async (
   mediaId: string,

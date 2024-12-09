@@ -1,5 +1,6 @@
 "use client";
 import { deleteMediaAction } from "@/actions/media";
+import { Button } from "@/components/ui/button";
 import { FiTrash2 } from "react-icons/fi";
 import { toast } from "sonner";
 
@@ -19,12 +20,14 @@ const DeleteMedia = ({ publicImageId }: Props) => {
   };
 
   return (
-    <button
+    <Button
+      style={{ width: "100%" }}
+      variant={"destructive"}
       onClick={() => handleDelete(publicImageId)}
-      className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
     >
       <FiTrash2 className="text-white text-2xl" />
-    </button>
+      <span>Delete</span>
+    </Button>
   );
 };
 
