@@ -1,5 +1,6 @@
-import { customRevalidateTag } from "@/actions/media";
+import { customRevalidatePath } from "@/actions/media";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 import { CldUploadWidget } from "next-cloudinary";
 import { useState } from "react";
@@ -15,8 +16,11 @@ const FolderPopup = ({
 }: Props) => {
   const [folder, setFolder] = useState("");
   const onSelectFolder = (folder: string) => {
-    console.log("Selected folder: ", folder);
-    setFolder(folder);
+    const folderPath = process.env.NEXT_PUBLIC_FOLDER_CLOUDINARY
+      ? `${process.env.NEXT_PUBLIC_FOLDER_CLOUDINARY}/${folder}`
+      : `dev/${folder}`;
+
+    setFolder(folderPath);
   };
 
   return (
@@ -56,7 +60,8 @@ const FolderPopup = ({
             }}
             onSuccess={() => {
               toogle();
-              customRevalidateTag("media");
+              customRevalidatePath("admin/media");
+              toast.success("Image uploaded successfully");
             }}
           >
             {({ open }) => {

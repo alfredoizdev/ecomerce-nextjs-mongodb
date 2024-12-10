@@ -6,14 +6,16 @@ import { toast } from "sonner";
 
 type Props = {
   publicImageId: string;
+  closeDrawer: () => void;
 };
 
-const DeleteMedia = ({ publicImageId }: Props) => {
+const DeleteMedia = ({ publicImageId, closeDrawer }: Props) => {
   const handleDelete = async (publicImageId: string) => {
     const { success, message } = await deleteMediaAction(publicImageId);
 
     if (success) {
       toast.success(message);
+      closeDrawer();
     } else {
       toast.error(message);
     }

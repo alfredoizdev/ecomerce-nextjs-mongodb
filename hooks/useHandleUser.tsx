@@ -1,3 +1,4 @@
+import { useMediaStore } from "@/store/useMediaStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -22,6 +23,7 @@ type InitialState = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useHandleUser = (state: any, initialState?: InitialState) => {
+  const { currentMedia } = useMediaStore((state) => state);
   const { push } = useRouter();
   const [formState, setFormState] = useState<InputForm>(
     initialState || {
@@ -56,6 +58,13 @@ const useHandleUser = (state: any, initialState?: InitialState) => {
       setFormState((prev) => ({ ...prev, publicImageId }));
     }
   }, [publicImageId]);
+
+  useEffect(() => {
+    if (currentMedia) {
+      setImageUrl(currentMedia.secure_url);
+      setPublicImageId(currentMedia.public_id);
+    }
+  }, [currentMedia]);
 
   return {
     formState,

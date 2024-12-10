@@ -63,7 +63,10 @@ const DetailMedia = ({ media }: Props) => {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-0">
-            <DeleteMedia publicImageId={media.public_id} />
+            <DeleteMedia
+              closeDrawer={toggleDrawer}
+              publicImageId={media.public_id}
+            />
           </div>
         </div>
       </Drawer>

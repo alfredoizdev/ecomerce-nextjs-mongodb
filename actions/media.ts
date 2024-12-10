@@ -8,7 +8,7 @@ import User from "@/models/User";
 import { DTOMedia } from "@/types/Media";
 import { revalidatePath } from "next/cache";
 
-export const customRevalidateTag = async (path: string) => {
+export const customRevalidatePath = async (path: string) => {
   revalidatePath(path, "page");
 };
 
