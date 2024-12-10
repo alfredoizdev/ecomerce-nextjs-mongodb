@@ -7,26 +7,20 @@ import { MdCloudUpload, MdEdit } from "react-icons/md";
 import Image from "next/image";
 import { deleteImageAction } from "@/actions/products";
 import { useState } from "react";
+import { getFolderForCludinary } from "@/utils/cloudinary";
 
 type Props = {
   setImageUrl: (url: string) => void;
   setPubliImageId?: (publicId: string) => void;
   imageUrl?: string | null;
-  prevImage?: "user" | "product";
 };
 
 export default function UploadImage({
   setImageUrl,
   setPubliImageId,
   imageUrl = null,
-  prevImage = "product",
 }: Props) {
   const [tempImage, setTempImage] = useState("");
-
-  // const prevImageSrc =
-  //   prevImage === "user"
-  //     ? "/images/not-profile-image.webp"
-  //     : "/images/shoes/product/not-image.webp";
 
   return (
     <CldUploadWidget
@@ -40,7 +34,7 @@ export default function UploadImage({
         maxImageWidth: 500,
         minImageHeight: 300,
         minImageWidth: 300,
-        folder: `${process.env.NEXT_PUBLIC_FOLDER_CLOUDINARY}/${prevImage}`,
+        folder: `${getFolderForCludinary()}`,
       }}
       onSuccess={(value: CloudinaryUploadWidgetResults) => {
         if (

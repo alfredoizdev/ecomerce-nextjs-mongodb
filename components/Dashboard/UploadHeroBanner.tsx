@@ -7,6 +7,7 @@ import {
 import { MdCloudUpload, MdEdit } from "react-icons/md";
 import Image from "next/image";
 import { useState } from "react";
+import { getFolderForCludinary } from "@/utils/cloudinary";
 
 type Props = {
   setPublicImageId: (id: string) => void;
@@ -34,7 +35,7 @@ export default function UploadHeroBanner({
         maxImageWidth: 2000,
         minImageHeight: 500,
         minImageWidth: 1000,
-        folder: `${process.env.NEXT_PUBLIC_FOLDER_CLOUDINARY}/hero`,
+        folder: `${getFolderForCludinary()}`,
       }}
       onSuccess={(value: CloudinaryUploadWidgetResults) => {
         if (

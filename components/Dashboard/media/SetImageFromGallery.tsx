@@ -6,9 +6,7 @@ import Drawer from "../../shared/Drawer";
 import MediaPrintList from "./MediaPrintList";
 import { useMediaStore } from "@/store/useMediaStore";
 
-type Props = { sortByFolder?: string };
-
-const SetImageFromGallery = ({ sortByFolder }: Props) => {
+const SetImageFromGallery = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { currentMedia } = useMediaStore((state) => state);
 
@@ -47,10 +45,7 @@ const SetImageFromGallery = ({ sortByFolder }: Props) => {
         onClose={handToogleDrawer}
       >
         <h2 className="mb-3">Media</h2>
-        <MediaPrintList
-          sortByFolder={sortByFolder}
-          handleDrawer={handToogleDrawer}
-        />
+        <MediaPrintList handleDrawer={handToogleDrawer} />
       </Drawer>
     </>
   );
