@@ -14,7 +14,7 @@ interface ProductFormData {
   sole: string;
   weight: string;
   colors: string;
-  sizes: string;
+  sizes: string; // Will store sizes as a comma-separated string
   image?: string;
   inStock: string;
   publicImageId?: string;
@@ -39,6 +39,18 @@ const useCreateProductForm = (
   ) => {
     const { name, value } = e.target;
     setFormFields((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSizesChange = (sizes: string[]) => {
+    // Actualizamos el campo "sizes" en el estado como una cadena separada por comas
+    setFormFields((prevFields) => ({ ...prevFields, sizes: sizes.join(",") }));
+  };
+
+  const handleColorChange = (updatedColors: string[]) => {
+    setFormFields((prev) => ({
+      ...prev,
+      colors: updatedColors.join(","),
+    }));
   };
 
   const handleSelectOnChange = (value: string, key: string) => {
@@ -89,7 +101,9 @@ const useCreateProductForm = (
     resetForm,
     setFormFields,
     setImageUrl,
+    handleColorChange,
     setPublicImageId,
+    handleSizesChange,
   };
 };
 

@@ -19,6 +19,8 @@ import {
 import UploadImage from "./UploadImage";
 import useCreateProductForm from "@/hooks/useCreateProductForm";
 import SetImageFromGallery from "./media/SetImageFromGallery";
+import SizeSelector from "./SizeSelector";
+import ColorSelector from "./ColorSelector";
 
 // const initialState = {
 //   name: "Blue Snickers",
@@ -63,6 +65,8 @@ const CrateProduct = () => {
     handleSelectOnChange,
     setImageUrl,
     setPublicImageId,
+    handleSizesChange,
+    handleColorChange,
   } = useCreateProductForm(initialState, state);
 
   return (
@@ -292,14 +296,12 @@ const CrateProduct = () => {
               htmlFor="colors"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Colors (comma-separated)
+              Colors
             </Label>
-            <Input
-              id="colors"
-              name="colors"
-              placeholder="e.g., Red, Black, Blue"
-              value={formFields?.colors || ""}
-              onChange={handleOnChange}
+            <ColorSelector
+              colors={formFields.colors ? formFields.colors.split(",") : []}
+              onChange={handleColorChange}
+              formValueColors={formFields.colors}
             />
             {state?.errors?.colors && (
               <p className="text-sm text-red-500 mt-1">{state.errors.colors}</p>
@@ -308,34 +310,37 @@ const CrateProduct = () => {
 
           {/* Sizes */}
           <div>
-            <Label
-              htmlFor="sizes"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Sizes (comma-separated)
-            </Label>
-            <Input
-              id="sizes"
-              name="sizes"
-              placeholder="e.g., 7, 8, 9, 10"
-              value={formFields?.sizes || ""}
-              onChange={handleOnChange}
-            />
-            {state?.errors?.sizes && (
-              <p className="text-sm text-red-500 mt-1">{state.errors.sizes}</p>
-            )}
+            {/* Sizes */}
+            <div className="md:col-span-2">
+              <Label
+                htmlFor="sizes"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Sizes
+              </Label>
+              <SizeSelector
+                sizes={formFields.sizes.split(",")} // Inicializa con las tallas existentes
+                onChange={handleSizesChange} // Llama a la función para manejar cambios
+                formValueSizes={formFields.sizes} // Envía las tallas como un string separado por comas
+              />
+              {state?.errors?.sizes && (
+                <p className="text-sm text-red-500 mt-1">
+                  {state.errors.sizes}
+                </p>
+              )}
+            </div>
           </div>
           <div>
             <Label
               htmlFor="weight"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              weights (comma-separated)
+              weights
             </Label>
             <Input
               id="weight"
               name="weight"
-              placeholder=" weights e.g., 200g, 300g, 400g"
+              placeholder=" weights e.g., 200g"
               value={formFields?.weight || ""}
               onChange={handleOnChange}
             />

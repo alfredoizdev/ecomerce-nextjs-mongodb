@@ -45,6 +45,19 @@ const useEditProductForm = (
 
   const resetForm = () => setFormFields(initialState);
 
+  // Nueva función para manejar cambios de tallas (sizes)
+  const handleSizesChange = (sizes: string[]) => {
+    // Actualizamos el campo "sizes" en el estado como una cadena separada por comas
+    setFormFields((prevFields) => ({ ...prevFields, sizes: sizes.join(",") }));
+  };
+
+  const handleColorChange = (updatedColors: string[]) => {
+    setFormFields((prev) => ({
+      ...prev,
+      colors: updatedColors.join(","),
+    }));
+  };
+
   // Manejo de imagen
   useEffect(() => {
     if (imageUrl) {
@@ -79,6 +92,8 @@ const useEditProductForm = (
     resetForm,
     setFormFields,
     setImageUrl,
+    handleSizesChange,
+    handleColorChange,
   };
 };
 

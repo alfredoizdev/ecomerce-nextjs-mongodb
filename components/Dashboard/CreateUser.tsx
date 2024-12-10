@@ -41,7 +41,6 @@ const CreateUser = () => {
           {/* Upload Section */}
           <div className="flex flex-col items-center">
             <UploadImage
-              prevImage="user"
               setPubliImageId={setPublicImageId}
               setImageUrl={setImageUrl}
             />
@@ -60,7 +59,7 @@ const CreateUser = () => {
 
           {/* Choose from Gallery Section */}
           <div className="flex flex-col items-center">
-            <SetImageFromGallery sortByFolder={"user"} />
+            <SetImageFromGallery />
             <p className="text-sm text-gray-600 mt-2 text-center lg:text-left">
               Choose from Gallery
             </p>

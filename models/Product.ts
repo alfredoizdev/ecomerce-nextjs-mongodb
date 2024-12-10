@@ -14,8 +14,8 @@ export interface IProduct {
     material: string;
     sole: string;
     weight: string;
-    colors: string[];
-    sizes: string[];
+    colors: string;
+    sizes: string;
   };
 }
 
@@ -57,8 +57,8 @@ const productSchema = new Schema<IProductDoc, IProductModel>(
       material: { type: String, required: true },
       sole: { type: String, required: true },
       weight: { type: String, required: true },
-      colors: { type: [String], required: true },
-      sizes: { type: [String], required: true },
+      colors: { type: String, required: true },
+      sizes: { type: String, required: true },
     },
   },
   {

@@ -76,10 +76,10 @@ const ShowProduct = async ({ id }: Props) => {
               <strong>Weight:</strong> {data.details.weight}
             </li>
             <li>
-              <strong>Colors:</strong> {data.details.colors.join(", ")}
+              <strong>Colors:</strong> {data.details.colors}
             </li>
             <li>
-              <strong>Available Sizes:</strong> {data.details.sizes.join(", ")}
+              <strong>Available Sizes:</strong> {data.details.sizes}
             </li>
           </ul>
 

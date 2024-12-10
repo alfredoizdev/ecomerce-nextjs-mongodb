@@ -126,8 +126,7 @@ export const updateProductAction = async (
     id,
   } = validatedFields.data;
 
-  const setColor = colors.split(",").map((color: string) => color.trim());
-  const setSizes = sizes.split(",").map((size: string) => size.trim());
+  //const setColor = colors.split(",").map((color: string) => color.trim());
 
   await connectToMongoDB();
 
@@ -151,8 +150,8 @@ export const updateProductAction = async (
   product.discountPercentage = discountPercentage;
   product.details.material = material;
   product.details.sole = sole;
-  product.details.colors = setColor;
-  product.details.sizes = setSizes;
+  product.details.colors = colors;
+  product.details.sizes = sizes;
   product.gender = gender;
   product.details.weight = weight;
   product.image = (formData.get("image") as string) || product.image;
@@ -225,8 +224,8 @@ export const createProductAction = async (
     publicImageId,
   } = validatedFields.data;
 
-  const setColor = colors.split(",").map((color: string) => color.trim());
-  const setSizes = sizes.split(",").map((size: string) => size.trim());
+  // const setColor = colors.split(",").map((color: string) => color.trim());
+  // const setSizes = sizes.split(",").map((size: string) => size.trim());
 
   await connectToMongoDB();
 
@@ -246,8 +245,8 @@ export const createProductAction = async (
       material,
       sole,
       weight,
-      colors: setColor,
-      sizes: setSizes,
+      colors,
+      sizes,
     },
   });
 

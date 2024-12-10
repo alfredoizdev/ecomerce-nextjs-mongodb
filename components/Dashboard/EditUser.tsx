@@ -48,7 +48,6 @@ const EditUser = ({ user }: Props) => {
             setImageUrl={setImageUrl}
             setPubliImageId={setPublicImageId}
             imageUrl={user.avatar}
-            prevImage="user"
           />
         </div>
         <form action={action}>

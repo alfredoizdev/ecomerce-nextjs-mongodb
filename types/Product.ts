@@ -14,7 +14,7 @@ export type Product = {
     material: string;
     sole: string;
     weight: string;
-    colors: string[];
-    sizes: string[];
+    colors: string;
+    sizes: string;
   };
 };

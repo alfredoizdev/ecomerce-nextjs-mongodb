@@ -20,6 +20,8 @@ import UploadImage from "./UploadImage";
 import { Product } from "@/types/Product";
 import useEditProductForm from "@/hooks/useEditProductForm";
 import SetImageFromGallery from "./media/SetImageFromGallery";
+import SizeSelector from "./SizeSelector";
+import ColorSelector from "./ColorSelector";
 
 type Props = {
   product: Product;
@@ -32,8 +34,14 @@ const EditProduct = ({ product }: Props) => {
     undefined
   );
 
-  const { formFields, handleOnChange, handleSelectOnChange, setImageUrl } =
-    useEditProductForm(product, state);
+  const {
+    formFields,
+    handleOnChange,
+    handleSelectOnChange,
+    setImageUrl,
+    handleSizesChange,
+    handleColorChange,
+  } = useEditProductForm(product, state);
 
   return (
     <div className="w-full">
@@ -259,14 +267,19 @@ const EditProduct = ({ product }: Props) => {
               htmlFor="colors"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Colors (comma-separated)
+              Colors
             </Label>
-            <Input
+            {/* <Input
               id="colors"
               name="colors"
               placeholder="e.g., Red, Black, Blue"
               value={formFields.details.colors}
               onChange={handleOnChange}
+            /> */}
+            <ColorSelector
+              colors={formFields.details?.colors?.split(",")}
+              onChange={handleColorChange}
+              formValueColors={formFields.details.colors}
             />
             {state?.errors?.colors && (
               <p className="text-sm text-red-500 mt-1">{state.errors.colors}</p>
@@ -279,14 +292,12 @@ const EditProduct = ({ product }: Props) => {
               htmlFor="sizes"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Sizes (comma-separated)
+              Sizes
             </Label>
-            <Input
-              id="sizes"
-              name="sizes"
-              placeholder="e.g., 7, 8, 9, 10"
-              value={formFields.details.sizes}
-              onChange={handleOnChange}
+            <SizeSelector
+              sizes={formFields.details?.sizes?.split(",")} // Inicializa con las tallas existentes
+              onChange={handleSizesChange} // Llama a la función para manejar cambios
+              formValueSizes={formFields.details.sizes} // Envía las tallas como un string separado por comas
             />
             {state?.errors?.sizes && (
               <p className="text-sm text-red-500 mt-1">{state.errors.sizes}</p>
@@ -297,12 +308,12 @@ const EditProduct = ({ product }: Props) => {
               htmlFor="weight"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              weights (comma-separated)
+              Weights
             </Label>
             <Input
               id="weight"
               name="weight"
-              placeholder=" weights e.g., 200g, 300g, 400g"
+              placeholder=" weights e.g., 200g"
               value={formFields.details.weight}
               onChange={handleOnChange}
             />
