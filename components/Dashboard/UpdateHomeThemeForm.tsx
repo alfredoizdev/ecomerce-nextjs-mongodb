@@ -204,6 +204,35 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
           <div className="mb-2">
             <Label
               className="block text-sm font-medium text-gray-700 mb-2"
+              htmlFor="backgroundBtn"
+            >
+              Button Background Color
+            </Label>
+            <input
+              hidden
+              id="backgroundBtn"
+              type="text"
+              name="backgroundBtn"
+              value={formState.backgroundBtn}
+              onChange={handleOnChange}
+            />
+            <ColorPickerField
+              color={formState.backgroundBtn}
+              onChange={(newColor) =>
+                handleOnChange({
+                  target: { name: "backgroundBtn", value: newColor },
+                } as React.ChangeEvent<HTMLInputElement>)
+              }
+            />
+            {state?.errors?.backgroundBtn && (
+              <p className="text-sm text-red-500 mt-1">
+                {state.errors.backgroundBtn}
+              </p>
+            )}
+          </div>
+          <div className="mb-2">
+            <Label
+              className="block text-sm font-medium text-gray-700 mb-2"
               htmlFor="background"
             >
               Background Color
@@ -257,35 +286,7 @@ const UpdateHomeThemeForm = ({ initialState }: Props) => {
               <p className="text-sm text-red-500 mt-1">{state.errors.text}</p>
             )}
           </div>
-          <div className="mb-2">
-            <Label
-              className="block text-sm font-medium text-gray-700 mb-2"
-              htmlFor="backgroundBtn"
-            >
-              Button Background Color
-            </Label>
-            <input
-              hidden
-              id="backgroundBtn"
-              type="text"
-              name="backgroundBtn"
-              value={formState.backgroundBtn}
-              onChange={handleOnChange}
-            />
-            <ColorPickerField
-              color={formState.backgroundBtn}
-              onChange={(newColor) =>
-                handleOnChange({
-                  target: { name: "backgroundBtn", value: newColor },
-                } as React.ChangeEvent<HTMLInputElement>)
-              }
-            />
-            {state?.errors?.backgroundBtn && (
-              <p className="text-sm text-red-500 mt-1">
-                {state.errors.backgroundBtn}
-              </p>
-            )}
-          </div>
+
           <div className="mb-2">
             <Label
               className="block text-sm font-medium text-gray-700 mb-2"
