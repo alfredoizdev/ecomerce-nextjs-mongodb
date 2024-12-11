@@ -16,11 +16,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import UploadImage from "./UploadImage";
-import useCreateProductForm from "@/hooks/useCreateProductForm";
-import SetImageFromGallery from "./media/SetImageFromGallery";
-import SizeSelector from "./SizeSelector";
-import ColorSelector from "./ColorSelector";
+import useFormHandler from "@/hooks/useHandlerForm";
+import UploadImage from "../Dashboard/UploadImage";
+import SetImageFromGallery from "../Dashboard/media/SetImageFromGallery";
+import SizeSelector from "../Dashboard/SizeSelector";
+import ColorSelector from "../Dashboard/ColorSelector";
 
 // const initialState = {
 //   name: "Blue Snickers",
@@ -62,12 +62,15 @@ const CrateProduct = () => {
   const {
     formFields,
     handleOnChange,
-    handleSelectOnChange,
-    setImageUrl,
-    setPublicImageId,
     handleSizesChange,
     handleColorChange,
-  } = useCreateProductForm(initialState, state);
+    setImageUrl,
+    handleSelectOnChange,
+    setPublicImageId,
+  } = useFormHandler(initialState, state, {
+    onSuccessRedirect: "/admin/products",
+    onSuccessMessage: "Product created successfully!",
+  });
 
   return (
     <div className="w-full">

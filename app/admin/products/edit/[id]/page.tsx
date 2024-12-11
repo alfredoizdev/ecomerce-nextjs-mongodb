@@ -1,5 +1,5 @@
 import { findProductByIdAction } from "@/actions/products";
-import EditProduct from "@/components/Dashboard/EditProduct";
+import EditProduct from "@/components/forms/EditProduct";
 import LayoutDashboard from "@/components/ui/LayoutDashboard/LayoutDashboard";
 import NotFoundText from "@/components/ui/NotFoundText";
 

@@ -16,12 +16,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import UploadImage from "./UploadImage";
 import { Product } from "@/types/Product";
-import useEditProductForm from "@/hooks/useEditProductForm";
-import SetImageFromGallery from "./media/SetImageFromGallery";
-import SizeSelector from "./SizeSelector";
-import ColorSelector from "./ColorSelector";
+import useFormHandler from "@/hooks/useHandlerForm";
+import UploadImage from "../Dashboard/UploadImage";
+import SetImageFromGallery from "../Dashboard/media/SetImageFromGallery";
+import ColorSelector from "../Dashboard/ColorSelector";
+import SizeSelector from "../Dashboard/SizeSelector";
 
 type Props = {
   product: Product;
@@ -37,11 +37,13 @@ const EditProduct = ({ product }: Props) => {
   const {
     formFields,
     handleOnChange,
-    handleSelectOnChange,
-    setImageUrl,
     handleSizesChange,
     handleColorChange,
-  } = useEditProductForm(product, state);
+    setImageUrl,
+    handleSelectOnChange,
+  } = useFormHandler(product, state, {
+    onSuccessMessage: "Product updated successfully!",
+  });
 
   return (
     <div className="w-full">
@@ -376,7 +378,7 @@ const EditProduct = ({ product }: Props) => {
                 <span>Please wait...</span>
               </>
             ) : (
-              <span>Save Product</span>
+              <span>Update Product</span>
             )}
           </Button>
           <Button

@@ -1,4 +1,4 @@
-import CrateProduct from "@/components/Dashboard/CreateProduct";
+import CrateProduct from "@/components/forms/CreateProduct";
 import LayoutDashboard from "@/components/ui/LayoutDashboard/LayoutDashboard";
 
 const AddProductPage = () => {
