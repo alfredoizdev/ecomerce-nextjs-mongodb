@@ -1,4 +1,4 @@
-import CreateUser from "@/components/Dashboard/CreateUser";
+import CreateUser from "@/components/forms/CreateUser";
 import LayoutDashboard from "@/components/ui/LayoutDashboard/LayoutDashboard";
 import { verifySession } from "@/utils/session";
 import { redirect } from "next/navigation";

@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { Session } from "@/types/Session";
@@ -55,12 +54,6 @@ const Hero = ({
           navbarTextColor: navbarTextColor || THEME_DEFAULT.navbarTextColor,
         }}
         session={session}
-      />
-      <Image
-        src={heroBannerImage || THEME_DEFAULT.heroBannerImage}
-        alt="Hero banner"
-        fill
-        style={{ objectFit: "cover", width: "100%", height: "100%" }}
       />
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"

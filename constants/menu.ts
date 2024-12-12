@@ -7,17 +7,17 @@ export const MENU = [
   {
     id: 2,
     name: "Man",
-    link: "/collection/man",
+    link: "/collections/man",
   },
   {
     id: 3,
     name: "Women",
-    link: "/collection/women",
+    link: "/collections/women",
   },
   {
     id: 4,
     name: "Unisex",
-    link: "/collection/unisex",
+    link: "/collections/unisex",
   },
   {
     id: 5,

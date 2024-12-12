@@ -7,11 +7,11 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
-import UploadImage from "./UploadImage";
 import useHandleUser from "@/hooks/useHandleUser";
 import { createUserAction } from "@/actions/users";
-import SetImageFromGallery from "./media/SetImageFromGallery";
 import useMount from "@/hooks/useMount";
+import UploadImage from "../Dashboard/UploadImage";
+import SetImageFromGallery from "../Dashboard/media/SetImageFromGallery";
 
 const CreateUser = () => {
   const [state, action, isPending] = useActionState(

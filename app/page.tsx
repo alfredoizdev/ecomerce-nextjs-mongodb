@@ -1,4 +1,3 @@
-import Camp from "@/components/Camp/Camp";
 import Hero from "@/components/shared/Hero";
 import Subcribe from "@/components/Subcribe/Subcribe";
 
@@ -10,6 +9,7 @@ import { getSession } from "@/utils/session";
 import { getHomePageThemeaction } from "@/actions/custom";
 import { THEME_DEFAULT } from "@/constants/theme";
 import { darkenColor } from "@/utils/theme";
+import FetchCampaing from "@/server/FetchCampaing";
 
 export default async function Home() {
   const session = await getSession();
@@ -37,7 +37,9 @@ export default async function Home() {
             <ProductList theme={{ ...data }} limit={4} />
           </Suspense>
         </section>
-        <Camp />
+        <Suspense fallback={<SkeletonCustomCard count={4} />}>
+          <FetchCampaing />
+        </Suspense>
         <section className="grid grid-cols-1 gap-6 px-5 md:px-8 lg:px-16 py-9">
           <Subcribe {...data} />
         </section>
