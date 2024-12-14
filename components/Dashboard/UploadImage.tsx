@@ -52,8 +52,6 @@ export default function UploadImage({
         }
       }}
       onQueuesEndAction={async () => {
-        console.log("Queue ended");
-
         if (imageUrl) {
           await deleteImageAction(imageUrl);
         }

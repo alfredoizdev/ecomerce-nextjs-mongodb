@@ -1,3 +1,4 @@
+import { TCamp } from "@/types/Camp";
 import { Product } from "@/types/Product";
 
 export const PRODUCTS: Product[] = [
@@ -217,6 +218,45 @@ export const PRODUCTS: Product[] = [
       colors: "Silver, Black",
       sizes: "6, 7, 8, 9, 10, 11, 12",
     },
+  },
+];
+
+export const CAMPAIGN: TCamp[] = [
+  {
+    title: "Summer Sale",
+    description: "Get up to 50% off on all products",
+    image: "/images/shoes/products/glass.webp",
+    page: "/products",
+    startDate: "2022-06-01",
+    endDate: "2022-06-30",
+    color: "bg-yellow-500",
+  },
+  {
+    title: "Winter Collection",
+    description: "New arrivals for the season",
+    image: "/images/shoes/product/camp.webp",
+    page: "/products",
+    startDate: "2022-12-01",
+    endDate: "2022-12-31",
+    color: "bg-blue-500",
+  },
+  {
+    title: "Back to School",
+    description: "Get ready for the new school year",
+    image: "/images/shoes/product/jacket.webp",
+    page: "/products",
+    startDate: "2022-08-01",
+    endDate: "2022-08-31",
+    color: "bg-green-500",
+  },
+  {
+    title: "Spring Collection",
+    description: "Fresh styles for the season",
+    image: "/images/shoes/product/jordan.webp",
+    page: "/products",
+    startDate: "2022-03-01",
+    endDate: "2022-03-31",
+    color: "bg-pink-500",
   },
 ];
 

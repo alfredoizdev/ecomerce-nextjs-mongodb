@@ -5,10 +5,14 @@ import {
   FormState,
   SignupFormSchema,
   UpdateUserFormSchema,
+  UpdateUserDetailFormSchema,
+  FormUserDetailState,
 } from "@/lib/definitions";
 import connectToMongoDB from "@/lib/database";
-import { TUser } from "@/types/User";
+import { TUser, TUserDetailDTO } from "@/types/User";
 import { setRelationShipOfMedia } from "./media";
+import UserDetail from "@/models/UserDetail";
+import { revalidatePath } from "next/cache";
 
 export const getUsersAction = async (): Promise<{
   data: TUser[];
@@ -160,5 +164,152 @@ export const updateUserAction = async (
   return {
     success: true,
     message: "User updated",
+  };
+};
+
+export const updateUserDetailsAction = async (
+  state: FormUserDetailState,
+  formData: FormData
+): Promise<FormUserDetailState> => {
+  try {
+    const validatedFields = UpdateUserDetailFormSchema.safeParse({
+      phone: formData.get("phone"),
+      address: formData.get("address"),
+      city: formData.get("city"),
+      state: formData.get("state"),
+      zipCode: formData.get("zipCode"),
+      country: formData.get("country"),
+      id: formData.get("id"),
+    });
+
+    if (!validatedFields.success) {
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        success: false,
+        message: "Invalid fields",
+      };
+    }
+
+    const {
+      phone,
+      address,
+      city,
+      state: stateCountry,
+      zipCode,
+      country,
+      id,
+    } = validatedFields.data;
+
+    await connectToMongoDB();
+
+    const currentUser = await User.findById(id).exec();
+
+    if (!currentUser) {
+      return {
+        success: false,
+        message: "User not found",
+      };
+    }
+
+    const userDetail = await UserDetail.findOne({
+      user: currentUser.id,
+    }).exec();
+
+    if (!userDetail) {
+      const newUserDetail = UserDetail.build({
+        user: currentUser.id,
+        phone,
+        address,
+        city,
+        state: stateCountry,
+        zipCode,
+        country,
+      });
+
+      await newUserDetail.save();
+      revalidatePath(`/member/profile`, "page");
+      return {
+        success: true,
+        message: "User details created",
+      };
+    }
+
+    userDetail.phone = phone;
+    userDetail.address = address;
+    userDetail.city = city;
+    userDetail.state = stateCountry;
+    userDetail.zipCode = zipCode;
+    userDetail.country = country;
+
+    await userDetail.save();
+    revalidatePath(`/member/profile`, "page");
+
+    return {
+      success: true,
+      message: "User details updated",
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+
+      return {
+        success: false,
+        message: `An error occurred: ${error.message}`,
+      };
+    }
+
+    return {
+      success: false,
+      message: `An error occurred`,
+    };
+  }
+};
+
+export const getUserDetailByUserId = async (
+  id: string
+): Promise<{
+  success: boolean;
+  message: string;
+  data: TUserDetailDTO | null;
+}> => {
+  await connectToMongoDB();
+
+  const userDetail = await UserDetail.findOne({ user: id }).exec();
+
+  if (!userDetail) {
+    return {
+      success: false,
+      message: `An error occurred`,
+      data: null,
+    };
+  }
+
+  return {
+    success: true,
+    message: "",
+    data: JSON.parse(JSON.stringify(userDetail)),
+  };
+};
+
+export const uploadUserAvatar = async (userid: string, ImageUrl: string) => {
+  await connectToMongoDB();
+
+  const user = await User.findById(userid).exec();
+
+  if (!user) {
+    return {
+      success: false,
+      message: "User not found",
+    };
+  }
+
+  user.avatar = ImageUrl;
+  await user.save();
+
+  revalidatePath("/member/profile", "page");
+
+  return {
+    success: true,
+    message: "Avatar uploaded",
   };
 };
