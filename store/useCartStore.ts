@@ -8,6 +8,7 @@ type CartState = {
   cart: ProductInCart[];
   addToCart: (item: ProductInCart) => void;
   udateQuantity: (id: string, quantity: number) => void;
+  updateCart: (cart: ProductInCart[]) => void;
   removeFromCart: (id: string) => void;
 };
 
@@ -41,6 +42,7 @@ export const useCartStore = create<CartState>()(
           ),
         }));
       },
+      updateCart: (cart: ProductInCart[]) => set({ cart }),
       removeFromCart: (id: string) =>
         set((state) => ({
           cart: state.cart.filter((i) => i.id !== id),

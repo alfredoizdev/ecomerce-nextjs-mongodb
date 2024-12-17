@@ -81,7 +81,7 @@ const CustomHeader = ({ title, session, theme }: Props) => {
             </Link>
           )}
           <CartMenu {...theme} />
-          <MobileButtonMenu />
+          <MobileButtonMenu navbarTextColor={theme?.navbarTextColor} />
         </div>
       </div>
     </header>

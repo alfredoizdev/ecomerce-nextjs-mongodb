@@ -7,6 +7,9 @@ import { Session } from "@/types/Session";
 
 type Props = {
   session?: Session;
+  theme?: {
+    navbarTextColor?: string;
+  };
 };
 
 const MobileMenu = ({ session }: Props) => {

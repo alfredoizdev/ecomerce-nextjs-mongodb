@@ -25,7 +25,7 @@ const ProductPage = async ({ params }: { params: TParams }) => {
       </Suspense>
       {/* Collage Section */}
       <section className="my-8 max-w-5xl mx-auto py-6 px-4">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+        <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center md:text-left">
           You may also like
         </h3>
         <Suspense fallback={<SkeletonCustomCard count={4} />}>

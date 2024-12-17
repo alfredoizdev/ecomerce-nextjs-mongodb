@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { findProductByIdAction } from "@/actions/products";
-import ProductActions from "@/components/ProductActions/ProductActions";
+import ProductDetail from "@/components/ProductDetail/ProductDetail";
 import NotFoundText from "@/components/ui/NotFoundText";
 import { calculateDiscountedPrice } from "@/utils/pricing";
 
@@ -23,7 +23,7 @@ const ShowProduct = async ({ id }: Props) => {
 
   return (
     <section className="max-w-5xl mx-auto py-6 px-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-center md:text-left">
         {/* Image */}
         <div className="relative w-full h-96 bg-white shadow-md rounded-lg">
           {data.discountPercentage !== 0 && (
@@ -47,7 +47,7 @@ const ShowProduct = async ({ id }: Props) => {
           <p className="mt-4 text-gray-600">{data.description}</p>
 
           {/* Precios */}
-          <div className="mt-6">
+          <div className="mt-3">
             {discountedPrice ? (
               <div>
                 <p className="text-sm text-gray-500 line-through">
@@ -65,7 +65,7 @@ const ShowProduct = async ({ id }: Props) => {
           </div>
 
           {/* Additional Details */}
-          <ul className="mt-6 space-y-2 text-sm text-gray-600">
+          <ul className="mt-3 space-y-2 text-sm text-gray-600">
             <li>
               <strong>Material:</strong> {data.details.material}
             </li>
@@ -78,13 +78,9 @@ const ShowProduct = async ({ id }: Props) => {
             <li>
               <strong>Colors:</strong> {data.details.colors}
             </li>
-            <li>
-              <strong>Available Sizes:</strong> {data.details.sizes}
-            </li>
           </ul>
-
           {/* Quantity Selector */}
-          <ProductActions product={data} />
+          <ProductDetail product={data} />
         </div>
       </div>
     </section>
