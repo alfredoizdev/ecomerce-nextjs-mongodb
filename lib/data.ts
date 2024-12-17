@@ -225,11 +225,11 @@ export const CAMPAIGN: TCamp[] = [
   {
     title: "Summer Sale",
     description: "Get up to 50% off on all products",
-    image: "/images/shoes/products/glass.webp",
+    image: "/images/shoes/product/glass.webp",
     page: "/products",
     startDate: "2022-06-01",
     endDate: "2022-06-30",
-    color: "bg-yellow-500",
+    color: "#3291ff",
   },
   {
     title: "Winter Collection",
@@ -238,7 +238,7 @@ export const CAMPAIGN: TCamp[] = [
     page: "/products",
     startDate: "2022-12-01",
     endDate: "2022-12-31",
-    color: "bg-blue-500",
+    color: "#5cac1e",
   },
   {
     title: "Back to School",
@@ -247,7 +247,7 @@ export const CAMPAIGN: TCamp[] = [
     page: "/products",
     startDate: "2022-08-01",
     endDate: "2022-08-31",
-    color: "bg-green-500",
+    color: "#7928ca",
   },
   {
     title: "Spring Collection",
@@ -256,7 +256,7 @@ export const CAMPAIGN: TCamp[] = [
     page: "/products",
     startDate: "2022-03-01",
     endDate: "2022-03-31",
-    color: "bg-pink-500",
+    color: "#a0456a",
   },
 ];
 
