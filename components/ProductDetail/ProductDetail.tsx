@@ -8,16 +8,8 @@ type Props = {
 };
 
 const ProductDetail = ({ product }: Props) => {
-  const {
-    // handleSelectSize,
-    // isSizeSelected,
-    // quantity,
-    // handleIncrement,
-    // handleDecrement,
-    handleAddToCart,
-    handleSelectSize,
-    isSizeSelected,
-  } = useProductDetails(product);
+  const { handleAddToCart, handleSelectSize, isSizeSelected } =
+    useProductDetails(product);
 
   return (
     <div className="p-4">
@@ -46,24 +38,6 @@ const ProductDetail = ({ product }: Props) => {
           ))}
         </div>
       </div>
-
-      {/* <div className="flex items-center space-x-4 mt-4">
-        <button
-          onClick={handleDecrement}
-          className="bg-gray-300 hover:bg-gray-400 text-black px-2 py-1 rounded-lg"
-          aria-label="Decrease quantity"
-        >
-          -
-        </button>
-        <span className="text-lg font-semibold">{quantity}</span>
-        <button
-          onClick={handleIncrement}
-          className="bg-gray-300 hover:bg-gray-400 text-black px-2 py-1 rounded-lg"
-          aria-label="Increase quantity"
-        >
-          +
-        </button>
-      </div> */}
 
       <button
         onClick={handleAddToCart}
