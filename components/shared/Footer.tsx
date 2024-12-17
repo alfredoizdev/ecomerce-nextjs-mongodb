@@ -1,17 +1,22 @@
 import { THEME_DEFAULT } from "@/constants/theme";
-import Image from "next/image";
 import Link from "next/link";
+import { FaXTwitter } from "react-icons/fa6";
+import { TbBrandFacebook } from "react-icons/tb";
 
 type Props = {
   footerBackgroundColor?: string;
   footerColorTitle?: string;
   footerColorText?: string;
+  backgroundBtn?: string;
+  textBtn?: string;
 };
 
 const Footer = ({
   footerBackgroundColor,
   footerColorTitle,
   footerColorText,
+  backgroundBtn,
+  textBtn,
 }: Props) => {
   return (
     <footer
@@ -135,23 +140,30 @@ const Footer = ({
           <div className="mt-4 flex space-x-4">
             {/* Social Icons */}
             <Link
+              style={{
+                backgroundColor: backgroundBtn || THEME_DEFAULT.backgroundBtn,
+              }}
               href="https://facebook.com"
-              className="p-2 rounded-full bg-gray-700 hover:bg-gray-600"
+              className="p-2 rounded-full"
               aria-label="Facebook"
             >
-              <Image
-                src="/icons/fb.svg"
-                alt="Facebook"
-                width={24}
-                height={24}
+              <TbBrandFacebook
+                color={`${textBtn || THEME_DEFAULT.textBtn}`}
+                size={24}
               />
             </Link>
             <Link
+              style={{
+                backgroundColor: backgroundBtn || THEME_DEFAULT.backgroundBtn,
+              }}
               href="https://twitter.com"
-              className="p-2 rounded-full bg-gray-700 hover:bg-gray-600"
+              className="p-2 rounded-full"
               aria-label="Twitter"
             >
-              <Image src="/icons/tw.svg" alt="Twitter" width={24} height={24} />
+              <FaXTwitter
+                color={`${textBtn || THEME_DEFAULT.textBtn}`}
+                size={24}
+              />
             </Link>
           </div>
         </div>

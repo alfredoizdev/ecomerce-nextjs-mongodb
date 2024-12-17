@@ -12,13 +12,8 @@ const ProductDetail = ({ product }: Props) => {
     useProductDetails(product);
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
+    <div className="pt-3">
       <p className="text-gray-700 mb-4">{product.description}</p>
-      <p className="text-xl font-semibold text-gray-900 mb-4">
-        ${product.price.toFixed(2)}
-      </p>
-
       <div className="my-3">
         <strong>Available Sizes:</strong>
         <div className="w-full flex flex-row justify-center md:justify-start items-center flex-wrap">
