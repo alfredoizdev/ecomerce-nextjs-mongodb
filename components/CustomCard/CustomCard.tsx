@@ -43,7 +43,7 @@ const CustomCard = ({
     >
       {/* Badge de descuento */}
       {discountPercentage > 0 && (
-        <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold py-1 px-2 rounded">
+        <div className="absolute top-2 right-2 bg-red-700 text-white text-xs font-bold py-1 px-2 rounded">
           {discountPercentage}% OFF
         </div>
       )}
@@ -58,13 +58,17 @@ const CustomCard = ({
       {/* Imagen del producto con efecto de hover */}
       <div className="mt-5 group">
         <Link href={inStock === "in" ? `/product/${id}` : "#"}>
-          <div className="relative overflow-hidden rounded-md">
+          <div
+            className="relative overflow-hidden rounded-md"
+            aria-label="Product image"
+          >
             <Image
               src={image}
               alt={"Product image"}
               width={300}
               height={200}
-              className={`mx-auto rounded-md transform transition-transform duration-300 ${
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              className={`rounded-md transform transition-transform duration-300 ${
                 inStock === "in" ? "group-hover:scale-105" : "opacity-50"
               }`}
             />

@@ -12,6 +12,7 @@ const MobileButtonMenu = ({ navbarTextColor }: Props) => {
   return (
     <button
       className="text-white focus:outline-none"
+      aria-label="Open mobile menu"
       onClick={toggleMobileMenu}
     >
       {/* Icon for mobile menu */}
