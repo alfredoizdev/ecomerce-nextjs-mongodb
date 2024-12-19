@@ -29,6 +29,8 @@ export default async function Home() {
 
   const titleColor = darkenColor(data?.text || THEME_DEFAULT.text, 1);
 
+  const currentYear = new Date().getFullYear();
+
   return (
     <LayoutRegularPage session={session} theme={data}>
       <Hero {...data} session={session} />
@@ -50,7 +52,7 @@ export default async function Home() {
         <FetchCampaing />
       </div>
       <section
-        className="w-full my-3 py-6"
+        className="w-full mt-3 py-6"
         style={{
           background:
             "linear-gradient(to bottom left, #f3f4f6, #e5e7eb, #d1d5db)",
@@ -64,7 +66,7 @@ export default async function Home() {
                 color: titleColor,
               }}
             >
-              Latest Products
+              Latest Products <span>{currentYear}</span>
             </h2>
           </section>
           <LastedProducts theme={data} />
