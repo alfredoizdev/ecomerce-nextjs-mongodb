@@ -10,6 +10,8 @@ export type Product = {
   discountPercentage: number;
   inStock: string;
   publicImageId?: string;
+  createdAt?: string;
+  updatedAt?: string;
   details: {
     material: string;
     sole: string;
