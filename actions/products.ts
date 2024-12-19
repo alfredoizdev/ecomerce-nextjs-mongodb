@@ -22,11 +22,11 @@ export const deleteImageAction = async (image: string) => {
 };
 
 export const getProductsAction = async (
-  gender?: string
+  category?: string
 ): Promise<TProduct[]> => {
   await connectToMongoDB();
 
-  const newFilter = gender && gender !== "all" ? { gender } : {};
+  const newFilter = category && category !== "all" ? { category } : {};
 
   try {
     const products = await Product.find<TProduct>(newFilter)
@@ -95,7 +95,6 @@ export const updateProductAction = async (
     sole: formData.get("sole"),
     colors: formData.get("colors"),
     sizes: formData.get("sizes"),
-    gender: formData.get("gender"),
     weight: formData.get("weight"),
     inStock: formData.get("inStock"),
     publicImageId: formData.get("publicImageId"),
@@ -120,7 +119,6 @@ export const updateProductAction = async (
     colors,
     weight,
     sizes,
-    gender,
     inStock,
     publicImageId,
     id,
@@ -152,7 +150,6 @@ export const updateProductAction = async (
   product.details.sole = sole;
   product.details.colors = colors;
   product.details.sizes = sizes;
-  product.gender = gender;
   product.details.weight = weight;
   product.image = (formData.get("image") as string) || product.image;
   product.inStock = inStock || product.inStock;
@@ -180,7 +177,6 @@ export const createProductAction = async (
     sole: formData.get("sole"),
     colors: formData.get("colors"),
     sizes: formData.get("sizes"),
-    gender: formData.get("gender"),
     weight: formData.get("weight"),
     inStock: formData.get("inStock"),
     publicImageId: formData.get("publicImageId"),
@@ -201,7 +197,6 @@ export const createProductAction = async (
         colors: formData.get("colors") as string,
         sizes: formData.get("sizes") as string,
         weight: formData.get("weight") as string,
-        gender: formData.get("gender") as string,
         inStock: formData.get("inStock") as string,
         publicImageId: formData.get("publicImageId") as string,
       },
@@ -219,7 +214,6 @@ export const createProductAction = async (
     colors,
     weight,
     sizes,
-    gender,
     inStock,
     publicImageId,
   } = validatedFields.data;
@@ -239,7 +233,6 @@ export const createProductAction = async (
       (formData.get("image") as string) ||
       "/images/shoes/product/not-image.webp",
     discountPercentage,
-    gender,
     inStock: inStock || "in",
     details: {
       material,

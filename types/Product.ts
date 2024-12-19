@@ -5,7 +5,6 @@ export type Product = {
   price: number;
   image: string;
   alt: string;
-  gender: string;
   category: string;
   discountPercentage: number;
   inStock: string;

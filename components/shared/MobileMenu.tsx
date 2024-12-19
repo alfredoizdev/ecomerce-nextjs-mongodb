@@ -55,7 +55,7 @@ const MobileMenu = ({ session }: Props) => {
         {isLogin ? (
           <li onClick={toggleMobileMenu}>
             <button
-              className="m-0 p-0 text-white text-2xl"
+              className="m-0 p-0 text-white text-2xl uppercase"
               onClick={signOutAction}
             >
               Logout
@@ -63,7 +63,7 @@ const MobileMenu = ({ session }: Props) => {
           </li>
         ) : (
           <li onClick={toggleMobileMenu}>
-            <Link href="/auth/signin" className="text-white text-2xl">
+            <Link href="/auth/signin" className="text-white text-2xl uppercase">
               Login
             </Link>
           </li>

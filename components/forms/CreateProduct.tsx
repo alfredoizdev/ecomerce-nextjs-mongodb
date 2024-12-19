@@ -21,6 +21,7 @@ import UploadImage from "../Dashboard/UploadImage";
 import SetImageFromGallery from "../Dashboard/media/SetImageFromGallery";
 import SizeSelector from "../Dashboard/SizeSelector";
 import ColorSelector from "../Dashboard/ColorSelector";
+import CategorySelect from "./CategorySelect";
 
 // const initialState = {
 //   name: "Blue Snickers",
@@ -179,52 +180,14 @@ const CrateProduct = () => {
             >
               Category
             </Label>
-            <Select
-              name="category"
+            <CategorySelect
               value={formFields.category}
-              onValueChange={(value) => handleSelectOnChange(value, "category")}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Running">Running</SelectItem>
-                <SelectItem value="Casual">Casual</SelectItem>
-                <SelectItem value="Boots">Boots</SelectItem>
-                <SelectItem value="Hiking">Hiking</SelectItem>
-              </SelectContent>
-            </Select>
+              onChange={(value) => handleSelectOnChange(value, "category")}
+            />
             {state?.errors?.category && (
               <p className="text-sm text-red-500 mt-1">
                 {state.errors.category}
               </p>
-            )}
-          </div>
-
-          {/* Gender */}
-          <div>
-            <Label
-              htmlFor="gender"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Gender
-            </Label>
-            <Select
-              name="gender"
-              value={formFields.gender}
-              onValueChange={(value) => handleSelectOnChange(value, "gender")}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select gender" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="unisex">Unisex</SelectItem>
-                <SelectItem value="man">Man</SelectItem>
-                <SelectItem value="women">Women</SelectItem>
-              </SelectContent>
-            </Select>
-            {state?.errors?.gender && (
-              <p className="text-sm text-red-500 mt-1">{state.errors.gender}</p>
             )}
           </div>
 

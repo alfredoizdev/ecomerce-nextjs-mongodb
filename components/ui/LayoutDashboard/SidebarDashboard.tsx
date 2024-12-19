@@ -10,7 +10,8 @@ import { MdPermMedia, MdOutlineCampaign } from "react-icons/md";
 
 import { LuStore } from "react-icons/lu";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
-import { PiUsersBold, PiGenderMaleBold } from "react-icons/pi";
+import { PiUsersBold } from "react-icons/pi";
+import { BiCategoryAlt } from "react-icons/bi";
 
 type Props = {
   isSidebarOpen: boolean;
@@ -77,12 +78,19 @@ const SidebarDashboard = ({ isSidebarOpen, toggleSidebar }: Props) => {
             <MdOutlineDashboardCustomize className="w-5 h-5" />
             {isSidebarOpen && <span className="ml-4">Custom Theme</span>}
           </Link>
-          <Link
+          {/* <Link
             href="/admin/genders"
             className="flex items-center px-4 py-2 hover:bg-gray-700"
           >
             <PiGenderMaleBold className="w-5 h-5" />
             {isSidebarOpen && <span className="ml-4">Handle Gender</span>}
+          </Link> */}
+          <Link
+            href="/admin/category"
+            className="flex items-center px-4 py-2 hover:bg-gray-700"
+          >
+            <BiCategoryAlt className="w-5 h-5" />
+            {isSidebarOpen && <span className="ml-4">Handle Category</span>}
           </Link>
           <Link
             href="/admin/campaign"

@@ -4,6 +4,10 @@ export const GenderFormSchema = z.object({
   gender: z.string().min(3, { message: "Please enter gender" }),
 });
 
+export const categoryFormSchema = z.object({
+  category: z.string().min(3, { message: "Please enter gender" }),
+});
+
 export const SignupFormSchema = z.object({
   name: z
     .string()
@@ -72,7 +76,6 @@ export const ProductFormSchema = z.object({
     .min(10, { message: "Description must be at least 10 characters long." }),
   price: z.number().min(0.01, { message: "Price must be at least $0.01." }),
   category: z.string().min(1, { message: "Please select a category" }),
-  gender: z.string().min(1, { message: "Please enter a gender" }),
   discountPercentage: z.number().int().min(0).max(100),
   material: z.string().min(1, { message: "Please enter a material" }),
   sole: z.string().min(1, { message: "Please enter a sole" }),
@@ -229,6 +232,20 @@ export type FormStateGender =
     }
   | undefined;
 
+export type FormStateCategory =
+  | {
+      errors?: {
+        category?: string[];
+      };
+      message?: string;
+      success?: boolean;
+      data?: {
+        category: string;
+        id?: string;
+      };
+    }
+  | undefined;
+
 export type FormStateProduct =
   | {
       errors?: {
@@ -242,7 +259,6 @@ export type FormStateProduct =
         sole?: string[];
         colors?: string[];
         sizes?: string[];
-        gender?: string[];
         weight?: string[];
         image?: string[];
         inStock?: string[];
@@ -262,7 +278,6 @@ export type FormStateProduct =
         colors: string;
         sizes: string;
         weight: string;
-        gender: string;
         image?: string;
         publicImageId?: string;
         inStock: string;

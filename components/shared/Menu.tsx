@@ -2,11 +2,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-import { getGendersAction } from "@/actions/gender";
-
 import { THEME_DEFAULT } from "@/constants/theme";
 
-import { DTOGender } from "@/types/Gender";
+import { getCategoryAction } from "@/actions/category";
+import { DTOCategory } from "@/types/Category";
 
 type Props = {
   color?: string;
@@ -14,11 +13,11 @@ type Props = {
 };
 
 const Menu = ({ color, fontSizes = "lg" }: Props) => {
-  const [menu, setMenu] = useState<DTOGender[]>();
+  const [menu, setMenu] = useState<DTOCategory[]>();
 
   useEffect(() => {
     const getMenu = async () => {
-      const { data } = await getGendersAction();
+      const { data } = await getCategoryAction();
       setMenu(data || []);
     };
 
@@ -45,9 +44,9 @@ const Menu = ({ color, fontSizes = "lg" }: Props) => {
           }}
           key={gender.id}
           className={`${fontSizes === "lg" ? "text-2xl" : "text-lg"} uppercase`}
-          href={`collections/${gender.name.toLocaleLowerCase()}`}
+          href={`collections/${gender.category.toLocaleLowerCase()}`}
         >
-          {gender.name}
+          {gender.category}
         </Link>
       ))}
     </>

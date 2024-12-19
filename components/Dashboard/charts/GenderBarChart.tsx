@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/chart";
 
 type Props = {
-  products: Array<{ gender: string }>;
+  products: Array<{ category: string }>;
 };
 
 const GenderBarChart = ({ products }: Props) => {
@@ -28,13 +28,13 @@ const GenderBarChart = ({ products }: Props) => {
     const total = products.length;
 
     const manCount = products.filter(
-      (p) => p.gender.toLowerCase() === "man"
+      (p) => p.category.toLowerCase() === "man"
     ).length;
     const womenCount = products.filter(
-      (p) => p.gender.toLowerCase() === "women"
+      (p) => p.category.toLowerCase() === "women"
     ).length;
     const unisexCount = products.filter(
-      (p) => p.gender.toLowerCase() === "unisex"
+      (p) => p.category.toLowerCase() === "unisex"
     ).length;
 
     return [

@@ -1,5 +1,21 @@
 import { TCamp } from "@/types/Camp";
+import { DTOCategory } from "@/types/Category";
 import { Product } from "@/types/Product";
+
+export const CATEGORIES: DTOCategory[] = [
+  {
+    category: "Man",
+  },
+  {
+    category: "Women",
+  },
+  {
+    category: "Unisex",
+  },
+  {
+    category: "Kid",
+  },
+];
 
 export const PRODUCTS: Product[] = [
   {
@@ -8,8 +24,7 @@ export const PRODUCTS: Product[] = [
     price: 79.99,
     image: "/images/shoes/product/r1.webp",
     alt: "Red Running Shoes",
-    category: "Running",
-    gender: "unisex",
+    category: "man", // Cambiado a "man"
     discountPercentage: 10, // 10% de descuento
     inStock: "in",
     details: {
@@ -26,8 +41,7 @@ export const PRODUCTS: Product[] = [
     price: 89.99,
     image: "/images/shoes/product/b1.webp",
     alt: "Blue Sports Shoes",
-    category: "Sportswear",
-    gender: "man",
+    category: "women", // Cambiado a "women"
     discountPercentage: 0, // Sin descuento
     inStock: "in",
     details: {
@@ -44,8 +58,7 @@ export const PRODUCTS: Product[] = [
     price: 69.99,
     image: "/images/shoes/product/bs1.webp",
     alt: "Black Casual Shoes",
-    category: "Casual",
-    gender: "unisex",
+    category: "unisex", // Cambiado a "unisex"
     discountPercentage: 15, // 15% de descuento
     inStock: "in",
     details: {
@@ -62,8 +75,7 @@ export const PRODUCTS: Product[] = [
     price: 99.99,
     image: "/images/shoes/product/g1.webp",
     alt: "Green Hiking Boots",
-    category: "Hiking",
-    gender: "man",
+    category: "kid", // Cambiado a "kid"
     discountPercentage: 0, // Sin descuento
     inStock: "out",
     details: {
@@ -80,8 +92,7 @@ export const PRODUCTS: Product[] = [
     price: 89.99,
     image: "/images/shoes/product/white-sneakers.webp",
     alt: "White Sneakers",
-    category: "Casual",
-    gender: "unisex",
+    category: "unisex", // Cambiado a "unisex"
     discountPercentage: 20, // 20% de descuento
     inStock: "in",
     details: {
@@ -99,8 +110,7 @@ export const PRODUCTS: Product[] = [
     price: 84.99,
     image: "/images/shoes/product/yellow-running-shoes.webp",
     alt: "Yellow Running Shoes",
-    category: "Running",
-    gender: "women",
+    category: "man", // Cambiado a "man"
     discountPercentage: 0, // Sin descuento
     inStock: "out",
     details: {
@@ -117,8 +127,7 @@ export const PRODUCTS: Product[] = [
     price: 129.99,
     image: "/images/shoes/product/brown-leather-boots.webp",
     alt: "Brown Leather Boots",
-    category: "Boots",
-    gender: "man",
+    category: "women", // Cambiado a "women"
     discountPercentage: 0, // Sin descuento
     inStock: "in",
     details: {
@@ -135,8 +144,7 @@ export const PRODUCTS: Product[] = [
     price: 74.99,
     image: "/images/shoes/product/pink-sports-shoes.webp",
     alt: "Pink Sports Shoes",
-    category: "Sportswear",
-    gender: "women",
+    category: "kid", // Cambiado a "kid"
     discountPercentage: 0, // Sin descuento
     inStock: "out",
     details: {
@@ -153,8 +161,7 @@ export const PRODUCTS: Product[] = [
     price: 94.99,
     image: "/images/shoes/product/orange-trail-shoes.webp",
     alt: "Orange Trail Running Shoes",
-    category: "Running",
-    gender: "unisex",
+    category: "unisex", // Cambiado a "unisex"
     discountPercentage: 10, // 10% de descuento
     inStock: "in",
     details: {
@@ -171,8 +178,7 @@ export const PRODUCTS: Product[] = [
     price: 89.99,
     image: "/images/shoes/product/purple-fashion-sneakers.webp",
     alt: "Purple Fashion Sneakers",
-    category: "Casual",
-    gender: "women",
+    category: "man", // Cambiado a "man"
     discountPercentage: 5, // 5% de descuento
     inStock: "out",
     details: {
@@ -189,8 +195,7 @@ export const PRODUCTS: Product[] = [
     price: 119.99,
     image: "/images/shoes/product/gray-athletic-shoes.webp",
     alt: "Gray Athletic Shoes",
-    category: "Sportswear",
-    gender: "man",
+    category: "women", // Cambiado a "women"
     discountPercentage: 15, // 15% de descuento
     inStock: "in",
     details: {
@@ -207,8 +212,7 @@ export const PRODUCTS: Product[] = [
     price: 149.99,
     image: "/images/shoes/product/silver-high-top-sneakers.webp",
     alt: "Silver High-Top Sneakers",
-    category: "Casual",
-    gender: "unisex",
+    category: "kid", // Cambiado a "kid"
     discountPercentage: 20, // 20% de descuento
     inStock: "out",
     details: {

@@ -1,13 +1,20 @@
 "use server";
 import Product from "@/models/Product";
 import connectToMongoDB from "@/lib/database";
-import { PRODUCTS, DEFAUL_THEME_HOME, CAMPAIGN } from "@/lib/data";
+import { PRODUCTS, DEFAUL_THEME_HOME, CAMPAIGN, CATEGORIES } from "@/lib/data";
 import HomeTheme from "@/models/HomeTheme";
 import Camp from "@/models/Camp";
+import Category from "@/models/Category";
 
 export const seedDatabase = async () => {
   try {
     await connectToMongoDB();
+
+    await Category.deleteMany({});
+
+    console.log("Categories cleared");
+
+    await Category.insertMany(CATEGORIES);
 
     await Camp.deleteMany({});
 

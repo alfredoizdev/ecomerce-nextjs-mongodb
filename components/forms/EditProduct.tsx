@@ -171,33 +171,6 @@ const EditProduct = ({ product }: Props) => {
             )}
           </div>
 
-          {/* Gender */}
-          <div>
-            <Label
-              htmlFor="gender"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Gender
-            </Label>
-            <Select
-              name="gender"
-              value={formFields.gender}
-              onValueChange={(value) => handleSelectOnChange(value, "gender")}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select gender" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="unisex">Unisex</SelectItem>
-                <SelectItem value="man">Man</SelectItem>
-                <SelectItem value="women">Women</SelectItem>
-              </SelectContent>
-            </Select>
-            {state?.errors?.gender && (
-              <p className="text-sm text-red-500 mt-1">{state.errors.gender}</p>
-            )}
-          </div>
-
           {/* Material */}
           <div>
             <Label

@@ -8,7 +8,6 @@ export interface IProduct {
   alt: string;
   discountPercentage: number;
   category: string;
-  gender: string;
   inStock: string;
   details: {
     material: string;
@@ -45,12 +44,6 @@ const productSchema = new Schema<IProductDoc, IProductModel>(
     category: {
       type: String,
       required: true,
-      enum: ["Running", "Casual", "Hiking", "Boots", "Sportswear"],
-    },
-    gender: {
-      type: String,
-      required: true,
-      enum: ["man", "women", "unisex"],
     },
     inStock: { type: String, required: true, default: "in" },
     details: {
