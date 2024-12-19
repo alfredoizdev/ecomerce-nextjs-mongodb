@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import { MENU } from "@/constants/menu";
 import useMobileMenu from "@/hooks/useMobileMenu";
 import { signOutAction } from "@/actions/auth";
 import { Session } from "@/types/Session";
+import Menu from "./Menu";
 
 type Props = {
   session?: Session;
@@ -51,13 +51,7 @@ const MobileMenu = ({ session }: Props) => {
 
       {/* Menu Items */}
       <ul className="flex flex-col items-center justify-center h-full space-y-4 uppercase">
-        {MENU.map((item) => (
-          <li key={item.id} onClick={toggleMobileMenu}>
-            <Link href={item.link} className="text-white text-2xl">
-              {item.name}
-            </Link>
-          </li>
-        ))}
+        <Menu color={"#fff"} fontSizes="lg" />
         {isLogin ? (
           <li onClick={toggleMobileMenu}>
             <button

@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+export const GenderFormSchema = z.object({
+  gender: z.string().min(3, { message: "Please enter gender" }),
+});
+
 export const SignupFormSchema = z.object({
   name: z
     .string()
@@ -207,6 +211,20 @@ export type FormStateHomeTheme =
           navbarColor: string;
           navbarTextColor: string;
         };
+      };
+    }
+  | undefined;
+
+export type FormStateGender =
+  | {
+      errors?: {
+        gender?: string[];
+      };
+      message?: string;
+      success?: boolean;
+      data?: {
+        name: string;
+        id?: string;
       };
     }
   | undefined;

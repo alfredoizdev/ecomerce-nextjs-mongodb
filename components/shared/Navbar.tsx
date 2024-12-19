@@ -1,5 +1,4 @@
 "use client";
-import { MENU } from "@/constants/menu";
 import Link from "next/link";
 import MobileButtonMenu from "./MobileButtonMenu";
 import CartMenu from "./CartMenu";
@@ -7,6 +6,7 @@ import { signOutAction } from "@/actions/auth";
 import { Session } from "@/types/Session";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { FaUserLarge } from "react-icons/fa6";
+import Menu from "./Menu";
 
 type Props = {
   session?: Session;
@@ -36,11 +36,7 @@ const Navbar = ({ session, theme }: Props) => {
         </div>
         {/* Menu */}
         <nav className="hidden md:flex space-x-8">
-          {MENU.map((item) => (
-            <Link className="text-lg" href={item.link} key={item.id}>
-              {item.name}
-            </Link>
-          ))}
+          <Menu color={theme?.navbarTextColor} fontSizes="md" />
           {isLogin ? (
             <button
               className="m-0 p-0 text-lg uppercase text-red-500"
