@@ -10,8 +10,6 @@ type Props = {
 const ColorSelector = ({ colors = [], onChange, formValueColors }: Props) => {
   const [localSizes, setLocalSizes] = useState<string[]>(colors);
 
-  console.log("localSizes", colors);
-
   // Sincronizar `localSizes` con `formValueColors`
   useEffect(() => {
     const parsedSizes = formValueColors ? formValueColors.split(",") : [];

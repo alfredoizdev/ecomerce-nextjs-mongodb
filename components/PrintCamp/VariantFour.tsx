@@ -39,9 +39,9 @@ const VariantFour = ({ campaings }: Props) => {
               key={camp.id}
               className={`relative text-white rounded-lg shadow-lg overflow-hidden ${
                 index === 0
-                  ? "col-span-2 row-span-1"
+                  ? "col-span-4 row-span-1 md:col-span-2 md:row-span-1"
                   : index === 1
-                  ? "col-span-2 row-span-1"
+                  ? "col-span-4 row-span-1 md:col-span-2 md:row-span-1"
                   : index === 2
                   ? "col-span-4 row-span-2"
                   : "col-span-4 row-span-1"

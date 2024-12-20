@@ -22,6 +22,7 @@ import UploadImage from "../Dashboard/UploadImage";
 import SetImageFromGallery from "../Dashboard/media/SetImageFromGallery";
 import ColorSelector from "../Dashboard/ColorSelector";
 import SizeSelector from "../Dashboard/SizeSelector";
+import CategorySelect from "./CategorySelect";
 
 type Props = {
   product: Product;
@@ -149,21 +150,10 @@ const EditProduct = ({ product }: Props) => {
             >
               Category
             </Label>
-            <Select
-              name="category"
-              value={formFields.category}
-              onValueChange={(value) => handleSelectOnChange(value, "category")}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Running">Running</SelectItem>
-                <SelectItem value="Casual">Casual</SelectItem>
-                <SelectItem value="Boots">Boots</SelectItem>
-                <SelectItem value="Hiking">Hiking</SelectItem>
-              </SelectContent>
-            </Select>
+            <CategorySelect
+              value={formFields.category.toLowerCase()}
+              onChange={(value) => handleSelectOnChange(value, "category")}
+            />
             {state?.errors?.category && (
               <p className="text-sm text-red-500 mt-1">
                 {state.errors.category}
