@@ -52,14 +52,14 @@ export default async function Home() {
         <FetchCampaing />
       </div>
       <section
-        className="w-full mt-3 py-6"
+        className="w-full py-6"
         style={{
           background:
             "linear-gradient(to bottom left, #f3f4f6, #e5e7eb, #d1d5db)",
         }}
       >
         <div className="max-w-7xl mx-auto">
-          <section className="grid grid-cols-1 gap-6 px-5 md:px-8 lg:px-16 pt-6">
+          <section className="grid grid-cols-1 gap-6 px-5 md:px-8 lg:px-16 pt-3">
             <h2
               className="text-3xl font-semibold uppercase"
               style={{
